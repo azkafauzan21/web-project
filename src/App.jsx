@@ -8,10 +8,7 @@ import { AsteroidTracker } from './pages/AsteroidTracker';
 import { SpaceDebris } from './pages/SpaceDebris';
 import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
-import { ModulHub } from './pages/ModulHub';
-import { TentangKami } from './pages/TentangKami';
-import { Galeri } from './pages/Galeri';
-import { Kontak } from './pages/Kontak';
+import { OnePageScroll } from './pages/OnePageScroll';
 
 function App() {
   return (
@@ -21,12 +18,12 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<MainLayout />}>
-            <Route index element={<Home />} />
+            <Route index element={<OnePageScroll />} />
+            <Route path="tentang" element={<OnePageScroll />} />
+            <Route path="modul" element={<OnePageScroll />} />
+            <Route path="galeri" element={<OnePageScroll />} />
+            <Route path="kontak" element={<OnePageScroll />} />
             <Route path="dashboard" element={<Dashboard />} />
-            <Route path="tentang" element={<TentangKami />} />
-            <Route path="modul" element={<ModulHub />} />
-            <Route path="galeri" element={<Galeri />} />
-            <Route path="kontak" element={<Kontak />} />
             <Route path="space-weather" element={<SpaceWeather />} />
             <Route path="tracker" element={<AsteroidTracker />} />
             <Route path="space-debris" element={<SpaceDebris />} />

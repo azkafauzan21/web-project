@@ -1,9 +1,12 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { Home, Radar, BookOpen, Sun, Satellite, ShieldAlert, Lock, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export function Sidebar() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const navItems = [
     { name: 'Beranda', path: '/', icon: Home, isLocked: false },
     { name: 'Tentang Kami', path: '/tentang', icon: null, isLocked: false },
@@ -11,6 +14,32 @@ export function Sidebar() {
     { name: 'Galeri Proyek', path: '/galeri', icon: null, isLocked: false },
     { name: 'Kontak', path: '/kontak', icon: null, isLocked: false },
   ];
+
+  const onePagePaths = ['/', '/tentang', '/modul', '/galeri', '/kontak'];
+  const isOnePage = onePagePaths.includes(location.pathname);
+
+  const handleNavClick = (e, path) => {
+    if (onePagePaths.includes(path) && isOnePage) {
+      e.preventDefault();
+      const idMap = {
+        '/': 'beranda',
+        '/tentang': 'tentang',
+        '/modul': 'modul',
+        '/galeri': 'galeri',
+        '/kontak': 'kontak'
+      };
+      
+      const targetId = idMap[path];
+      const el = document.getElementById(targetId);
+      
+      if (el) {
+        // Prevent intersection observer from fighting URL updates by scrolling smoothly
+        el.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        navigate(path);
+      }
+    }
+  };
 
   return (
     <aside className="w-[260px] bg-white dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800 flex flex-col z-[100] shrink-0 transition-all duration-300">
@@ -37,6 +66,7 @@ export function Sidebar() {
             <NavLink
               key={item.path}
               to={item.path}
+              onClick={(e) => handleNavClick(e, item.path)}
               className={({ isActive }) => cn(
                 "flex items-center gap-2.5 px-3.5 py-2 mx-1.5 w-[calc(100%-12px)] text-[13px] font-medium rounded-md transition-colors",
                 isActive 
