@@ -66,12 +66,15 @@ export function Home() {
             </p>
             
             <div className="flex flex-wrap gap-4 mt-2">
-              <Link to="/dashboard" className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-colors shadow-lg shadow-blue-600/20">
+              <Link to="/tracker" className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-colors shadow-lg shadow-blue-600/20">
                 <RadarIcon className="w-5 h-5" /> Mulai Pemantauan
               </Link>
-              <Link to="/ensiklopedia" className="inline-flex items-center gap-2 px-6 py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-bold rounded-lg transition-colors">
+              <button 
+                onClick={() => document.getElementById('modul')?.scrollIntoView({ behavior: 'smooth' })} 
+                className="inline-flex items-center gap-2 px-6 py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-bold rounded-lg transition-colors"
+              >
                 <Rocket className="w-5 h-5" /> Pelajari Modul
-              </Link>
+              </button>
             </div>
             
             <div className="flex flex-wrap border-t border-slate-200 dark:border-slate-800 pt-6 mt-4 gap-8">
