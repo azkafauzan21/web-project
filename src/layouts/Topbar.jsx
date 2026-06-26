@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Bell, Search, ShieldCheck } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { ThemeToggle } from '../components/ThemeToggle';
 
 export function Topbar() {
@@ -92,6 +93,10 @@ export function Topbar() {
         <div className="w-px h-6 bg-slate-200 dark:bg-slate-800 mx-1"></div>
         
         <ThemeToggle />
+        
+        <Link to="/login" className="hidden sm:inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors shadow-sm shadow-blue-600/20">
+          Masuk / Daftar
+        </Link>
       </div>
     </div>
   );

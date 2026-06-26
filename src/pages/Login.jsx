@@ -81,22 +81,22 @@ export function Login() {
                 className={`flex-1 py-2 text-sm font-semibold rounded-md transition-all ${role === 'siswa' ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm' : 'text-slate-500 dark:text-slate-400'}`}
                 onClick={() => setRole('siswa')}
               >
-                Pengguna Biasa
+                Mahasiswa
               </button>
               <button 
                 type="button" 
                 className={`flex-1 py-2 text-sm font-semibold rounded-md transition-all ${role === 'guru' ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm' : 'text-slate-500 dark:text-slate-400'}`}
                 onClick={() => setRole('guru')}
               >
-                Peneliti / Guru
+                Dosen
               </button>
             </div>
             
             <form onSubmit={handleLogin}>
               <div className="flex flex-col gap-2 mb-5">
-                <label className="text-sm font-bold text-slate-700 dark:text-slate-300">Email / Username</label>
+                <label className="text-sm font-bold text-slate-700 dark:text-slate-300">NIM / Email Institusi</label>
                 <div className="relative flex items-center">
-                  <input type="text" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm dark:text-white" placeholder="contoh@astromitigasi.id" required />
+                  <input type="text" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm dark:text-white" placeholder="nim@student.upi.edu" required />
                 </div>
               </div>
               
@@ -123,11 +123,21 @@ export function Login() {
               </div>
               
               <div className="flex items-center gap-2 mb-8">
-                <input type="checkbox" id="remember" className="rounded border-slate-300" />
-                <label htmlFor="remember" className="text-sm text-slate-600 dark:text-slate-400 cursor-pointer">Ingat saya di perangkat ini</label>
+                <input type="checkbox" id="remember" className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
+                <label htmlFor="remember" className="text-sm text-slate-600 dark:text-slate-400 cursor-pointer">Ingat perangkat ini selama 30 hari</label>
               </div>
               
-              <Button type="submit" className="w-full">Masuk</Button>
+              <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-sm shadow-blue-600/20">Masuk ke Astromitigasi</Button>
+              
+              <div className="flex items-center gap-4 my-6">
+                <div className="flex-1 h-px bg-slate-200 dark:bg-slate-800"></div>
+                <span className="text-xs text-slate-400 font-medium">atau</span>
+                <div className="flex-1 h-px bg-slate-200 dark:bg-slate-800"></div>
+              </div>
+              
+              <Button type="button" variant="outline" className="w-full font-semibold border-2 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200 dark:hover:bg-slate-800">
+                Masuk dengan SSO UPI
+              </Button>
             </form>
           </div>
         </div>
