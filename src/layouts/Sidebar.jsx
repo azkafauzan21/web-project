@@ -5,12 +5,11 @@ import { cn } from '@/lib/utils';
 
 export function Sidebar() {
   const navItems = [
-    { name: 'Dashboard', path: '/', icon: Home, isLocked: false },
-    { name: 'Cuaca Antariksa', path: '/space-weather', icon: Sun, isLocked: false, badge: 'HOT' },
-    { name: 'CNEOS Tracker', path: '/tracker', icon: Radar, isLocked: false },
-    { name: 'Sampah Antariksa', path: '/space-debris', icon: Satellite, isLocked: false },
-    { name: 'Ancaman Eksotis', path: '#', icon: Lock, isLocked: true },
-    { name: 'Ensiklopedia', path: '/ensiklopedia', icon: BookOpen, isLocked: false },
+    { name: 'Beranda', path: '/', icon: Home, isLocked: false },
+    { name: 'Tentang Kami', path: '/tentang', icon: null, isLocked: false },
+    { name: 'Modul', path: '/modul', icon: BookOpen, isLocked: false },
+    { name: 'Galeri Proyek', path: '/galeri', icon: null, isLocked: false },
+    { name: 'Kontak', path: '/kontak', icon: null, isLocked: false },
   ];
 
   return (
@@ -30,7 +29,7 @@ export function Sidebar() {
         {navItems.map((item) => (
           item.isLocked ? (
             <button key={item.name} className="flex items-center gap-2.5 px-3.5 py-2 mx-1.5 w-[calc(100%-12px)] text-[13px] font-medium text-slate-400 bg-transparent rounded-md cursor-not-allowed opacity-60">
-              <item.icon className="w-[18px] h-[18px] shrink-0" />
+              {item.icon ? <item.icon className="w-[18px] h-[18px] shrink-0" /> : <div className="w-[18px] h-[18px] shrink-0" />}
               <span>{item.name}</span>
               <Lock className="w-[14px] h-[14px] ml-auto" />
             </button>
@@ -45,7 +44,7 @@ export function Sidebar() {
                   : "text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white"
               )}
             >
-              <item.icon className="w-[18px] h-[18px] shrink-0" />
+              {item.icon ? <item.icon className="w-[18px] h-[18px] shrink-0" /> : <div className="w-[18px] h-[18px] shrink-0" />}
               <span>{item.name}</span>
               {item.badge && <span className="ml-auto text-[10px] font-bold px-1.5 py-px rounded-full bg-red-600 text-white">{item.badge}</span>}
             </NavLink>
