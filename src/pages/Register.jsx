@@ -7,11 +7,47 @@ export function Register() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [role, setRole] = useState('siswa');
+  const [formData, setFormData] = useState({
+    first_name: '',
+    last_name: '',
+    nim: '',
+    institution: '',
+    email: '',
+    password: ''
+  });
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    // Dummy register action, redirect to login for now
-    navigate('/login');
+    setLoading(true);
+    setErrorMsg('');
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/auth/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...formData, role }),
+      });
+
+      if (response.ok) {
+        alert('Registrasi berhasil! Silakan masuk.');
+        navigate('/login');
+      } else {
+        const errorData = await response.json();
+        setErrorMsg(errorData.detail || 'Terjadi kesalahan saat registrasi.');
+      }
+    } catch (err) {
+      setErrorMsg('Gagal terhubung ke server.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
@@ -70,7 +106,13 @@ export function Register() {
               <ArrowLeft className="w-4 h-4"/> Sudah punya akun? Masuk
             </button>
             <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-2 tracking-tight">Daftar Akun</h2>
-            <p className="text-slate-500 dark:text-slate-400 text-sm mb-8">Gratis untuk seluruh warga yang ingin belajar mitigasi.</p>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mb-6">Gratis untuk seluruh warga yang ingin belajar mitigasi.</p>
+            
+            {errorMsg && (
+              <div className="mb-4 p-3 rounded-lg bg-red-100 text-red-600 text-sm border border-red-200">
+                {errorMsg}
+              </div>
+            )}
             
             <div className="flex p-1 bg-slate-100 dark:bg-slate-900 rounded-lg mb-6">
               <button 
@@ -93,23 +135,23 @@ export function Register() {
               <div className="grid grid-cols-2 gap-4 mb-4">
                 <div className="flex flex-col gap-2">
                   <label className="text-xs font-bold text-slate-700 dark:text-slate-300">Nama Depan</label>
-                  <input type="text" className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm dark:text-white" placeholder="Nama" required />
+                  <input type="text" name="first_name" value={formData.first_name} onChange={handleChange} className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm dark:text-white" placeholder="Nama" required />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="text-xs font-bold text-slate-700 dark:text-slate-300">Nama Belakang</label>
-                  <input type="text" className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm dark:text-white" placeholder="Belakang" />
+                  <input type="text" name="last_name" value={formData.last_name} onChange={handleChange} className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm dark:text-white" placeholder="Belakang" />
                 </div>
               </div>
 
               <div className="flex flex-col gap-2 mb-4">
                 <label className="text-xs font-bold text-slate-700 dark:text-slate-300">NIM</label>
-                <input type="text" className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm dark:text-white" placeholder="Misal: 2100000" required />
+                <input type="text" name="nim" value={formData.nim} onChange={handleChange} className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm dark:text-white" placeholder="Misal: 2100000" required />
                 <span className="text-[10px] text-slate-500">NIM akan diverifikasi dengan data institusi.</span>
               </div>
 
               <div className="flex flex-col gap-2 mb-4">
                 <label className="text-xs font-bold text-slate-700 dark:text-slate-300">Institusi</label>
-                <select className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm dark:text-white" required>
+                <select name="institution" value={formData.institution} onChange={handleChange} className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm dark:text-white" required>
                   <option value="">Pilih Institusi...</option>
                   <option value="upi">UPI Bandung</option>
                   <option value="ut">Universitas Terbuka</option>
@@ -119,7 +161,7 @@ export function Register() {
 
               <div className="flex flex-col gap-2 mb-4">
                 <label className="text-xs font-bold text-slate-700 dark:text-slate-300">Email Institusi</label>
-                <input type="email" className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm dark:text-white" placeholder="nim@student.upi.edu" required />
+                <input type="email" name="email" value={formData.email} onChange={handleChange} className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm dark:text-white" placeholder="nim@student.upi.edu" required />
               </div>
               
               <div className="flex flex-col gap-2 mb-5">
@@ -127,6 +169,9 @@ export function Register() {
                 <div className="relative flex items-center">
                   <input 
                     type={showPassword ? "text" : "password"} 
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
                     className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm dark:text-white" 
                     placeholder="Minimal 8 karakter" 
                     required 
@@ -148,7 +193,9 @@ export function Register() {
                 </label>
               </div>
               
-              <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-sm shadow-blue-600/20">Buat Akun & Mulai Belajar</Button>
+              <Button type="submit" disabled={loading} className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-sm shadow-blue-600/20">
+                {loading ? 'Memproses...' : 'Buat Akun & Mulai Belajar'}
+              </Button>
               
               <div className="flex items-center gap-4 my-6">
                 <div className="flex-1 h-px bg-slate-200 dark:bg-slate-800"></div>
