@@ -14,6 +14,26 @@ export function AstroAIAssistant() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
+  const popupRef = useRef(null);
+
+  // Close on outside click or window scroll
+  useEffect(() => {
+    function handleOutsideEvent(event) {
+      if (isOpen && popupRef.current && !popupRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleOutsideEvent);
+      window.addEventListener("scroll", handleOutsideEvent, { capture: true, passive: true });
+    }
+    
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideEvent);
+      window.removeEventListener("scroll", handleOutsideEvent, { capture: true });
+    };
+  }, [isOpen]);
 
   // Auto-open chat panel setelah 2 detik
   useEffect(() => {
@@ -74,11 +94,8 @@ export function AstroAIAssistant() {
 
       const model = genAI.getGenerativeModel({ 
         model: targetModel,
-        generationConfig: {
-          maxOutputTokens: 150,
-        }
       });
-      const prompt = `Anda adalah ASTRO AI, asisten edukasi mitigasi bencana astronomi. Jawablah pertanyaan berikut dengan SANGAT SINGKAT, MAKSIMAL 2-3 KALIMAT saja, namun tetap informatif dan tepat: ${userMsg}`;
+      const prompt = `Anda adalah ASTRO AI, asisten edukasi mitigasi bencana astronomi. Jawablah pertanyaan berikut dengan jelas dan informatif, MAKSIMAL 2 PARAGRAF: ${userMsg}`;
       
       const result = await model.generateContent(prompt);
       const responseText = result.response.text();
@@ -111,7 +128,7 @@ export function AstroAIAssistant() {
       </button>
 
       {/* Chat Panel */}
-      <div className={`fixed bottom-24 right-6 z-50 w-[350px] h-[500px] max-h-[calc(100vh-8rem)] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 origin-bottom-right ${isOpen ? 'scale-100 opacity-100 pointer-events-auto' : 'scale-0 opacity-0 pointer-events-none'}`}>
+      <div ref={popupRef} className={`fixed bottom-24 right-6 z-50 w-[350px] h-[500px] max-h-[calc(100vh-8rem)] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 origin-bottom-right ${isOpen ? 'scale-100 opacity-100 pointer-events-auto' : 'scale-0 opacity-0 pointer-events-none'}`}>
         <div className="p-4 bg-gradient-to-r from-slate-900 to-slate-800 dark:from-slate-950 dark:to-slate-900 text-white flex items-center justify-between">
           <div className="flex items-center gap-2 font-bold text-sm">
             <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>

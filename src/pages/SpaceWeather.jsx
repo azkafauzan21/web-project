@@ -104,13 +104,13 @@ export function SpaceWeather() {
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={sunspotData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" opacity={0.3} vertical={false} />
-                    <XAxis dataKey="date" tick={{fontSize: 10, fill: 'var(--slate2)'}} tickMargin={10} minTickGap={30} axisLine={false} tickLine={false} />
-                    <YAxis tick={{fontSize: 10, fill: 'var(--slate2)'}} axisLine={false} tickLine={false} />
+                    <XAxis dataKey="date" tick={{fontSize: 10, fill: '#64748b'}} tickMargin={10} minTickGap={30} axisLine={false} tickLine={false} />
+                    <YAxis tick={{fontSize: 10, fill: '#64748b'}} axisLine={false} tickLine={false} />
                     <Tooltip 
-                      contentStyle={{ backgroundColor: 'var(--bg)', borderColor: 'var(--border-gema)', borderRadius: '8px', fontSize: '12px' }}
-                      itemStyle={{ color: 'var(--navy)', fontWeight: 'bold' }}
+                      contentStyle={{ backgroundColor: 'var(--color-card)', borderColor: 'var(--color-border)', borderRadius: '8px', fontSize: '12px' }}
+                      itemStyle={{ color: '#0f172a', fontWeight: 'bold' }}
                     />
-                    <Line type="monotone" dataKey="ssn" stroke="var(--orange)" strokeWidth={2} dot={false} name="SSN" />
+                    <Line type="monotone" dataKey="ssn" stroke="#f97316" strokeWidth={2} dot={false} name="SSN" />
                   </LineChart>
                 </ResponsiveContainer>
               </div>
