@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import { User, Layout, ClipboardList, Rocket, Bot } from 'lucide-react';
 import { Card } from './ui/card';
+import { Card } from './ui/card';
+import { useAuth } from '../contexts/AuthContext';
+import { toast } from 'react-hot-toast';
 
 export function OnboardingTour({ onComplete }) {
+  const { user, token, updateUser } = useAuth();
   const [step, setStep] = useState(1);
+  const [astronomyKnowledge, setAstronomyKnowledge] = useState('Pemula (Belum tahu banyak)');
+  const [isSaving, setIsSaving] = useState(false);
 
   const steps = [
     { id: 1, icon: User, label: 'Profil Belajar' },
@@ -69,14 +75,24 @@ export function OnboardingTour({ onComplete }) {
               <div className="space-y-4">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Nama Lengkap</label>
-                  <input type="text" className="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none" placeholder="(Dummy) Nama Penjelajah" />
+                  <input 
+                    type="text" 
+                    className="w-full px-3 py-2 border rounded-lg text-sm bg-slate-50 text-slate-500 cursor-not-allowed outline-none" 
+                    value={`${user?.first_name || ''} ${user?.last_name || ''}`.trim()} 
+                    readOnly 
+                  />
+                  <p className="text-[10px] text-slate-400 mt-1">*Nama diambil otomatis dari profil Anda.</p>
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Tingkat Pengetahuan Astronomi</label>
-                  <select className="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
-                    <option>Pemula (Belum tahu banyak)</option>
-                    <option>Menengah (Suka baca artikel/nonton sci-fi)</option>
-                    <option>Ahli (Mahasiswa/Lulusan Astronomi)</option>
+                  <select 
+                    className="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                    value={astronomyKnowledge}
+                    onChange={(e) => setAstronomyKnowledge(e.target.value)}
+                  >
+                    <option value="Pemula (Belum tahu banyak)">Pemula (Belum tahu banyak)</option>
+                    <option value="Menengah (Suka baca artikel/nonton sci-fi)">Menengah (Suka baca artikel/nonton sci-fi)</option>
+                    <option value="Ahli (Mahasiswa/Lulusan Astronomi)">Ahli (Mahasiswa/Lulusan Astronomi)</option>
                   </select>
                 </div>
               </div>
@@ -114,6 +130,7 @@ export function OnboardingTour({ onComplete }) {
             <button 
               className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200 rounded-lg transition-colors"
               onClick={() => setStep(step - 1)}
+              disabled={isSaving}
             >
               Kembali
             </button>
@@ -122,15 +139,44 @@ export function OnboardingTour({ onComplete }) {
             <button 
               className="px-6 py-2 text-sm font-bold bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors shadow-md shadow-blue-500/20"
               onClick={() => setStep(step + 1)}
+              disabled={isSaving}
             >
               Lanjut
             </button>
           ) : (
             <button 
-              className="px-6 py-2 text-sm font-bold bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors shadow-md shadow-green-500/20 flex items-center gap-2"
-              onClick={() => onComplete && onComplete()}
+              className="px-6 py-2 text-sm font-bold bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors shadow-md shadow-green-500/20 flex items-center gap-2 disabled:opacity-50"
+              disabled={isSaving}
+              onClick={async () => {
+                setIsSaving(true);
+                try {
+                  const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/users/me`, {
+                    method: 'PATCH',
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                      astronomy_knowledge_level: astronomyKnowledge
+                    })
+                  });
+                  
+                  if (response.ok) {
+                    const updatedUser = await response.json();
+                    updateUser(updatedUser);
+                    toast.success('Profil berhasil diperbarui!');
+                    if (onComplete) onComplete();
+                  } else {
+                    toast.error('Gagal menyimpan profil.');
+                  }
+                } catch (error) {
+                  toast.error('Terjadi kesalahan jaringan.');
+                } finally {
+                  setIsSaving(false);
+                }
+              }}
             >
-              <Rocket className="w-4 h-4" /> Mulai Eksplorasi
+              <Rocket className="w-4 h-4" /> {isSaving ? 'Menyimpan...' : 'Mulai Eksplorasi'}
             </button>
           )}
         </div>

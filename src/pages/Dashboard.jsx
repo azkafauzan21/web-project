@@ -2,9 +2,25 @@ import React, { useState } from 'react';
 import { Trophy, BookOpen, Clock, Zap, Target, Star, ChevronRight } from 'lucide-react';
 import { Card } from '../components/ui/card';
 import { OnboardingTour } from '../components/OnboardingTour';
+import { useAuth } from '../contexts/AuthContext';
 
 export function Dashboard() {
-  const [showTour, setShowTour] = useState(true);
+  const { user, loading } = useAuth();
+  
+  // Tampilkan tour hanya jika user sudah di-load, ada user, dan astronomy_knowledge_level-nya belum ada
+  const [showTour, setShowTour] = useState(false);
+
+  React.useEffect(() => {
+    if (user && !user.astronomy_knowledge_level) {
+      setShowTour(true);
+    } else {
+      setShowTour(false);
+    }
+  }, [user]);
+
+  if (loading) {
+    return <div className="flex h-screen items-center justify-center text-slate-500">Memuat data...</div>;
+  }
 
   return (
     <div className="space-y-6">
@@ -14,7 +30,7 @@ export function Dashboard() {
       {/* WELCOME BANNER */}
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 text-white shadow-lg shadow-blue-600/20">
         <div className="flex flex-col gap-1">
-          <div className="text-xl md:text-2xl font-bold">Halo, Penjelajah! 👋</div>
+          <div className="text-xl md:text-2xl font-bold">Halo, {user?.first_name || 'Penjelajah'}! 👋</div>
           <div className="text-sm text-blue-100 max-w-xl leading-relaxed">
             Selamat datang kembali di Pusat Komando Astromitigasi. Lanjutkan misi edukasimu dan pantau kondisi antariksa terkini.
           </div>

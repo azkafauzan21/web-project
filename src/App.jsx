@@ -10,10 +10,11 @@ import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { Dashboard } from './pages/Dashboard';
 import { OnePageScroll } from './pages/OnePageScroll';
+import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Toaster position="top-right" />
       <BrowserRouter basename="/web-project">
         <Routes>
@@ -32,7 +33,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </>
+    </AuthProvider>
   );
 }
 

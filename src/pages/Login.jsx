@@ -3,16 +3,49 @@ import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, KeyRound, Globe, ArrowLeft } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
+import { useAuth } from '../contexts/AuthContext';
+import { toast } from 'react-hot-toast';
 
 export function Login() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [role, setRole] = useState('siswa');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const { login } = useAuth();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Dummy login action, redirect to dashboard
-    navigate('/dashboard');
+    setIsLoading(true);
+    
+    try {
+      const formData = new URLSearchParams();
+      formData.append('username', email);
+      formData.append('password', password);
+
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        login(data.access_token);
+        toast.success('Login berhasil!');
+        navigate('/dashboard');
+      } else {
+        toast.error(data.detail || 'Gagal login. Periksa kembali email dan password.');
+      }
+    } catch (error) {
+      toast.error('Terjadi kesalahan jaringan.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -96,7 +129,7 @@ export function Login() {
               <div className="flex flex-col gap-2 mb-5">
                 <label className="text-sm font-bold text-slate-700 dark:text-slate-300">NIM / Email Institusi</label>
                 <div className="relative flex items-center">
-                  <input type="text" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm dark:text-white" placeholder="nim@student.upi.edu" required />
+                  <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm dark:text-white" placeholder="nim@student.upi.edu" required />
                 </div>
               </div>
               
@@ -108,6 +141,8 @@ export function Login() {
                 <div className="relative flex items-center">
                   <input 
                     type={showPassword ? "text" : "password"} 
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm dark:text-white" 
                     placeholder="Masukkan password Anda" 
                     required 
@@ -127,7 +162,9 @@ export function Login() {
                 <label htmlFor="remember" className="text-sm text-slate-600 dark:text-slate-400 cursor-pointer">Ingat perangkat ini selama 30 hari</label>
               </div>
               
-              <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-sm shadow-blue-600/20">Masuk ke Astromitigasi</Button>
+              <Button type="submit" disabled={isLoading} className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-sm shadow-blue-600/20">
+                {isLoading ? 'Memproses...' : 'Masuk ke Astromitigasi'}
+              </Button>
               
               <div className="flex items-center gap-4 my-6">
                 <div className="flex-1 h-px bg-slate-200 dark:bg-slate-800"></div>
