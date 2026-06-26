@@ -9,14 +9,14 @@ import { AsteroidOrbitMap } from '../components/AsteroidOrbitMap';
 import { DartSimulator } from '../components/DartSimulator';
 
 export function AsteroidTracker() {
-  const { neoData, isLoading, fetchData } = useStore();
+  const { neoData, isLoading, hasFetched, fetchData } = useStore();
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    if (neoData.length === 0 && !isLoading) {
+    if (!hasFetched && !isLoading) {
       fetchData();
     }
-  }, [neoData.length, isLoading, fetchData]);
+  }, [hasFetched, isLoading, fetchData]);
 
   const filteredData = neoData.filter(neo => 
     neo.name.toLowerCase().includes(searchTerm.toLowerCase())

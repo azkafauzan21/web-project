@@ -17,15 +17,16 @@ const useStore = create((set) => ({
   neoData: [],
   isLoading: false,
   error: null,
+  hasFetched: false,
   
   fetchData: async () => {
     set({ isLoading: true, error: null });
     try {
       const data = await fetchNeoFeed();
-      set({ neoData: data, isLoading: false });
+      set({ neoData: data, isLoading: false, hasFetched: true });
       toast.success("Data NEO terbaru berhasil diperbarui dari server NASA");
     } catch (err) {
-      set({ error: err.message, isLoading: false });
+      set({ error: err.message, isLoading: false, hasFetched: true });
       toast.error("Gagal mengambil data dari NASA CNEOS");
     }
   }

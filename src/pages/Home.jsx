@@ -5,13 +5,13 @@ import { ShieldAlert, ShieldCheck, Sun, Zap, AlertTriangle, Satellite, Rocket } 
 import { Skeleton } from '../components/ui/skeleton';
 
 export function Home() {
-  const { neoData, isLoading, error, fetchData } = useStore();
+  const { neoData, isLoading, error, hasFetched, fetchData } = useStore();
 
   useEffect(() => {
-    if (neoData.length === 0 && !isLoading) {
+    if (!hasFetched && !isLoading) {
       fetchData();
     }
-  }, [neoData.length, isLoading, fetchData]);
+  }, [hasFetched, isLoading, fetchData]);
 
   const threatLevel = useMemo(() => {
     if (neoData.length === 0) return 'UNKNOWN';
