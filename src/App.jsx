@@ -7,6 +7,7 @@ import { SpaceWeather } from './pages/SpaceWeather';
 import { AsteroidTracker } from './pages/AsteroidTracker';
 import { SpaceDebris } from './pages/SpaceDebris';
 import { Login } from './pages/Login';
+import { Register } from './pages/Register';
 import { Dashboard } from './pages/Dashboard';
 import { OnePageScroll } from './pages/OnePageScroll';
 
@@ -17,6 +18,7 @@ function App() {
       <BrowserRouter basename="/web-project">
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/" element={<MainLayout />}>
             <Route index element={<OnePageScroll />} />
             <Route path="tentang" element={<OnePageScroll />} />

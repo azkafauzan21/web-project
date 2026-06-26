@@ -94,9 +94,14 @@ export function Topbar() {
         
         <ThemeToggle />
         
-        <Link to="/login" className="hidden sm:inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors shadow-sm shadow-blue-600/20">
-          Masuk / Daftar
-        </Link>
+        <div className="hidden sm:flex items-center gap-2">
+          <Link to="/login" className="px-4 py-2 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            Masuk
+          </Link>
+          <Link to="/register" className="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors shadow-sm shadow-blue-600/20">
+            Daftar
+          </Link>
+        </div>
       </div>
     </div>
   );
