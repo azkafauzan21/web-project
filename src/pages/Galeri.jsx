@@ -8,18 +8,18 @@ export function Galeri() {
   const tabs = [
     { id: 'semua', label: 'Semua' },
     { id: 'alat', label: 'Alat Peraga' },
-    { id: 'poster', label: 'Poster Mitigasi' },
-    { id: 'sosial', label: 'Aksi Sosial' },
-    { id: 'peta', label: 'Peta Risiko' }
+    { id: 'poster', label: 'Poster Edukasi' },
+    { id: 'sosial', label: 'Aksi Komunitas' },
+    { id: 'pemodelan', label: 'Pemodelan Orbit' }
   ];
 
   const galleryItems = [
-    { id: 1, category: 'alat', title: 'Seismograf Sederhana DIY', meta: 'M1 Gempa · Angkatan 2024', icon: Image, color: 'text-red-600 bg-red-100 dark:bg-red-900/30' },
-    { id: 2, category: 'poster', title: 'Poster Jalur Evakuasi Tsunami', meta: 'M2 Tsunami · Kelompok B', icon: FileText, color: 'text-blue-600 bg-blue-100 dark:bg-blue-900/30' },
-    { id: 3, category: 'peta', title: 'Peta KRB Gunung Gede Pangrango', meta: 'M3 Vulkanologi · Tim Riset', icon: MapPin, color: 'text-orange-600 bg-orange-100 dark:bg-orange-900/30' },
-    { id: 4, category: 'sosial', title: 'Sosialisasi Banjir ke Warga RW 07', meta: 'M4 Banjir · Angkatan 2023', icon: Users, color: 'text-teal-600 bg-teal-100 dark:bg-teal-900/30' },
-    { id: 5, category: 'poster', title: 'Video Edukasi Longsor 60 Detik', meta: 'M5 Longsor · Individu', icon: Video, color: 'text-green-600 bg-green-100 dark:bg-green-900/30' },
-    { id: 6, category: 'alat', title: 'Aplikasi Cek Risiko Bencana', meta: 'Lintas Modul · Tim 5 Mhs', icon: Image, color: 'text-purple-600 bg-purple-100 dark:bg-purple-900/30' }
+    { id: 1, category: 'alat', title: 'Detektor Sinyal Badai Matahari DIY', meta: 'Modul Cuaca Antariksa · Klub Astronomi', icon: Image, color: 'text-red-600 bg-red-100 dark:bg-red-900/30' },
+    { id: 2, category: 'poster', title: 'Poster Mitigasi Tabrakan Asteroid', meta: 'Modul Asteroid · Kelompok B', icon: FileText, color: 'text-blue-600 bg-blue-100 dark:bg-blue-900/30' },
+    { id: 3, category: 'pemodelan', title: 'Peta Persebaran Sampah Satelit LEO', meta: 'Modul Space Debris · Tim Riset', icon: MapPin, color: 'text-orange-600 bg-orange-100 dark:bg-orange-900/30' },
+    { id: 4, category: 'sosial', title: 'Sosialisasi Bahaya Flare ke Amatir Radio', meta: 'Aksi Sosial · Komunitas ORARI', icon: Users, color: 'text-teal-600 bg-teal-100 dark:bg-teal-900/30' },
+    { id: 5, category: 'poster', title: 'Video Animasi Sindrom Kessler', meta: 'Proyek Akhir · Individu', icon: Video, color: 'text-green-600 bg-green-100 dark:bg-green-900/30' },
+    { id: 6, category: 'alat', title: 'Aplikasi Notifikasi Flare Harian', meta: 'Lintas Modul · Tim Dev Mhs', icon: Image, color: 'text-purple-600 bg-purple-100 dark:bg-purple-900/30' }
   ];
 
   const filteredItems = activeTab === 'semua' ? galleryItems : galleryItems.filter(item => item.category === activeTab);

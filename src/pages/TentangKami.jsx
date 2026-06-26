@@ -4,44 +4,44 @@ import { AlertTriangle, Flame, Waves, Mountain, Droplets, BookOpen, Presentation
 export function TentangKami() {
   const disasterStats = [
     {
-      id: 'gempa',
-      title: 'Gempa Bumi',
-      icon: AlertTriangle,
-      color: 'text-red-600 bg-red-100 dark:bg-red-900/30 dark:text-red-400',
-      case: 'Sesar Lembang & Megathrust',
-      stat: '500+ Sesar Aktif Terpetakan',
-    },
-    {
-      id: 'tsunami',
-      title: 'Tsunami',
-      icon: Waves,
-      color: 'text-blue-600 bg-blue-100 dark:bg-blue-900/30 dark:text-blue-400',
-      case: 'Tsunami Palu 2018',
-      stat: '4.340 korban jiwa',
-    },
-    {
-      id: 'vulkan',
-      title: 'Vulkanologi',
+      id: 'solar_flare',
+      title: 'Badai Matahari (Flare)',
       icon: Flame,
-      color: 'text-orange-600 bg-orange-100 dark:bg-orange-900/30 dark:text-orange-400',
-      case: '127 Gunung Api Aktif',
-      stat: 'Ring of Fire',
+      color: 'text-red-600 bg-red-100 dark:bg-red-900/30 dark:text-red-400',
+      case: 'Peristiwa Carrington 1859',
+      stat: 'Ancaman Jaringan Listrik & Satelit',
     },
     {
-      id: 'banjir',
-      title: 'Cuaca Ekstrem',
-      icon: Droplets,
-      color: 'text-teal-600 bg-teal-100 dark:bg-teal-900/30 dark:text-teal-400',
-      case: 'Solar Flare & Badai Magnetik',
-      stat: 'Ancaman Jaringan Listrik Global',
+      id: 'asteroid',
+      title: 'Tabrakan Asteroid (NEO)',
+      icon: AlertTriangle,
+      color: 'text-blue-600 bg-blue-100 dark:bg-blue-900/30 dark:text-blue-400',
+      case: 'Meteor Chelyabinsk 2013',
+      stat: '30.000+ Objek Dekat Bumi Terpetakan',
     },
     {
-      id: 'longsor',
+      id: 'space_debris',
       title: 'Sampah Antariksa',
       icon: Mountain,
+      color: 'text-orange-600 bg-orange-100 dark:bg-orange-900/30 dark:text-orange-400',
+      case: 'Sindrom Kessler',
+      stat: '34.000+ Puing >10cm di Orbit',
+    },
+    {
+      id: 'geomagnetik',
+      title: 'Badai Geomagnetik',
+      icon: Waves,
+      color: 'text-teal-600 bg-teal-100 dark:bg-teal-900/30 dark:text-teal-400',
+      case: 'G5 Extreme Storm (Mei 2024)',
+      stat: 'Gangguan Navigasi GPS & Radio',
+    },
+    {
+      id: 'radiasi',
+      title: 'Radiasi Kosmik',
+      icon: Droplets,
       color: 'text-purple-600 bg-purple-100 dark:bg-purple-900/30 dark:text-purple-400',
-      case: 'Kessler Syndrome',
-      stat: 'Ribuan Puing di Orbit Rendah',
+      case: 'Galactic Cosmic Rays (GCR)',
+      stat: 'Ancaman Astronot & Misi Antariksa',
     }
   ];
 
@@ -53,10 +53,10 @@ export function TentangKami() {
           <AlertTriangle className="w-4 h-4" /> Mengapa Literasi Mitigasi Penting?
         </div>
         <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight">
-          Indonesia: Negara Paling Rawan Bencana ke-3 di Dunia
+          Bumi: Mengarungi Lautan Kosmik yang Penuh Anomali
         </h1>
         <p className="text-slate-600 dark:text-slate-400">
-          Platform Astromitigasi dirancang untuk memperluas cakrawala mitigasi kita, dari ancaman di Bumi hingga ancaman kosmik dari luar angkasa.
+          Dari badai matahari yang dapat melumpuhkan peradaban digital hingga ancaman tumbukan asteroid. Astromitigasi hadir untuk membangun kesadaran terhadap bahaya dari luar angkasa.
         </p>
       </div>
 
@@ -79,10 +79,10 @@ export function TentangKami() {
         <div className="space-y-4">
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Lebih dari Sekadar Teori</h2>
           <blockquote className="border-l-4 border-blue-600 pl-4 italic text-slate-700 dark:text-slate-300">
-            "Tingkat literasi bencana masih tergolong rendah, bahkan pada mereka yang pernah mengalami bencana secara langsung."
+            "Ketergantungan manusia modern pada teknologi satelit dan listrik menjadikan kita sangat rentan terhadap cuaca ekstrem dari luar angkasa."
           </blockquote>
           <p className="text-sm text-slate-500">
-            Pembelajaran konseptual tidak cukup. Astromitigasi mengintegrasikan data real-time NASA & BMKG agar masyarakat dapat memantau ancaman secara mandiri menggunakan teknologi AI terkini.
+            Pembelajaran mitigasi konvensional sering melupakan ancaman kosmik. Astromitigasi mengintegrasikan data real-time NASA agar masyarakat dapat menyimulasikan dan memantau anomali cuaca antariksa secara mandiri.
           </p>
         </div>
         <div className="space-y-4">
