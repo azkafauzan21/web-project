@@ -4,6 +4,7 @@ import { ThemeToggle } from '../components/ThemeToggle';
 
 export function Topbar() {
   const [showNotif, setShowNotif] = useState(false);
+  const [hasUnread, setHasUnread] = useState(true);
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -46,23 +47,32 @@ export function Topbar() {
         <div className="relative" ref={dropdownRef}>
           <button className="p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors relative" onClick={() => setShowNotif(!showNotif)}>
             <Bell className="w-4 h-4" />
-            <div className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-slate-950"></div>
+            {hasUnread && (
+              <div className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-slate-950"></div>
+            )}
           </button>
           
           {/* Notif Dropdown */}
           <div className={`absolute top-full right-0 mt-2 w-80 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-lg rounded-xl overflow-hidden z-50 origin-top-right transition-all duration-200 ${showNotif ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'}`}>
             <div className="flex justify-between items-center px-4 py-3 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50 text-sm font-semibold text-slate-900 dark:text-white">
               Notifikasi
-              <span className="text-xs font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 cursor-pointer">Tandai semua dibaca</span>
+              {hasUnread && (
+                <span 
+                  onClick={() => setHasUnread(false)} 
+                  className="text-xs font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 cursor-pointer"
+                >
+                  Tandai semua dibaca
+                </span>
+              )}
             </div>
-            <div className="flex gap-3 px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer border-b border-slate-100 dark:border-slate-800/50 bg-blue-50/30 dark:bg-blue-900/10">
+            <div className={`flex gap-3 px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer border-b border-slate-100 dark:border-slate-800/50 ${hasUnread ? 'bg-blue-50/30 dark:bg-blue-900/10' : ''}`}>
               <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0 text-sm">🎯</div>
               <div>
                 <div className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">Pre-test kamu tersimpan. Skor awal: <strong className="text-slate-900 dark:text-white">42%</strong>. Mulai Modul 1!</div>
                 <div className="text-[10px] text-slate-400 dark:text-slate-500 mt-1">Baru saja</div>
               </div>
             </div>
-            <div className="flex gap-3 px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer border-b border-slate-100 dark:border-slate-800/50 bg-blue-50/30 dark:bg-blue-900/10">
+            <div className={`flex gap-3 px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer border-b border-slate-100 dark:border-slate-800/50 ${hasUnread ? 'bg-blue-50/30 dark:bg-blue-900/10' : ''}`}>
               <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0 text-sm">🤖</div>
               <div>
                 <div className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">ASTRO AI siap menemanimu. Klik ikon robot di pojok.</div>
