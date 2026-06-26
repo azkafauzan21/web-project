@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { Home, Radar, BookOpen, Sun, Satellite, ShieldAlert, Lock, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useAuth } from '@/contexts/AuthContext';
 
 export function Sidebar() {
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -83,12 +85,27 @@ export function Sidebar() {
       </nav>
 
       <div className="px-3.5 py-3 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5 shrink-0">
-        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-xs font-bold text-white shrink-0">AD</div>
-        <div>
-          <div className="text-xs font-semibold text-slate-900 dark:text-white">Administrator</div>
-          <div className="text-[10px] text-slate-500">Sistem Mitigasi</div>
+        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-xs font-bold text-white shrink-0">
+          {user ? user.first_name?.charAt(0).toUpperCase() : 'A'}
         </div>
-        <button className="ml-auto bg-transparent border-none cursor-pointer text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 p-1 flex items-center">
+        <div className="min-w-0 flex-1">
+          <div className="text-xs font-semibold text-slate-900 dark:text-white truncate">
+            {user ? `${user.first_name} ${user.last_name || ''}` : 'Administrator'}
+          </div>
+          <div className="text-[10px] text-slate-500 truncate">
+            {user ? user.role : 'Sistem Mitigasi'}
+          </div>
+        </div>
+        <button 
+          onClick={() => {
+            if (user) {
+              logout();
+              navigate('/');
+            }
+          }}
+          className="ml-auto bg-transparent border-none cursor-pointer text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 p-1 flex items-center"
+          title="Keluar"
+        >
           <LogOut className="w-4 h-4" />
         </button>
       </div>

@@ -1,17 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Bell, Search, ShieldCheck } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ThemeToggle } from '../components/ThemeToggle';
+import { useAuth } from '../contexts/AuthContext';
 
 export function Topbar() {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const [showNotif, setShowNotif] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
   const [hasUnread, setHasUnread] = useState(true);
   const dropdownRef = useRef(null);
+  const profileDropdownRef = useRef(null);
 
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setShowNotif(false);
+      }
+      if (profileDropdownRef.current && !profileDropdownRef.current.contains(event.target)) {
+        setShowProfile(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -95,12 +103,52 @@ export function Topbar() {
         <ThemeToggle />
         
         <div className="hidden sm:flex items-center gap-2">
-          <Link to="/login" className="px-4 py-2 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-            Masuk
-          </Link>
-          <Link to="/register" className="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors shadow-sm shadow-blue-600/20">
-            Daftar
-          </Link>
+          {!user ? (
+            <>
+              <Link to="/login" className="px-4 py-2 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                Masuk
+              </Link>
+              <Link to="/register" className="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors shadow-sm shadow-blue-600/20">
+                Daftar
+              </Link>
+            </>
+          ) : (
+            <div className="relative" ref={profileDropdownRef}>
+              <button 
+                onClick={() => setShowProfile(!showProfile)}
+                className="flex items-center gap-2 hover:bg-slate-100 dark:hover:bg-slate-800 p-1.5 pr-3 rounded-full transition-colors"
+              >
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-xs font-bold text-white shrink-0">
+                  {user?.first_name?.charAt(0).toUpperCase() || 'U'}
+                </div>
+                <div className="text-sm font-medium text-slate-700 dark:text-slate-300 hidden md:block">
+                  {user.first_name}
+                </div>
+              </button>
+
+              {/* Profile Dropdown */}
+              <div className={`absolute top-full right-0 mt-2 w-48 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-lg rounded-xl overflow-hidden z-50 origin-top-right transition-all duration-200 ${showProfile ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'}`}>
+                <div className="px-4 py-3 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50">
+                  <div className="text-sm font-semibold text-slate-900 dark:text-white truncate">{user.first_name} {user.last_name}</div>
+                  <div className="text-xs text-slate-500 truncate">{user.email}</div>
+                </div>
+                <div className="py-1">
+                  <button className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                    Pengaturan Akun
+                  </button>
+                  <button 
+                    onClick={() => {
+                      logout();
+                      navigate('/');
+                    }}
+                    className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors"
+                  >
+                    Keluar
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
