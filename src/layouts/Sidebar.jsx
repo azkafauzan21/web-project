@@ -9,13 +9,23 @@ export function Sidebar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const navItems = [
-    { name: 'Beranda', path: '/', icon: Home, isLocked: false },
+  const publicNavItems = [
+    { name: 'Beranda Pendaratan', path: '/', icon: Home, isLocked: false },
     { name: 'Tentang Kami', path: '/tentang', icon: null, isLocked: false },
-    { name: 'Modul', path: '/modul', icon: BookOpen, isLocked: false },
+    { name: 'Modul Publik', path: '/modul', icon: BookOpen, isLocked: false },
     { name: 'Galeri Proyek', path: '/galeri', icon: null, isLocked: false },
     { name: 'Kontak', path: '/kontak', icon: null, isLocked: false },
   ];
+
+  const privateNavItems = [
+    { name: 'Dashboard', path: '/dashboard', icon: Radar, isLocked: false },
+    { name: 'Modul Belajar', path: '/modul-lms', icon: BookOpen, isLocked: false },
+    { name: 'Cuaca Antariksa', path: '/space-weather', icon: Sun, isLocked: false },
+    { name: 'Pantau Asteroid', path: '/tracker', icon: Satellite, isLocked: false },
+    { name: 'Sampah Antariksa', path: '/space-debris', icon: ShieldAlert, isLocked: false },
+  ];
+
+  const navItems = user ? privateNavItems : publicNavItems;
 
   const onePagePaths = ['/', '/tentang', '/modul', '/galeri', '/kontak'];
   const isOnePage = onePagePaths.includes(location.pathname);
