@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { User, Layout, ClipboardList, Rocket, Bot } from 'lucide-react';
 import { Card } from './ui/card';
-import { Card } from './ui/card';
 import { useAuth } from '../contexts/AuthContext';
 import { toast } from 'react-hot-toast';
 
@@ -10,6 +9,7 @@ export function OnboardingTour({ onComplete }) {
   const [step, setStep] = useState(1);
   const [astronomyKnowledge, setAstronomyKnowledge] = useState('Pemula (Belum tahu banyak)');
   const [isSaving, setIsSaving] = useState(false);
+  const [preTestAnswer, setPreTestAnswer] = useState('');
 
   const steps = [
     { id: 1, icon: User, label: 'Profil Belajar' },
@@ -100,26 +100,77 @@ export function OnboardingTour({ onComplete }) {
           )}
 
           {step === 2 && (
-            <div className="animate-in fade-in slide-in-from-right-4 duration-300 text-center py-8">
-              <div className="text-4xl mb-4">🗺️</div>
-              <h2 className="text-xl font-bold text-slate-800 mb-2">Orientasi Platform (Dummy)</h2>
-              <p className="text-sm text-slate-500 mb-6">Tur fitur-fitur yang tersedia di aplikasi ini.</p>
+            <div className="animate-in fade-in slide-in-from-right-4 duration-300 py-4">
+              <div className="text-center mb-6">
+                <div className="inline-flex w-12 h-12 rounded-full bg-blue-100 text-blue-600 items-center justify-center mb-4">
+                  <Layout className="w-6 h-6" />
+                </div>
+                <h2 className="text-xl font-bold text-slate-800 mb-2">Kenali Pusat Komando Anda</h2>
+                <p className="text-sm text-slate-500">Platform Astromitigasi dilengkapi dengan alat untuk memantau dan mempelajari ancaman kosmis.</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="p-4 border rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors">
+                  <BookOpen className="w-6 h-6 text-indigo-500 mb-2" />
+                  <h3 className="font-bold text-sm text-slate-800 mb-1">Modul Belajar</h3>
+                  <p className="text-xs text-slate-500">Pelajari dari dasar hingga ahli tentang objek luar angkasa.</p>
+                </div>
+                <div className="p-4 border rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors">
+                  <Zap className="w-6 h-6 text-amber-500 mb-2" />
+                  <h3 className="font-bold text-sm text-slate-800 mb-1">Pantau NEO</h3>
+                  <p className="text-xs text-slate-500">Data *Near-Earth Objects* (NEO) langsung dari API NASA.</p>
+                </div>
+                <div className="p-4 border rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors">
+                  <Target className="w-6 h-6 text-red-500 mb-2" />
+                  <h3 className="font-bold text-sm text-slate-800 mb-1">Simulasi & Quiz</h3>
+                  <p className="text-xs text-slate-500">Uji pengetahuan Anda dan simulasikan dampak mitigasi.</p>
+                </div>
+              </div>
             </div>
           )}
 
           {step === 3 && (
-            <div className="animate-in fade-in slide-in-from-right-4 duration-300 text-center py-8">
-              <div className="text-4xl mb-4">📝</div>
-              <h2 className="text-xl font-bold text-slate-800 mb-2">Pre-test Diagnostik (Dummy)</h2>
-              <p className="text-sm text-slate-500 mb-6">Kuisioner awal untuk mengukur pemahaman Anda mengenai ancaman kosmis.</p>
+            <div className="animate-in fade-in slide-in-from-right-4 duration-300 py-4">
+              <div className="text-center mb-6">
+                <div className="inline-flex w-12 h-12 rounded-full bg-purple-100 text-purple-600 items-center justify-center mb-4">
+                  <ClipboardList className="w-6 h-6" />
+                </div>
+                <h2 className="text-xl font-bold text-slate-800 mb-2">Pre-test Singkat</h2>
+                <p className="text-sm text-slate-500">Untuk menyesuaikan kurikulum Anda, objek kosmis mana yang paling Anda khawatirkan?</p>
+              </div>
+              <div className="space-y-3">
+                {['Asteroid / Meteor (Batu ruang angkasa)', 'Badai Matahari (Solar Flare)', 'Supernova (Ledakan bintang)', 'Saya belum tahu apa-apa'].map((option) => (
+                  <label key={option} className={`flex items-center p-4 border rounded-xl cursor-pointer transition-all ${preTestAnswer === option ? 'border-purple-500 bg-purple-50 ring-2 ring-purple-200' : 'hover:bg-slate-50'}`}>
+                    <input 
+                      type="radio" 
+                      name="pretest" 
+                      className="w-4 h-4 text-purple-600 focus:ring-purple-500 border-gray-300" 
+                      value={option}
+                      checked={preTestAnswer === option}
+                      onChange={(e) => setPreTestAnswer(e.target.value)}
+                    />
+                    <span className="ml-3 text-sm font-medium text-slate-700">{option}</span>
+                  </label>
+                ))}
+              </div>
             </div>
           )}
 
           {step === 4 && (
-            <div className="animate-in fade-in slide-in-from-right-4 duration-300 text-center py-8">
-              <div className="text-4xl mb-4">🚀</div>
-              <h2 className="text-xl font-bold text-slate-800 mb-2">Semua Siap!</h2>
-              <p className="text-sm text-slate-500 mb-6">Mulai eksplorasi materi mitigasi bencana antariksa Anda sekarang.</p>
+            <div className="animate-in fade-in slide-in-from-right-4 duration-300 text-center py-10">
+              <div className="relative inline-block mb-6">
+                <div className="absolute inset-0 bg-blue-400 blur-xl opacity-30 rounded-full"></div>
+                <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white shadow-lg mx-auto">
+                  <Rocket className="w-10 h-10" />
+                </div>
+              </div>
+              <h2 className="text-2xl font-bold text-slate-800 mb-3">Semua Sistem Siap!</h2>
+              <p className="text-sm text-slate-500 max-w-sm mx-auto mb-6">
+                Data profil Anda telah kami kumpulkan. Kami siap memandu Anda menjadi agen Astromitigasi yang andal.
+              </p>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 rounded-lg text-sm font-medium border border-green-200">
+                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                Koneksi ke server NASA stabil
+              </div>
             </div>
           )}
         </div>
