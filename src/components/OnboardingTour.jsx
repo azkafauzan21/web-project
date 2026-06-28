@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Layout, ClipboardList, Rocket, Bot } from 'lucide-react';
+import { User, Layout, ClipboardList, Rocket, Bot, BookOpen, Zap, Target } from 'lucide-react';
 import { Card } from './ui/card';
 import { useAuth } from '../contexts/AuthContext';
 import { toast } from 'react-hot-toast';

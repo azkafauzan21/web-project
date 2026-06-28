@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import useStore from '../store/useStore';
-import { ShieldAlert, ShieldCheck, Sun, Zap, AlertTriangle, Satellite, Rocket } from 'lucide-react';
+import { AlertTriangle, ShieldCheck } from 'lucide-react';
 import { Skeleton } from '../components/ui/skeleton';
 
 export function Home() {
@@ -20,166 +20,180 @@ export function Home() {
   }, [neoData]);
 
   return (
-    <div className="space-y-6 pb-12">
-      {/* Ticker Bar */}
-      <div className="flex items-center bg-slate-900 rounded-lg mb-6 overflow-hidden">
-        <div className="bg-blue-600 text-white font-bold text-xs px-4 py-2 shrink-0 z-10">LIVE ALERT</div>
-        <div className="flex items-center gap-6 px-4 whitespace-nowrap overflow-hidden text-slate-300 text-sm font-medium animate-marquee">
-          <div className="flex items-center gap-2">
-            <Zap className="w-4 h-4" /> FLARE KELAS M TERDETEKSI 08:30 UTC
-          </div>
-          <div className="w-1.5 h-1.5 bg-blue-500 rounded-full shrink-0"></div>
-          <div className="flex items-center gap-2">
-            <Satellite className="w-4 h-4" /> 24 OBJEK SAMPAH ANTARIKSA MENGALAMI DECAY
-          </div>
-          <div className="w-1.5 h-1.5 bg-blue-500 rounded-full shrink-0"></div>
-          <div className="flex items-center gap-2">
-            <ShieldAlert className="w-4 h-4" /> PERINGATAN: 2 ASTEROID NEO MENDEKATI BUMI DALAM 48 JAM
-          </div>
-          <div className="w-1.5 h-1.5 bg-blue-500 rounded-full shrink-0"></div>
-          <div className="flex items-center gap-2">
-            <Sun className="w-4 h-4" /> AKTIVITAS MATAHARI MENINGKAT (Siklus 25)
-          </div>
+    <div className="flex flex-col w-full min-h-screen">
+      {/* Full-width Ticker Bar (matches DLLS-GEMA) */}
+      <div className="w-full bg-slate-900 py-1.5 overflow-hidden relative flex z-40">
+        <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-slate-900 to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-slate-900 to-transparent z-10 pointer-events-none"></div>
+        
+        <div className="bg-red-600 text-white font-bold text-[11px] tracking-wide px-3 py-1 ml-4 rounded-sm shrink-0 z-20 flex items-center gap-1.5 h-6">
+          <AlertTriangle className="w-3.5 h-3.5" /> DATA BENCANA
+        </div>
+        
+        <div className="flex items-center gap-6 px-4 whitespace-nowrap overflow-hidden text-slate-300 text-[13px] font-medium animate-marquee">
+          <div className="flex items-center gap-1.5"><span className="text-red-400">☄️</span> Asteroid Chelyabinsk (1500+ Korban) · 2013</div>
+          <div className="w-1 h-1 bg-slate-700 rounded-full shrink-0"></div>
+          <div className="flex items-center gap-1.5"><span className="text-amber-300">☀️</span> Badai Matahari G4 Geomagnetic · 2024</div>
+          <div className="w-1 h-1 bg-slate-700 rounded-full shrink-0"></div>
+          <div className="flex items-center gap-1.5"><span className="text-blue-300">🛰️</span> Sampah Antariksa (Kessler Syndrome)</div>
+          <div className="w-1 h-1 bg-slate-700 rounded-full shrink-0"></div>
+          <div className="flex items-center gap-1.5"><span className="text-red-400">☄️</span> Potensi Tumbukan Asteroid NEO (Apophis)</div>
+          <div className="w-1 h-1 bg-slate-700 rounded-full shrink-0"></div>
+          <div className="flex items-center gap-1.5"><span className="text-emerald-300">⛰️</span> Longsor · Cianjur Selatan · 1 hari lalu</div>
         </div>
       </div>
 
-      {/* Hero Section */}
-      <section className="bg-white dark:bg-slate-950 py-16 lg:py-20 relative overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800">
-        <div className="absolute inset-0 opacity-40 hero-bg-grid rounded-xl"></div>
-        <div className="absolute -top-20 -right-20 w-[440px] h-[440px] rounded-full bg-blue-600/10 dark:bg-blue-600/20 blur-[80px] pointer-events-none"></div>
+      {/* Hero Section (matches DLLS-GEMA) */}
+      <section className="relative w-full pt-16 pb-24 overflow-hidden bg-slate-50 dark:bg-slate-950 flex-1 border-b border-slate-200 dark:border-slate-800">
+        <div className="absolute inset-0 opacity-[0.15] dark:opacity-10 hero-bg-grid pointer-events-none"></div>
+        <div className="absolute top-[-100px] right-[-100px] w-[500px] h-[500px] rounded-full bg-blue-600/10 dark:bg-blue-600/20 blur-[80px] pointer-events-none"></div>
         
-        <div className="max-w-[1080px] mx-auto px-6 relative z-10 grid xl:grid-cols-2 gap-12 items-center">
-          <div className="flex flex-col gap-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 font-bold text-xs w-max">
-              <ShieldCheck className="w-4 h-4" /> ASTROMITIGASI PUSAT
+        <div className="max-w-[1080px] mx-auto px-6 relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
+          
+          {/* Hero Left (Text content) */}
+          <div className="flex-1 flex flex-col items-start text-left max-w-[560px]">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-6 rounded-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 font-semibold text-[11px] uppercase tracking-wider shadow-sm">
+              <span className="text-blue-600 dark:text-blue-500 text-base leading-none">🤖</span> AI-Assisted Learning · IPBA UPI · RKI 2026
             </div>
-            <h1 className="text-4xl xl:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight">
-              Sistem Peringatan <br />
-              <span className="text-red-600 dark:text-red-500">Bencana Astronomi</span> Terpadu
+            
+            <h1 className="text-[44px] md:text-[56px] font-extrabold text-slate-900 dark:text-white leading-[1.1] tracking-[-1.5px] mb-4">
+              <span className="text-transparent bg-clip-text bg-gradient-to-br from-blue-700 to-purple-600">Astromitigasi</span><br />
+              Learning System<br />
+              <span className="text-[24px] md:text-[28px] text-slate-500 dark:text-slate-400 font-bold tracking-normal">(DLLS ASTRO)</span>
             </h1>
-            <p className="text-xl text-slate-700 dark:text-slate-300 font-semibold">
-              "Melindungi infrastruktur Bumi dari ancaman luar angkasa."
-            </p>
-            <p className="text-base text-slate-600 dark:text-slate-400 max-w-md leading-relaxed">
-              Pantau ancaman asteroid (NEO), badai matahari ekstrem (CME/Flare), dan 
-              risiko tumbukan sampah antariksa secara real-time berbasis data satelit NASA/NOAA.
+            
+            <p className="text-[17px] md:text-[18px] text-slate-900 dark:text-white font-bold mb-3">
+              Mempelajari Ancaman dari Luar Angkasa
             </p>
             
-            <div className="flex flex-wrap gap-4 mt-2">
-              <Link to="/tracker" className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-colors shadow-lg shadow-blue-600/20">
-                <RadarIcon className="w-5 h-5" /> Mulai Pemantauan
+            <p className="text-[14px] md:text-[15px] text-slate-600 dark:text-slate-400 max-w-[480px] leading-[1.6] mb-8">
+              Platform pembelajaran berbasis AI untuk meningkatkan literasi bencana astronomi. Dipersenjatai modul interaktif mengenai Cuaca Antariksa, Asteroid, dan Sampah Antariksa dengan data real-time.
+            </p>
+            
+            <div className="flex flex-wrap items-center gap-4 mb-12">
+              <Link to="/login" className="inline-flex items-center gap-2 px-7 py-3.5 bg-blue-700 hover:bg-blue-800 text-white text-[14px] font-semibold rounded-xl transition-all shadow-[0_4px_12px_rgba(29,78,216,0.3)] hover:-translate-y-0.5">
+                <span className="text-lg leading-none">🚀</span> Mulai Belajar Sekarang
               </Link>
               <button 
                 onClick={() => document.getElementById('modul')?.scrollIntoView({ behavior: 'smooth' })} 
-                className="inline-flex items-center gap-2 px-6 py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-bold rounded-lg transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-900 dark:text-white text-[14px] font-semibold rounded-xl transition-all shadow-sm"
               >
-                <Rocket className="w-5 h-5" /> Pelajari Modul
+                <span className="text-lg leading-none text-slate-500">▶️</span> Lihat Demo Modul
               </button>
             </div>
             
-            <div className="flex flex-wrap border-t border-slate-200 dark:border-slate-800 pt-6 mt-4 gap-8">
-              <div className="flex flex-col gap-1 pr-8 border-r border-slate-200 dark:border-slate-800">
-                <div className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-                  {isLoading ? <Skeleton className="h-6 w-12 mx-auto" /> : neoData.length}
-                </div>
-                <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Objek Dekat Bumi<br/>(7 Hari)</div>
-              </div>
-              <div className="flex flex-col gap-1 pr-8 border-r border-slate-200 dark:border-slate-800">
-                <div className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">X-Class</div>
-                <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Solar Flare<br/>Tertinggi</div>
-              </div>
+            {/* Hero Stats (Matches DLLS-GEMA `.hero-stats`) */}
+            <div className="flex flex-wrap items-center gap-6 md:gap-10 pt-6 border-t border-slate-200 dark:border-slate-800 w-full">
               <div className="flex flex-col gap-1">
-                <div className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">34k+</div>
-                <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Puing Terlacak<br/>(LEO/GEO)</div>
+                <div className="text-[28px] md:text-[32px] font-extrabold text-slate-900 dark:text-white leading-none tracking-tight">5</div>
+                <div className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest leading-tight">Modul<br/>Bencana</div>
+              </div>
+              <div className="w-px h-10 bg-slate-200 dark:bg-slate-800 hidden md:block"></div>
+              <div className="flex flex-col gap-1">
+                <div className="text-[28px] md:text-[32px] font-extrabold text-slate-900 dark:text-white leading-none tracking-tight">87+</div>
+                <div className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest leading-tight">Mahasiswa<br/>Aktif</div>
+              </div>
+              <div className="w-px h-10 bg-slate-200 dark:bg-slate-800 hidden md:block"></div>
+              <div className="flex flex-col gap-1">
+                <div className="text-[28px] md:text-[32px] font-extrabold text-slate-900 dark:text-white leading-none tracking-tight">0.47</div>
+                <div className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest leading-tight">Rata-rata<br/>N-Gain</div>
+              </div>
+              <div className="w-px h-10 bg-slate-200 dark:bg-slate-800 hidden md:block"></div>
+              <div className="flex flex-col gap-1">
+                <div className="text-[28px] md:text-[32px] font-extrabold text-slate-900 dark:text-white leading-none tracking-tight">3</div>
+                <div className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest leading-tight">Institusi<br/>Kolaborasi</div>
               </div>
             </div>
           </div>
           
-          <div className="w-full max-w-[600px] mx-auto flex flex-col gap-3">
-            <div className="bg-red-600 text-white rounded-xl p-5 flex items-center gap-4 relative overflow-hidden shadow-xl shadow-red-600/20">
-              <div className="text-3xl">☄️</div>
-              <div>
-                <div className="font-bold text-lg">Asteroid Tracker (NEO)</div>
-                <div className="text-sm text-red-100">Sistem pelacakan lintasan 3D real-time</div>
-              </div>
-              <div className="absolute top-4 right-4 bg-white/20 px-2 py-0.5 rounded text-[10px] font-bold tracking-widest">LIVE</div>
-            </div>
+          {/* Hero Right (Visual Cards layout matching DLLS-GEMA) */}
+          <div className="flex-1 relative w-full max-w-[500px] h-[400px] flex items-center justify-center">
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex items-center gap-3 shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400">
-                  <Sun />
-                </div>
-                <div>
-                  <div className="font-bold text-sm text-slate-900 dark:text-white">Cuaca Antariksa</div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400">Badai Geomagnetik</div>
-                </div>
+            {/* Main Center Card */}
+            <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-[0_8px_24px_rgba(15,23,42,0.12)] border border-slate-100 dark:border-slate-800 w-[300px] relative z-20 flex flex-col items-center text-center">
+              <div className="w-[60px] h-[60px] rounded-[14px] bg-slate-900 dark:bg-slate-950 flex items-center justify-center text-[28px] mb-4 shadow-md">
+                🌌
               </div>
-              
-              <div className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex items-center gap-3 shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
-                  <Satellite />
-                </div>
-                <div>
-                  <div className="font-bold text-sm text-slate-900 dark:text-white">Kessler Syndrome</div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400">Sampah Orbital</div>
-                </div>
+              <div className="font-bold text-[17px] text-slate-900 dark:text-white mb-2 leading-tight">Bumi · Pantauan Antariksa</div>
+              <div className="text-[13px] text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+                Ancaman cuaca antariksa · 30rb+ asteroid dekat bumi · Sampah orbit
+              </div>
+              <div className="bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-[11px] font-bold px-3 py-1.5 rounded-full border border-red-100 dark:border-red-900/30 flex items-center gap-1.5">
+                <AlertTriangle className="w-3.5 h-3.5" /> Waspada Tinggi
               </div>
             </div>
+
+            {/* Floating Card 1 (Top Left) */}
+            <div className="absolute top-[20px] left-0 bg-white dark:bg-slate-900 p-3 rounded-xl shadow-[0_4px_12px_rgba(15,23,42,0.1)] border border-slate-100 dark:border-slate-800 flex items-center gap-3 z-30 animate-[float_4s_ease-in-out_infinite]">
+              <div className="w-10 h-10 rounded-lg bg-red-50 dark:bg-red-900/20 flex items-center justify-center text-[20px]">
+                ☄️
+              </div>
+              <div>
+                <div className="text-[13px] font-bold text-slate-900 dark:text-white leading-tight">Asteroid Chelyabinsk</div>
+                <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">1500+ korban · 2013</div>
+              </div>
+            </div>
+
+            {/* Floating Card 2 (Bottom Right) */}
+            <div className="absolute bottom-[40px] right-[-20px] bg-white dark:bg-slate-900 p-3 rounded-xl shadow-[0_4px_12px_rgba(15,23,42,0.1)] border border-slate-100 dark:border-slate-800 flex items-center gap-3 z-30 animate-[float_5s_ease-in-out_infinite_0.5s]">
+              <div className="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-[20px]">
+                ☀️
+              </div>
+              <div>
+                <div className="text-[13px] font-bold text-slate-900 dark:text-white leading-tight">Badai Matahari</div>
+                <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">G4 Geomagnetic · 2024</div>
+              </div>
+            </div>
+
+            {/* Floating Card 3 (Bottom Left) */}
+            <div className="absolute bottom-[0px] left-[20px] bg-white dark:bg-slate-900 p-3 rounded-xl shadow-[0_4px_12px_rgba(15,23,42,0.1)] border border-slate-100 dark:border-slate-800 flex items-center gap-3 z-10 animate-[float_4.5s_ease-in-out_infinite_1s]">
+              <div className="w-10 h-10 rounded-lg bg-amber-50 dark:bg-amber-900/20 flex items-center justify-center text-[20px]">
+                🛰️
+              </div>
+              <div>
+                <div className="text-[13px] font-bold text-slate-900 dark:text-white leading-tight">Sampah Antariksa</div>
+                <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Jatuhan Roket · 2022</div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* Urgency Strip */}
-      <section className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 shadow-sm rounded-xl overflow-hidden mt-8">
-        <div className="flex flex-col sm:flex-row divide-y sm:divide-y-0 sm:divide-x divide-slate-200 dark:divide-slate-800">
-          <div className="flex-1 px-6 py-4 flex flex-col items-center justify-center text-center gap-1">
-            <div className={`text-xl font-black tracking-tight ${threatLevel === 'WASPADA' ? 'text-red-600 dark:text-red-500' : 'text-green-600 dark:text-green-500'}`}>
-              {threatLevel}
-            </div>
-            <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">STATUS BUMI</div>
+      {/* Urgency Strip (Matches DLLS-GEMA `.urgency-strip`) */}
+      <div className="bg-[#1E293B] dark:bg-slate-900 border-t border-b border-[#0F172A] dark:border-slate-950 py-10 w-full">
+        <div className="max-w-[1080px] mx-auto px-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-0 divide-y md:divide-y-0 md:divide-x divide-slate-700/50">
+          <div className="flex flex-col items-center text-center px-4 py-4 md:py-0">
+            <div className="text-3xl md:text-[34px] font-extrabold text-red-400 mb-2 leading-none tracking-tight">33.000+</div>
+            <div className="text-[12px] text-slate-400 font-medium leading-[1.4]">Asteroid Dekat Bumi<br/>(NEO) dipantau NASA</div>
           </div>
-          <div className="flex-1 px-6 py-4 flex flex-col items-center justify-center text-center gap-1">
-            <div className="text-xl font-black tracking-tight text-orange-500 dark:text-orange-400">M1.2</div>
-            <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">SOLAR FLARE X-RAY</div>
+          <div className="flex flex-col items-center text-center px-4 py-4 md:py-0">
+            <div className="text-3xl md:text-[34px] font-extrabold text-amber-400 mb-2 leading-none tracking-tight">11 Tahun</div>
+            <div className="text-[12px] text-slate-400 font-medium leading-[1.4]">Siklus Aktivitas<br/>Matahari Maksimum</div>
           </div>
-          <div className="flex-1 px-6 py-4 flex flex-col items-center justify-center text-center gap-1">
-            <div className="text-xl font-black tracking-tight text-blue-600 dark:text-blue-500">Kp 3.0</div>
-            <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">GEOMAGNETIC INDEX</div>
+          <div className="flex flex-col items-center text-center px-4 py-4 md:py-0">
+            <div className="text-3xl md:text-[34px] font-extrabold text-blue-400 mb-2 leading-none tracking-tight">1 Juta+</div>
+            <div className="text-[12px] text-slate-400 font-medium leading-[1.4]">Puing Sampah Antariksa<br/>&gt; 1 cm di Orbit</div>
           </div>
-          <div className="flex-1 px-6 py-4 flex flex-col items-center justify-center text-center gap-1">
-            <div className="text-xl font-black tracking-tight text-slate-900 dark:text-white">0</div>
-            <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">CME IMPACT WARNING</div>
+          <div className="flex flex-col items-center text-center px-4 py-4 md:py-0">
+            <div className="text-3xl md:text-[34px] font-extrabold text-amber-400 mb-2 leading-none tracking-tight">G5</div>
+            <div className="text-[12px] text-slate-400 font-medium leading-[1.4]">Ancaman Badai Magnetik<br/>Skala Ekstrem</div>
+          </div>
+          <div className="flex flex-col items-center text-center px-4 py-4 md:py-0">
+            <div className="text-3xl md:text-[34px] font-extrabold text-emerald-400 mb-2 leading-none tracking-tight">↑0.47</div>
+            <div className="text-[12px] text-slate-400 font-medium leading-[1.4]">Rata-rata N-Gain<br/>literasi mahasiswa DLLS</div>
           </div>
         </div>
-      </section>
+      </div>
 
+      {/* Required for the floating animation */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes float {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-8px); }
+          100% { transform: translateY(0px); }
+        }
+      `}} />
     </div>
-  );
-}
-
-function RadarIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M19.07 4.93A10 10 0 0 0 6.99 3.34" />
-      <path d="M4 6h.01" />
-      <path d="M2.29 9.62A10 10 0 1 0 21.31 8.35" />
-      <path d="M16.24 7.76A6 6 0 1 0 8.23 16.67" />
-      <path d="M12 18h.01" />
-      <path d="M17.99 11.66A6 6 0 0 0 13.74 5.9" />
-      <circle cx="12" cy="12" r="2" />
-      <path d="m13.41 10.59 5.66-5.66" />
-    </svg>
   );
 }
