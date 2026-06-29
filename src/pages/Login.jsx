@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Eye, EyeOff, KeyRound, Globe, ArrowLeft } from 'lucide-react';
+import { IconArrowLeft, IconEye, IconEyeOff, IconGlobe, IconKey } from '@tabler/icons-react';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { useAuth } from '../contexts/AuthContext';
@@ -57,7 +57,7 @@ export function Login() {
         <div className="relative z-10 flex flex-col gap-6 max-w-xl">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20">
-              <Globe className="w-5 h-5 text-white" />
+              <IconGlobe className="w-5 h-5 text-white" />
             </div>
             <div className="text-xl font-bold tracking-tight text-white">Astro<span className="text-blue-400">Mitigasi</span></div>
           </div>
@@ -91,12 +91,12 @@ export function Login() {
         
         <div className="relative z-10 flex flex-col gap-6 mt-12">
           <div className="flex flex-wrap gap-2">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700"><Globe className="w-3 h-3"/> Cuaca Antariksa</div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700"><Globe className="w-3 h-3"/> Tracker Asteroid</div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700"><Globe className="w-3 h-3"/> Sampah Antariksa</div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700"><IconGlobe className="w-3 h-3"/> Cuaca Antariksa</div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700"><IconGlobe className="w-3 h-3"/> Tracker Asteroid</div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700"><IconGlobe className="w-3 h-3"/> Sampah Antariksa</div>
           </div>
           <button className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm w-max cursor-pointer bg-transparent border-none" onClick={() => navigate('/')}>
-            <ArrowLeft className="w-4 h-4"/> Kembali ke Beranda
+            <IconArrowLeft className="w-4 h-4"/> Kembali ke Beranda
           </button>
         </div>
       </div>
@@ -152,7 +152,7 @@ export function Login() {
                     className="absolute right-3 p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 bg-transparent border-none cursor-pointer" 
                     onClick={() => setShowPassword(!showPassword)}
                   >
-                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    {showPassword ? <IconEyeOff className="w-4 h-4" /> : <IconEye className="w-4 h-4" />}
                   </button>
                 </div>
               </div>

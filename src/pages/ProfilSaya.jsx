@@ -1,5 +1,5 @@
 import React from 'react';
-import { User, Settings, Edit, GraduationCap, MapPin, Activity, Mail } from 'lucide-react';
+import { IconActivity, IconEdit, IconMail, IconMapPin, IconSchool, IconSettings, IconUser } from '@tabler/icons-react';
 import { useAuth } from '../contexts/AuthContext';
 
 export function ProfilSaya() {
@@ -19,7 +19,7 @@ export function ProfilSaya() {
         {/* Informasi Akun */}
         <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
           <div className="flex items-center gap-2 text-sm font-bold text-brand-navy mb-4">
-            <User className="w-4 h-4 text-brand-blue" /> Informasi Akun
+            <IconUser className="w-4 h-4 text-brand-blue" /> Informasi Akun
           </div>
           
           <div className="flex items-center gap-4 mb-5">
@@ -37,19 +37,19 @@ export function ProfilSaya() {
           
           <div className="space-y-3">
             <div className="flex justify-between items-center py-2 border-b border-slate-100 text-xs">
-              <span className="text-brand-slate2 flex items-center gap-1.5"><GraduationCap className="w-3.5 h-3.5" /> Institusi</span>
+              <span className="text-brand-slate2 flex items-center gap-1.5"><IconSchool className="w-3.5 h-3.5" /> Institusi</span>
               <span className="font-semibold text-brand-navy">Sekolah Antariksa Nasional</span>
             </div>
             <div className="flex justify-between items-center py-2 border-b border-slate-100 text-xs">
-              <span className="text-brand-slate2 flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5" /> Asal Daerah</span>
+              <span className="text-brand-slate2 flex items-center gap-1.5"><IconMapPin className="w-3.5 h-3.5" /> Asal Daerah</span>
               <span className="font-semibold text-brand-navy">Jawa Barat</span>
             </div>
             <div className="flex justify-between items-center py-2 border-b border-slate-100 text-xs">
-              <span className="text-brand-slate2 flex items-center gap-1.5"><Activity className="w-3.5 h-3.5" /> Status</span>
+              <span className="text-brand-slate2 flex items-center gap-1.5"><IconActivity className="w-3.5 h-3.5" /> Status</span>
               <span className="font-semibold text-brand-green">Aktif</span>
             </div>
             <div className="flex justify-between items-center py-2 text-xs">
-              <span className="text-brand-slate2 flex items-center gap-1.5"><Mail className="w-3.5 h-3.5" /> Bergabung Sejak</span>
+              <span className="text-brand-slate2 flex items-center gap-1.5"><IconMail className="w-3.5 h-3.5" /> Bergabung Sejak</span>
               <span className="font-semibold text-brand-navy">2026</span>
             </div>
           </div>
@@ -58,7 +58,7 @@ export function ProfilSaya() {
         {/* Preferensi Belajar */}
         <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
           <div className="flex items-center gap-2 text-sm font-bold text-brand-navy mb-4">
-            <Settings className="w-4 h-4 text-brand-slate" /> Preferensi Belajar & Sistem
+            <IconSettings className="w-4 h-4 text-brand-slate" /> Preferensi Belajar & Sistem
           </div>
           
           <div className="space-y-3">
@@ -91,9 +91,9 @@ export function ProfilSaya() {
           <button 
             type="button" 
             className="mt-5 w-full py-2 bg-brand-bg hover:bg-slate-100 border border-slate-200 rounded-xl text-xs font-semibold text-brand-navy flex items-center justify-center gap-2 transition-colors"
-            onClick={() => alert('Edit profil akan tersedia di versi selanjutnya.')}
+            onClick={() => alert('IconEdit profil akan tersedia di versi selanjutnya.')}
           >
-            <Edit className="w-4 h-4" /> Edit Profil
+            <IconEdit className="w-4 h-4" /> IconEdit Profil
           </button>
         </div>
       </div>

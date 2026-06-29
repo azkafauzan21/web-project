@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Bot, Send, X } from 'lucide-react';
+import { IconRobot, IconSend, IconX } from '@tabler/icons-react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 // Inisialisasi Gemini SDK (Akan gagal jika API Key belum diset)
@@ -130,7 +130,7 @@ export function AstroAIAssistant() {
     <>
       {/* Floating Action Button */}
       <button className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center shadow-lg shadow-purple-600/30 hover:scale-110 hover:shadow-purple-600/50 transition-all cursor-pointer border-2 border-white/10" onClick={() => setIsOpen(!isOpen)} aria-label="ASTRO AI Assistant">
-        <Bot className="w-6 h-6 text-white" />
+        <IconRobot className="w-6 h-6 text-white" />
         <div className="absolute top-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-white dark:border-slate-900 rounded-full animate-pulse"></div>
       </button>
 
@@ -142,7 +142,7 @@ export function AstroAIAssistant() {
             ASTRO AI <span className="text-[10px] px-1.5 py-0.5 bg-white/20 rounded-md font-medium tracking-wide">Beta</span>
           </div>
           <button className="text-slate-400 hover:text-white transition-colors bg-transparent border-none cursor-pointer p-1" onClick={() => setIsOpen(false)}>
-            <X className="w-5 h-5" />
+            <IconX className="w-5 h-5" />
           </button>
         </div>
         
@@ -173,7 +173,7 @@ export function AstroAIAssistant() {
             disabled={isLoading}
           />
           <button type="submit" className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled={isLoading || !input.trim()}>
-            <Send className="w-4 h-4" />
+            <IconSend className="w-4 h-4" />
           </button>
         </form>
       </div>

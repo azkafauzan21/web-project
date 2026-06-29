@@ -77,7 +77,7 @@ export function OnePageScroll() {
           key={id}
           id={id}
           data-path={path}
-          className={`min-h-screen py-8 flex flex-col justify-center ${index !== sections.length - 1 ? 'border-b border-slate-200 dark:border-slate-800/50' : ''}`}
+          className={`min-h-screen flex flex-col justify-center ${index !== sections.length - 1 ? 'border-b border-slate-200 dark:border-slate-800/50' : ''}`}
         >
           <Component />
         </section>

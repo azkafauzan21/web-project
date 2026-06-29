@@ -1,19 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { 
-  Orbit,
-  LayoutDashboard, 
-  BookOpen, 
-  Sun, 
-  Telescope, 
-  ShieldAlert, 
-  Trophy, 
-  User, 
-  LogOut,
-  MoreVertical,
-  Activity,
-  Home
-} from 'lucide-react';
+import { IconActivity, IconBook, IconHome, IconLayoutDashboard, IconLogout, IconDotsVertical, IconPlanet, IconShieldExclamation, IconSun, IconTelescope, IconTrophy, IconUser } from '@tabler/icons-react';
 import { useAuth } from '../contexts/AuthContext';
 
 export function Sidebar() {
@@ -43,7 +30,7 @@ export function Sidebar() {
     <aside className="w-[220px] bg-white border-r border-slate-200 flex flex-col shrink-0 overflow-y-auto z-20" aria-label="Navigasi utama">
       <div className="px-3.5 py-3.5 pb-3 border-b border-slate-200 flex items-center gap-2 shrink-0">
         <div className="w-[30px] h-[30px] rounded-lg bg-gradient-to-br from-brand-blue to-brand-purple flex items-center justify-center shrink-0">
-          <BookOpen className="w-[15px] h-[15px] text-white" />
+          <IconBook className="w-[15px] h-[15px] text-white" />
         </div>
         <div>
           <div className="text-xs font-bold text-brand-navy"><span className="text-brand-blue">DLLS</span> · GEMA</div>
@@ -55,37 +42,37 @@ export function Sidebar() {
         <div className="text-[10px] font-bold text-brand-slate2 uppercase tracking-wide mb-2 px-1">Main Menu</div>
         
         <NavLink to="/dashboard" className={({ isActive }) => isActive ? activeNavItemClass : navItemClass}>
-          <LayoutDashboard className="w-[16px] h-[16px] shrink-0" /> Dashboard
+          <IconLayoutDashboard className="w-[16px] h-[16px] shrink-0" /> Dashboard
         </NavLink>
         
         <NavLink to="/modul-lms" className={({ isActive }) => isActive ? activeNavItemClass : navItemClass}>
-          <BookOpen className="w-[16px] h-[16px] shrink-0" /> Semua Modul
+          <IconBook className="w-[16px] h-[16px] shrink-0" /> Semua Modul
         </NavLink>
 
         <NavLink to="/impact-calculator" className={({ isActive }) => isActive ? activeNavItemClass : navItemClass}>
-          <Activity className="w-[16px] h-[16px] shrink-0" /> Simulasi Asteroid
+          <IconActivity className="w-[16px] h-[16px] shrink-0" /> Simulasi Asteroid
         </NavLink>
         
         <NavLink to="/tsunami-simulator" className={({ isActive }) => isActive ? activeNavItemClass : navItemClass}>
-          <ShieldAlert className="w-[16px] h-[16px] shrink-0" /> Simulasi Tsunami
+          <IconShieldExclamation className="w-[16px] h-[16px] shrink-0" /> Simulasi Tsunami
         </NavLink>
 
         <div className="text-[10px] font-bold text-brand-slate2 uppercase tracking-wide mt-4 mb-2 px-1">Personal</div>
         
         <NavLink to="/pencapaian" className={({ isActive }) => isActive ? activeNavItemClass : navItemClass}>
-          <Trophy className="w-[16px] h-[16px] shrink-0" /> Pencapaian
+          <IconTrophy className="w-[16px] h-[16px] shrink-0" /> Pencapaian
         </NavLink>
         
         <NavLink to="/profil" className={({ isActive }) => isActive ? activeNavItemClass : navItemClass}>
-          <User className="w-[16px] h-[16px] shrink-0" /> Profil Saya
+          <IconUser className="w-[16px] h-[16px] shrink-0" /> Profil Saya
         </NavLink>
         
         <NavLink to="/" className={navItemClass}>
-          <Home className="w-[16px] h-[16px] shrink-0" /> Laman Utama
+          <IconHome className="w-[16px] h-[16px] shrink-0" /> Laman Utama
         </NavLink>
 
         <button onClick={logout} className={navItemClass + " mt-2 text-red-600 hover:bg-red-50 hover:text-red-700"}>
-          <LogOut className="w-[16px] h-[16px] shrink-0" /> Keluar
+          <IconLogout className="w-[16px] h-[16px] shrink-0" /> Keluar
         </button>
       </nav>
 
@@ -101,7 +88,7 @@ export function Sidebar() {
             <div className="text-[11px] font-semibold text-brand-navy truncate">{userName}</div>
             <div className="text-[10px] text-brand-slate2 truncate">Siswa Astronomi</div>
           </div>
-          <MoreVertical className="w-4 h-4 text-brand-slate2 shrink-0" />
+          <IconDotsVertical className="w-4 h-4 text-brand-slate2 shrink-0" />
         </button>
 
         {isDropdownOpen && (
@@ -115,7 +102,7 @@ export function Sidebar() {
               onClick={() => setIsDropdownOpen(false)}
               className="flex items-center gap-2 px-3 py-1.5 text-xs text-brand-slate hover:bg-slate-50 hover:text-brand-navy transition-colors w-full"
             >
-              <User className="w-3.5 h-3.5" /> Pengaturan Profil
+              <IconUser className="w-3.5 h-3.5" /> Pengaturan Profil
             </NavLink>
             <button 
               onClick={() => {
@@ -124,7 +111,7 @@ export function Sidebar() {
               }} 
               className="flex items-center gap-2 px-3 py-1.5 text-xs text-red-600 hover:bg-red-50 hover:text-red-700 transition-colors w-full text-left"
             >
-              <LogOut className="w-3.5 h-3.5" /> Keluar
+              <IconLogout className="w-3.5 h-3.5" /> Keluar
             </button>
           </div>
         )}

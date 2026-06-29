@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import { Bot, Home, ChevronRight } from 'lucide-react';
+import { IconChevronRight, IconHome, IconRobot } from '@tabler/icons-react';
 
 export function DashboardTopbar() {
   const location = useLocation();
@@ -21,7 +21,7 @@ export function DashboardTopbar() {
     <header className="h-[56px] bg-white border-b border-slate-200 flex items-center px-5 gap-2.5 shrink-0 z-10">
       <div className="flex items-center gap-1.5 text-xs text-brand-slate2 flex-1">
         <Link to="/dashboard" className="cursor-pointer font-medium hover:underline text-brand-slate">Beranda</Link>
-        <ChevronRight className="w-3.5 h-3.5" />
+        <IconChevronRight className="w-3.5 h-3.5" />
         <span className="font-semibold text-brand-navy text-[13px]">{pageTitle}</span>
       </div>
       
@@ -38,11 +38,11 @@ export function DashboardTopbar() {
           onClick={() => window.dispatchEvent(new Event('toggle-astro-ai'))}
           aria-label="Buka AI Assistant"
         >
-          <Bot className="w-4 h-4" />
+          <IconRobot className="w-4 h-4" />
         </button>
         
         <Link to="/dashboard" className="w-8 h-8 rounded-md border border-slate-200 bg-white flex items-center justify-center cursor-pointer text-brand-slate transition-colors hover:bg-brand-bg hover:text-brand-navy">
-          <Home className="w-4 h-4" />
+          <IconHome className="w-4 h-4" />
         </Link>
       </div>
     </header>

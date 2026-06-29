@@ -7,7 +7,7 @@ export function MainLayout() {
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-slate-900">
       <Topbar />
-      <main className="flex-1 overflow-y-auto bg-slate-50 dark:bg-slate-900 p-4 sm:p-6 relative">
+      <main className="flex-1 overflow-y-auto bg-slate-50 dark:bg-slate-900 relative">
         <Outlet />
       </main>
       <AstroAIAssistant />

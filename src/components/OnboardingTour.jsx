@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Layout, ClipboardList, Rocket, Bot, BookOpen, Zap, Target } from 'lucide-react';
+import { IconBolt, IconBook, IconClipboardList, IconLayout, IconRobot, IconRocket, IconTarget, IconUser } from '@tabler/icons-react';
 import { Card } from './ui/card';
 import { useAuth } from '../contexts/AuthContext';
 import { toast } from 'react-hot-toast';
@@ -12,10 +12,10 @@ export function OnboardingTour({ onComplete }) {
   const [preTestAnswer, setPreTestAnswer] = useState('');
 
   const steps = [
-    { id: 1, icon: User, label: 'Profil Belajar' },
-    { id: 2, icon: Layout, label: 'Orientasi LMS' },
-    { id: 3, icon: ClipboardList, label: 'Pre-test Diagnostik' },
-    { id: 4, icon: Rocket, label: 'Mulai' }
+    { id: 1, icon: IconUser, label: 'Profil Belajar' },
+    { id: 2, icon: IconLayout, label: 'Orientasi LMS' },
+    { id: 3, icon: IconClipboardList, label: 'Pre-test Diagnostik' },
+    { id: 4, icon: IconRocket, label: 'Mulai' }
   ];
 
   return (
@@ -26,7 +26,7 @@ export function OnboardingTour({ onComplete }) {
         <div className="p-5 border-b bg-slate-50 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white">
-              <Rocket className="w-4 h-4" />
+              <IconRocket className="w-4 h-4" />
             </div>
             <div className="font-bold text-slate-800">Astromitigasi Onboarding</div>
           </div>
@@ -65,7 +65,7 @@ export function OnboardingTour({ onComplete }) {
               
               <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl flex gap-4 mb-6">
                 <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white shrink-0">
-                  <Bot className="w-5 h-5" />
+                  <IconRobot className="w-5 h-5" />
                 </div>
                 <p className="text-xs text-blue-900 leading-relaxed">
                   Halo! Saya <strong>ASTRO AI</strong>. Lengkapi data ini agar saya bisa merancang materi tentang Cuaca Antariksa, Asteroid, atau Sampah Antariksa sesuai dengan kebutuhan dan minat Anda.
@@ -103,24 +103,24 @@ export function OnboardingTour({ onComplete }) {
             <div className="animate-in fade-in slide-in-from-right-4 duration-300 py-4">
               <div className="text-center mb-6">
                 <div className="inline-flex w-12 h-12 rounded-full bg-blue-100 text-blue-600 items-center justify-center mb-4">
-                  <Layout className="w-6 h-6" />
+                  <IconLayout className="w-6 h-6" />
                 </div>
                 <h2 className="text-xl font-bold text-slate-800 mb-2">Kenali Pusat Komando Anda</h2>
                 <p className="text-sm text-slate-500">Platform Astromitigasi dilengkapi dengan alat untuk memantau dan mempelajari ancaman kosmis.</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="p-4 border rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors">
-                  <BookOpen className="w-6 h-6 text-indigo-500 mb-2" />
+                  <IconBook className="w-6 h-6 text-indigo-500 mb-2" />
                   <h3 className="font-bold text-sm text-slate-800 mb-1">Modul Belajar</h3>
                   <p className="text-xs text-slate-500">Pelajari dari dasar hingga ahli tentang objek luar angkasa.</p>
                 </div>
                 <div className="p-4 border rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors">
-                  <Zap className="w-6 h-6 text-amber-500 mb-2" />
+                  <IconBolt className="w-6 h-6 text-amber-500 mb-2" />
                   <h3 className="font-bold text-sm text-slate-800 mb-1">Pantau NEO</h3>
                   <p className="text-xs text-slate-500">Data *Near-Earth Objects* (NEO) langsung dari API NASA.</p>
                 </div>
                 <div className="p-4 border rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors">
-                  <Target className="w-6 h-6 text-red-500 mb-2" />
+                  <IconTarget className="w-6 h-6 text-red-500 mb-2" />
                   <h3 className="font-bold text-sm text-slate-800 mb-1">Simulasi & Quiz</h3>
                   <p className="text-xs text-slate-500">Uji pengetahuan Anda dan simulasikan dampak mitigasi.</p>
                 </div>
@@ -132,7 +132,7 @@ export function OnboardingTour({ onComplete }) {
             <div className="animate-in fade-in slide-in-from-right-4 duration-300 py-4">
               <div className="text-center mb-6">
                 <div className="inline-flex w-12 h-12 rounded-full bg-purple-100 text-purple-600 items-center justify-center mb-4">
-                  <ClipboardList className="w-6 h-6" />
+                  <IconClipboardList className="w-6 h-6" />
                 </div>
                 <h2 className="text-xl font-bold text-slate-800 mb-2">Pre-test Singkat</h2>
                 <p className="text-sm text-slate-500">Untuk menyesuaikan kurikulum Anda, objek kosmis mana yang paling Anda khawatirkan?</p>
@@ -160,7 +160,7 @@ export function OnboardingTour({ onComplete }) {
               <div className="relative inline-block mb-6">
                 <div className="absolute inset-0 bg-blue-400 blur-xl opacity-30 rounded-full"></div>
                 <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white shadow-lg mx-auto">
-                  <Rocket className="w-10 h-10" />
+                  <IconRocket className="w-10 h-10" />
                 </div>
               </div>
               <h2 className="text-2xl font-bold text-slate-800 mb-3">Semua Sistem Siap!</h2>
@@ -227,7 +227,7 @@ export function OnboardingTour({ onComplete }) {
                 }
               }}
             >
-              <Rocket className="w-4 h-4" /> {isSaving ? 'Menyimpan...' : 'Mulai Eksplorasi'}
+              <IconRocket className="w-4 h-4" /> {isSaving ? 'Menyimpan...' : 'Mulai Eksplorasi'}
             </button>
           )}
         </div>

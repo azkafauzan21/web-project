@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
-import { Target, AlertTriangle } from 'lucide-react';
+import { IconAlertTriangle, IconTarget } from '@tabler/icons-react';
 import { Slider } from './ui/slider';
 
 export function DartSimulator() {
@@ -27,7 +27,7 @@ export function DartSimulator() {
     const render = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Draw Earth (Target)
+      // Draw Earth (IconTarget)
       ctx.beginPath();
       ctx.arc(600, 150, 40, 0, 2 * Math.PI);
       ctx.fillStyle = '#3b82f6';
@@ -138,7 +138,7 @@ export function DartSimulator() {
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Target className="h-5 w-5 text-indigo-500" />
+          <IconTarget className="h-5 w-5 text-indigo-500" />
           Kalkulator Tumbukan Kinetik (Misi DART)
         </CardTitle>
         <CardDescription>
@@ -184,7 +184,7 @@ export function DartSimulator() {
               disabled={impactFired} 
               className="w-full gap-2"
             >
-              <Target className="w-4 h-4" />
+              <IconTarget className="w-4 h-4" />
               {impactFired ? 'Impactor Diluncurkan...' : 'Luncurkan Impactor'}
             </Button>
             
@@ -192,9 +192,9 @@ export function DartSimulator() {
               <div className={`p-3 rounded-md border ${deflectionDistance > 4000 ? 'bg-green-500/10 border-green-500/20' : 'bg-red-500/10 border-red-500/20'}`}>
                 <div className="flex items-center gap-2 mb-1">
                   {deflectionDistance > 4000 ? (
-                    <Target className="w-4 h-4 text-green-500" />
+                    <IconTarget className="w-4 h-4 text-green-500" />
                   ) : (
-                    <AlertTriangle className="w-4 h-4 text-red-500" />
+                    <IconAlertTriangle className="w-4 h-4 text-red-500" />
                   )}
                   <h4 className="font-semibold text-sm">Hasil Simulasi</h4>
                 </div>

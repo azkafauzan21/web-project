@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 import { MetricCard } from '../components/MetricCard';
 import { spaceWeatherService } from '../services/spaceWeatherService';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { Sun, AlertTriangle, ShieldAlert, Zap, Clock, Activity } from 'lucide-react';
+import { IconActivity, IconAlertTriangle, IconBolt, IconClock, IconShieldExclamation, IconSun } from '@tabler/icons-react';
 import { Skeleton } from '../components/ui/skeleton';
 import { Badge } from '../components/ui/badge';
 
@@ -47,10 +47,10 @@ export function SpaceWeather() {
   }, []);
 
   const cmeTimeline = [
-    { time: '0 Menit', title: 'Ledakan Terjadi', desc: 'Solar flare meletus di permukaan Matahari.', icon: Sun },
-    { time: '+8 Menit', title: 'Radiasi Tiba', desc: 'Sinar-X mengganggu sinyal HF di sisi Bumi yang terang.', icon: Zap },
-    { time: '+30 Menit', title: 'Badai Radiasi', desc: 'Partikel berenergi tinggi (SEP) membahayakan satelit.', icon: ShieldAlert },
-    { time: '+72 Jam', title: 'Dampak CME', desc: 'Awan plasma menghantam Bumi. Aurora & Listrik terganggu.', icon: AlertTriangle }
+    { time: '0 Menit', title: 'Ledakan Terjadi', desc: 'Solar flare meletus di permukaan Matahari.', icon: IconSun },
+    { time: '+8 Menit', title: 'Radiasi Tiba', desc: 'Sinar-X mengganggu sinyal HF di sisi Bumi yang terang.', icon: IconBolt },
+    { time: '+30 Menit', title: 'Badai Radiasi', desc: 'Partikel berenergi tinggi (SEP) membahayakan satelit.', icon: IconShieldExclamation },
+    { time: '+72 Jam', title: 'Dampak CME', desc: 'Awan plasma menghantam Bumi. Aurora & Listrik terganggu.', icon: IconAlertTriangle }
   ];
 
   const latestSSN = sunspotData.length > 0 ? sunspotData[sunspotData.length - 1].ssn : 0;
@@ -66,21 +66,21 @@ export function SpaceWeather() {
 
       <div className="grid-3">
         <MetricCard 
-          icon={Activity} 
+          icon={IconActivity} 
           value={loading ? '-' : latestSSN} 
           label="Sunspot Number (SSN)" 
           subtext="Siklus Terkini" 
           color="orange" 
         />
         <MetricCard 
-          icon={Zap} 
+          icon={IconBolt} 
           value={loading ? '-' : flares.length} 
           label="Solar Flares" 
           subtext="Dalam 30 Hari (M/X Class)" 
           color="red" 
         />
         <MetricCard 
-          icon={AlertTriangle} 
+          icon={IconAlertTriangle} 
           value={loading ? '-' : cmes.length} 
           label="CME Alerts" 
           subtext="Dalam 30 Hari (DONKI)" 
@@ -92,7 +92,7 @@ export function SpaceWeather() {
         <Card className="col-span-full lg:col-span-4">
           <CardHeader>
             <CardTitle>
-              <Sun className="h-4 w-4 text-[var(--orange)]" />
+              <IconSun className="h-4 w-4 text-[var(--orange)]" />
               Siklus Bintik Matahari (10 Tahun)
             </CardTitle>
           </CardHeader>
@@ -125,7 +125,7 @@ export function SpaceWeather() {
         <Card className="col-span-full lg:col-span-3">
           <CardHeader>
             <CardTitle>
-              <ShieldAlert className="h-4 w-4 text-[var(--red)]" />
+              <IconShieldExclamation className="h-4 w-4 text-[var(--red)]" />
               Peringatan Dini DONKI
             </CardTitle>
           </CardHeader>
@@ -176,7 +176,7 @@ export function SpaceWeather() {
       <Card>
         <CardHeader>
           <CardTitle>
-            <Clock className="h-4 w-4 text-[var(--blue)]" />
+            <IconClock className="h-4 w-4 text-[var(--blue)]" />
             Simulator Dampak CME (Timeline)
           </CardTitle>
         </CardHeader>

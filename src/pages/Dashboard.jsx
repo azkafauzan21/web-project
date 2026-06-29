@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Trophy, BookOpen, Clock, Target, ChevronRight, 
-  Flame, Rocket, AlertTriangle, ShieldCheck, 
-  Bot, BarChart3, TrendingUp, Lock, Play
-} from 'lucide-react';
+import { IconAlertTriangle, IconChartBar, IconBook, IconChevronRight, IconClock, IconFlame, IconLock, IconPlayerPlay, IconRobot, IconRocket, IconShieldCheck, IconTarget, IconTrendingUp, IconTrophy } from '@tabler/icons-react';
 import { OnboardingTour } from '../components/OnboardingTour';
 import { useAuth } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';
@@ -65,13 +61,13 @@ export function Dashboard() {
           </div>
         </div>
         <Link to="/modul-lms" className="welcome-action">
-          <Rocket size={16} /> Mulai Modul 1
+          <IconRocket size={16} /> Mulai Modul 1
         </Link>
       </div>
 
       {/* AI Inline Box */}
       <div className="ai-inline">
-        <div className="ai-inline-avatar"><Bot /></div>
+        <div className="ai-inline-avatar"><IconRobot /></div>
         <div>
           <div className="ai-inline-name">ASTRO AI</div>
           <div className="ai-inline-text">
@@ -87,7 +83,7 @@ export function Dashboard() {
           <div>
             <div className="metric-val" style={{ color: 'var(--orange)' }}>{progress.literacy_score.toFixed(0)}%</div>
             <div className="metric-lbl">Skor literasi awal</div>
-            <div className="metric-sub" style={{ color: 'var(--slate2)' }}>Target: 80%</div>
+            <div className="metric-sub" style={{ color: 'var(--slate2)' }}>IconTarget: 80%</div>
           </div>
         </div>
         <div className="metric-card">
@@ -103,12 +99,12 @@ export function Dashboard() {
           <div>
             <div className="metric-val" style={{ color: 'var(--purple)' }}>{progress.n_gain.toFixed(2)}</div>
             <div className="metric-lbl">N-Gain saat ini</div>
-            <div className="metric-sub" style={{ color: 'var(--slate2)' }}>Target: ≥0.40</div>
+            <div className="metric-sub" style={{ color: 'var(--slate2)' }}>IconTarget: ≥0.40</div>
           </div>
         </div>
         <div className="streak-card flex-col items-start px-4 py-3">
           <div className="flex items-center gap-2 mb-1.5">
-            <div className="text-xl"><Flame className="text-orange-500 fill-orange-500" /></div>
+            <div className="text-xl"><IconFlame className="text-orange-500 fill-orange-500" /></div>
             <div>
               <div className="streak-val text-lg">{progress.streak_days} Hari</div>
               <div className="streak-lbl mt-0">Streak belajar</div>
@@ -128,7 +124,7 @@ export function Dashboard() {
       <div className="grid-2">
         {/* Kolom Kiri: Modul Bencana */}
         <div className="flex flex-col gap-3">
-          <div className="card-title"><BookOpen size={14} /> Modul Astromitigasi</div>
+          <div className="card-title"><IconBook size={14} /> Modul Astromitigasi</div>
           
           <div className="mod-card">
             <div className="mod-icon bg-orange-50 text-orange-500">☀️</div>
@@ -139,7 +135,7 @@ export function Dashboard() {
               <div className="pbar"><div className="pbar-fill bg-blue-500" style={{ width: '0%' }}></div></div>
             </div>
             <div className="mod-right">
-              <Link to="/modul-lms" className="badge badge-blue"><Play size={10} /> Mulai</Link>
+              <Link to="/modul-lms" className="badge badge-blue"><IconPlayerPlay size={10} /> Mulai</Link>
               <div className="text-[10px] font-bold text-slate-400">0%</div>
             </div>
           </div>
@@ -158,7 +154,7 @@ export function Dashboard() {
                 <div className="mod-sub">{mod.sub}</div>
               </div>
               <div className="mod-right">
-                <Lock size={14} className="text-slate-300" />
+                <IconLock size={14} className="text-slate-300" />
               </div>
             </div>
           ))}
@@ -167,7 +163,7 @@ export function Dashboard() {
         {/* Kolom Kanan: Profil & Aktivitas */}
         <div className="flex flex-col gap-4">
           <div className="card">
-            <div className="card-title"><BarChart3 size={14} /> Profil Literasi Awal</div>
+            <div className="card-title"><IconChartBar size={14} /> Profil Literasi Awal</div>
             <div className="flex flex-col gap-2 mt-4">
               {[
                 { name: 'Umum', score: 55, color: 'bg-purple-500' },
@@ -196,7 +192,7 @@ export function Dashboard() {
           </div>
 
           <div className="card flex-1">
-            <div className="card-title"><Clock size={14} /> Aktivitas Terbaru</div>
+            <div className="card-title"><IconClock size={14} /> Aktivitas Terbaru</div>
             <div className="mt-2">
               {activities.length > 0 ? (
                 activities.map((act) => (
@@ -213,7 +209,7 @@ export function Dashboard() {
                 ))
               ) : (
                 <div className="activity-item">
-                  <div className="activity-icon bg-green-50 text-green-600"><ShieldCheck size={16} /></div>
+                  <div className="activity-icon bg-green-50 text-green-600"><IconShieldCheck size={16} /></div>
                   <div className="activity-text">
                     <div className="activity-main">Akun terdaftar dan terverifikasi</div>
                     <div className="activity-time">Hari ini</div>

@@ -1,12 +1,12 @@
 import React from 'react';
-import { AlertTriangle, Flame, Waves, Mountain, Droplets, BookOpen, Presentation, CheckCircle } from 'lucide-react';
+import { IconAlertTriangle, IconBook, IconCircleCheck, IconDroplet, IconFlame, IconMountain, IconPresentation, IconWaveSine } from '@tabler/icons-react';
 
 export function TentangKami() {
   const disasterStats = [
     {
       id: 'solar_flare',
       title: 'Badai Matahari (Flare)',
-      icon: Flame,
+      icon: IconFlame,
       color: 'text-red-600 bg-red-100 dark:bg-red-900/30 dark:text-red-400',
       case: 'Peristiwa Carrington 1859',
       stat: 'Ancaman Jaringan Listrik & Satelit',
@@ -14,7 +14,7 @@ export function TentangKami() {
     {
       id: 'asteroid',
       title: 'Tabrakan Asteroid (NEO)',
-      icon: AlertTriangle,
+      icon: IconAlertTriangle,
       color: 'text-blue-600 bg-blue-100 dark:bg-blue-900/30 dark:text-blue-400',
       case: 'Meteor Chelyabinsk 2013',
       stat: '30.000+ Objek Dekat Bumi Terpetakan',
@@ -22,7 +22,7 @@ export function TentangKami() {
     {
       id: 'space_debris',
       title: 'Sampah Antariksa',
-      icon: Mountain,
+      icon: IconMountain,
       color: 'text-orange-600 bg-orange-100 dark:bg-orange-900/30 dark:text-orange-400',
       case: 'Sindrom Kessler',
       stat: '34.000+ Puing >10cm di Orbit',
@@ -30,7 +30,7 @@ export function TentangKami() {
     {
       id: 'geomagnetik',
       title: 'Badai Geomagnetik',
-      icon: Waves,
+      icon: IconWaveSine,
       color: 'text-teal-600 bg-teal-100 dark:bg-teal-900/30 dark:text-teal-400',
       case: 'G5 Extreme Storm (Mei 2024)',
       stat: 'Gangguan Navigasi GPS & Radio',
@@ -38,7 +38,7 @@ export function TentangKami() {
     {
       id: 'radiasi',
       title: 'Radiasi Kosmik',
-      icon: Droplets,
+      icon: IconDroplet,
       color: 'text-purple-600 bg-purple-100 dark:bg-purple-900/30 dark:text-purple-400',
       case: 'Galactic Cosmic Rays (GCR)',
       stat: 'Ancaman Astronot & Misi Antariksa',
@@ -50,7 +50,7 @@ export function TentangKami() {
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto space-y-3">
         <div className="text-sm font-bold text-red-600 dark:text-red-400 uppercase tracking-wider flex items-center justify-center gap-2">
-          <AlertTriangle className="w-4 h-4" /> Mengapa Literasi Mitigasi Penting?
+          <IconAlertTriangle className="w-4 h-4" /> Mengapa Literasi Mitigasi Penting?
         </div>
         <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight">
           Bumi: Mengarungi Lautan Kosmik yang Penuh Anomali
@@ -88,7 +88,7 @@ export function TentangKami() {
         <div className="space-y-4">
           <div className="flex items-start gap-4 bg-white dark:bg-slate-950 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800">
             <div className="bg-green-100 dark:bg-green-900/30 p-2 rounded-lg text-green-600 dark:text-green-400 shrink-0">
-              <CheckCircle className="w-5 h-5" />
+              <IconCircleCheck className="w-5 h-5" />
             </div>
             <div>
               <h4 className="font-bold text-slate-900 dark:text-white text-sm">Disaster Data Center</h4>
@@ -97,7 +97,7 @@ export function TentangKami() {
           </div>
           <div className="flex items-start gap-4 bg-white dark:bg-slate-950 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800">
             <div className="bg-purple-100 dark:bg-purple-900/30 p-2 rounded-lg text-purple-600 dark:text-purple-400 shrink-0">
-              <Presentation className="w-5 h-5" />
+              <IconPresentation className="w-5 h-5" />
             </div>
             <div>
               <h4 className="font-bold text-slate-900 dark:text-white text-sm">AI Disaster Assistant</h4>

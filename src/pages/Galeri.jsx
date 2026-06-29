@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, Video, FileText, MapPin, Users } from 'lucide-react';
+import { IconFileText, IconMapPin, IconPhoto, IconUsers, IconVideo } from '@tabler/icons-react';
 import { cn } from '@/lib/utils';
 
 export function Galeri() {
@@ -14,12 +14,12 @@ export function Galeri() {
   ];
 
   const galleryItems = [
-    { id: 1, category: 'alat', title: 'Detektor Sinyal Badai Matahari DIY', meta: 'Modul Cuaca Antariksa · Klub Astronomi', icon: Image, color: 'text-red-600 bg-red-100 dark:bg-red-900/30' },
-    { id: 2, category: 'poster', title: 'Poster Mitigasi Tabrakan Asteroid', meta: 'Modul Asteroid · Kelompok B', icon: FileText, color: 'text-blue-600 bg-blue-100 dark:bg-blue-900/30' },
-    { id: 3, category: 'pemodelan', title: 'Peta Persebaran Sampah Satelit LEO', meta: 'Modul Space Debris · Tim Riset', icon: MapPin, color: 'text-orange-600 bg-orange-100 dark:bg-orange-900/30' },
-    { id: 4, category: 'sosial', title: 'Sosialisasi Bahaya Flare ke Amatir Radio', meta: 'Aksi Sosial · Komunitas ORARI', icon: Users, color: 'text-teal-600 bg-teal-100 dark:bg-teal-900/30' },
-    { id: 5, category: 'poster', title: 'Video Animasi Sindrom Kessler', meta: 'Proyek Akhir · Individu', icon: Video, color: 'text-green-600 bg-green-100 dark:bg-green-900/30' },
-    { id: 6, category: 'alat', title: 'Aplikasi Notifikasi Flare Harian', meta: 'Lintas Modul · Tim Dev Mhs', icon: Image, color: 'text-purple-600 bg-purple-100 dark:bg-purple-900/30' }
+    { id: 1, category: 'alat', title: 'Detektor Sinyal Badai Matahari DIY', meta: 'Modul Cuaca Antariksa · Klub Astronomi', icon: IconPhoto, color: 'text-red-600 bg-red-100 dark:bg-red-900/30' },
+    { id: 2, category: 'poster', title: 'Poster Mitigasi Tabrakan Asteroid', meta: 'Modul Asteroid · Kelompok B', icon: IconFileText, color: 'text-blue-600 bg-blue-100 dark:bg-blue-900/30' },
+    { id: 3, category: 'pemodelan', title: 'Peta Persebaran Sampah Satelit LEO', meta: 'Modul Space Debris · Tim Riset', icon: IconMapPin, color: 'text-orange-600 bg-orange-100 dark:bg-orange-900/30' },
+    { id: 4, category: 'sosial', title: 'Sosialisasi Bahaya Flare ke Amatir Radio', meta: 'Aksi Sosial · Komunitas ORARI', icon: IconUsers, color: 'text-teal-600 bg-teal-100 dark:bg-teal-900/30' },
+    { id: 5, category: 'poster', title: 'IconVideo Animasi Sindrom Kessler', meta: 'Proyek Akhir · Individu', icon: IconVideo, color: 'text-green-600 bg-green-100 dark:bg-green-900/30' },
+    { id: 6, category: 'alat', title: 'Aplikasi Notifikasi Flare Harian', meta: 'Lintas Modul · Tim Dev Mhs', icon: IconPhoto, color: 'text-purple-600 bg-purple-100 dark:bg-purple-900/30' }
   ];
 
   const filteredItems = activeTab === 'semua' ? galleryItems : galleryItems.filter(item => item.category === activeTab);
@@ -28,7 +28,7 @@ export function Galeri() {
     <div className="p-6 md:p-8 max-w-6xl mx-auto space-y-8 fade-in">
       <div className="text-center max-w-2xl mx-auto space-y-3">
         <div className="text-sm font-bold text-green-600 dark:text-green-400 uppercase tracking-wider flex items-center justify-center gap-2">
-          <Image className="w-4 h-4" /> Galeri Karya
+          <IconPhoto className="w-4 h-4" /> Galeri Karya
         </div>
         <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white">
           Aksi Nyata Literasi Bencana

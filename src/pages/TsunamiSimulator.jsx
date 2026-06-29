@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Waves, ArrowLeft, Play, Square, Activity } from 'lucide-react';
+import { IconActivity, IconArrowLeft, IconPlayerPlay, IconSquare, IconWaveSine } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
 
 export function TsunamiSimulator() {
@@ -23,7 +23,7 @@ export function TsunamiSimulator() {
       <div className="max-w-6xl mx-auto space-y-8 fade-in">
         <div className="flex items-center gap-4 mb-8">
           <Link to="/#modul" className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
-            <ArrowLeft className="w-5 h-5" />
+            <IconArrowLeft className="w-5 h-5" />
           </Link>
           <div>
             <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Peta Simulasi Tsunami</h1>
@@ -54,7 +54,7 @@ export function TsunamiSimulator() {
                     onClick={() => setIsPlaying(!isPlaying)}
                     className="w-full py-3 rounded-lg flex items-center justify-center gap-2 font-bold text-white transition-colors bg-teal-600 hover:bg-teal-700"
                   >
-                    {isPlaying ? <><Square className="w-4 h-4"/> Hentikan Simulasi</> : <><Play className="w-4 h-4"/> Mulai Simulasi</>}
+                    {isPlaying ? <><IconSquare className="w-4 h-4"/> Hentikan Simulasi</> : <><IconPlayerPlay className="w-4 h-4"/> Mulai Simulasi</>}
                   </button>
                 </div>
               </div>
@@ -80,7 +80,7 @@ export function TsunamiSimulator() {
                 <div className="absolute top-6 left-1/2 -translate-x-1/2 bg-red-900 text-red-100 text-[10px] font-bold px-2 py-0.5 rounded whitespace-nowrap">Episentrum</div>
               </div>
 
-              {/* Tsunami Waves (Visualization based on time) */}
+              {/* Tsunami IconWaveSine (Visualization based on time) */}
               {isPlaying && (
                 <div 
                   className="absolute top-1/2 left-1/3 rounded-full border-4 border-teal-500/50 -translate-x-1/2 -translate-y-1/2 transition-all duration-100 ease-linear"
@@ -101,7 +101,7 @@ export function TsunamiSimulator() {
 
               <div className="absolute bottom-4 left-4 bg-white/90 dark:bg-slate-950/90 backdrop-blur px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800 flex items-center gap-4">
                 <div className="flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-teal-500" />
+                  <IconActivity className="w-4 h-4 text-teal-500" />
                   <span className="text-sm font-bold text-slate-900 dark:text-white">T + {(time * 0.5).toFixed(1)} menit</span>
                 </div>
               </div>

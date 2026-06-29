@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Eye, EyeOff, Globe, ArrowLeft } from 'lucide-react';
+import { IconArrowLeft, IconEye, IconEyeOff, IconGlobe } from '@tabler/icons-react';
 import { Button } from '../components/ui/button';
 
 export function Register() {
@@ -59,7 +59,7 @@ export function Register() {
         <div className="relative z-10 flex flex-col gap-6 max-w-xl">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20">
-              <Globe className="w-5 h-5 text-white" />
+              <IconGlobe className="w-5 h-5 text-white" />
             </div>
             <div className="text-xl font-bold tracking-tight text-white">Astro<span className="text-blue-400">Mitigasi</span></div>
           </div>
@@ -93,7 +93,7 @@ export function Register() {
         
         <div className="relative z-10 flex flex-col gap-6 mt-12">
           <button className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm w-max cursor-pointer bg-transparent border-none" onClick={() => navigate('/')}>
-            <ArrowLeft className="w-4 h-4"/> Kembali ke Beranda
+            <IconArrowLeft className="w-4 h-4"/> Kembali ke Beranda
           </button>
         </div>
       </div>
@@ -103,7 +103,7 @@ export function Register() {
         <div className="w-full max-w-sm mx-auto my-auto py-8">
           <div className="flex flex-col">
             <button className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors text-xs font-semibold mb-6 w-max cursor-pointer bg-transparent border-none" onClick={() => navigate('/login')}>
-              <ArrowLeft className="w-4 h-4"/> Sudah punya akun? Masuk
+              <IconArrowLeft className="w-4 h-4"/> Sudah punya akun? Masuk
             </button>
             <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-2 tracking-tight">Daftar Akun</h2>
             <p className="text-slate-500 dark:text-slate-400 text-sm mb-6">Gratis untuk seluruh warga yang ingin belajar mitigasi.</p>
@@ -181,7 +181,7 @@ export function Register() {
                     className="absolute right-3 p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 bg-transparent border-none cursor-pointer" 
                     onClick={() => setShowPassword(!showPassword)}
                   >
-                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    {showPassword ? <IconEyeOff className="w-4 h-4" /> : <IconEye className="w-4 h-4" />}
                   </button>
                 </div>
               </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ShieldAlert, Activity, ArrowLeft, Wind, Flame, Mountain, Target, Database, Calculator, Eye, EyeOff } from 'lucide-react';
+import { IconActivity, IconArrowLeft, IconCalculator, IconDatabase, IconEye, IconEyeOff, IconFlame, IconMountain, IconShieldExclamation, IconTarget, IconWind } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
 import useStore from '../store/useStore';
 import axios from 'axios';
@@ -283,7 +283,7 @@ export function ImpactCalculator() {
         {/* Header like topbar */}
         <div className="flex items-center gap-4 mb-4 bg-white border border-brand-border rounded-xl p-4 shadow-sm">
           <Link to="/#modul" className="w-8 h-8 rounded border border-brand-border flex items-center justify-center text-brand-slate hover:bg-brand-bg hover:text-brand-navy transition-colors shrink-0">
-            <ArrowLeft className="w-4 h-4" />
+            <IconArrowLeft className="w-4 h-4" />
           </Link>
           <div>
             <h1 className="text-sm font-bold text-brand-navy uppercase tracking-wide">Kalkulator Efek Tumbukan</h1>
@@ -296,14 +296,14 @@ export function ImpactCalculator() {
           {/* Input Panel */}
           <div className="bg-white rounded-2xl border border-brand-border p-5 shadow-sm h-fit">
             <h2 className="text-[11px] font-bold text-brand-slate uppercase tracking-wide mb-4 flex items-center gap-1.5">
-              <Target className="w-3.5 h-3.5 text-brand-blue" /> Parameter Bencana
+              <IconTarget className="w-3.5 h-3.5 text-brand-blue" /> Parameter Bencana
             </h2>
             
             <div className="space-y-4">
               {/* CNEOS Dropdown */}
               <div className="p-3 bg-brand-blueLt border border-brand-blueBd rounded-xl">
                 <label className="flex items-center gap-1 text-[11px] font-bold text-brand-blue mb-1">
-                  <Database className="w-3 h-3" /> Ambil Data Real-time (CNEOS NASA)
+                  <IconDatabase className="w-3 h-3" /> Ambil Data Real-time (CNEOS NASA)
                 </label>
                 <select 
                   className="w-full text-xs p-2 rounded-lg border border-brand-blueBd bg-white text-brand-navy"
@@ -364,7 +364,7 @@ export function ImpactCalculator() {
                 disabled={isSimulating}
                 className="w-full mt-4 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white text-xs font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_4px_14px_0_rgba(239,68,68,0.39)] hover:shadow-[0_6px_20px_rgba(239,68,68,0.23)] disabled:opacity-50 hover:-translate-y-0.5"
               >
-                <Calculator className="w-4 h-4" />
+                <IconCalculator className="w-4 h-4" />
                 {isSimulating ? 'Menghitung Fisika...' : 'Jalankan Simulasi'}
               </button>
             </div>
@@ -376,7 +376,7 @@ export function ImpactCalculator() {
             {!result ? (
                <div className="bg-white rounded-2xl border border-brand-border p-10 shadow-sm flex flex-col items-center justify-center text-center h-full min-h-[300px]">
                  <div className="w-16 h-16 bg-brand-bg rounded-full flex items-center justify-center text-brand-slate2 mb-4">
-                    <Activity className="w-8 h-8" />
+                    <IconActivity className="w-8 h-8" />
                  </div>
                  <div className="text-sm font-bold text-brand-navy mb-1">Belum Ada Hasil Simulasi</div>
                  <div className="text-xs text-brand-slate">Atur parameter di sebelah kiri dan klik "Jalankan Simulasi" untuk melihat dampak yang dihasilkan.</div>
@@ -386,7 +386,7 @@ export function ImpactCalculator() {
               <div className="bg-white rounded-2xl border border-brand-border p-5 shadow-sm">
                 <div className="flex items-center justify-between mb-4 pb-4 border-b border-brand-border">
                   <h2 className="text-[11px] font-bold text-brand-slate uppercase tracking-wide flex items-center gap-1.5">
-                    <Activity className="w-3.5 h-3.5" /> Kerentanan Fisik
+                    <IconActivity className="w-3.5 h-3.5" /> Kerentanan Fisik
                   </h2>
                   <div className={`px-3 py-1 rounded-full text-[10px] font-bold border ${
                     result.max_fatality_pct > 50 ? 'bg-brand-redLt text-brand-red border-red-200' :
@@ -401,7 +401,7 @@ export function ImpactCalculator() {
                   {/* Seismic */}
                   <div className="p-4 rounded-xl border border-brand-border flex gap-3 items-start bg-white shadow-sm">
                     <div className="w-10 h-10 rounded-xl bg-brand-orangeLt text-brand-orange flex items-center justify-center shrink-0">
-                      <Activity className="w-5 h-5" />
+                      <IconActivity className="w-5 h-5" />
                     </div>
                     <div>
                       <div className="text-[10px] font-bold text-brand-slate uppercase mb-1">Seismic Shock</div>
@@ -410,10 +410,10 @@ export function ImpactCalculator() {
                     </div>
                   </div>
 
-                  {/* Wind */}
+                  {/* IconWind */}
                   <div className="p-4 rounded-xl border border-brand-border flex gap-3 items-start bg-white shadow-sm">
                     <div className="w-10 h-10 rounded-xl bg-brand-blueLt text-brand-blue flex items-center justify-center shrink-0">
-                      <Wind className="w-5 h-5" />
+                      <IconWind className="w-5 h-5" />
                     </div>
                     <div>
                       <div className="text-[10px] font-bold text-brand-slate uppercase mb-1">Angin Kencang</div>
@@ -425,7 +425,7 @@ export function ImpactCalculator() {
                   {/* Thermal */}
                   <div className="p-4 rounded-xl border border-brand-border flex gap-3 items-start bg-white shadow-sm">
                     <div className="w-10 h-10 rounded-xl bg-brand-redLt text-brand-red flex items-center justify-center shrink-0">
-                      <Flame className="w-5 h-5" />
+                      <IconFlame className="w-5 h-5" />
                     </div>
                     <div>
                       <div className="text-[10px] font-bold text-brand-slate uppercase mb-1">Radiasi Panas</div>
@@ -437,7 +437,7 @@ export function ImpactCalculator() {
                   {/* Pressure */}
                   <div className="p-4 rounded-xl border border-brand-border flex gap-3 items-start bg-white shadow-sm">
                     <div className="w-10 h-10 rounded-xl bg-brand-purpleLt text-brand-purple flex items-center justify-center shrink-0">
-                      <ShieldAlert className="w-5 h-5" />
+                      <IconShieldExclamation className="w-5 h-5" />
                     </div>
                     <div>
                       <div className="text-[10px] font-bold text-brand-slate uppercase mb-1">Overpressure</div>
@@ -449,7 +449,7 @@ export function ImpactCalculator() {
                   {/* Crater */}
                   <div className="p-4 rounded-xl border border-brand-border flex gap-3 items-start bg-white shadow-sm">
                     <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center shrink-0">
-                      <Target className="w-5 h-5" />
+                      <IconTarget className="w-5 h-5" />
                     </div>
                     <div>
                       <div className="text-[10px] font-bold text-brand-slate uppercase mb-1">Kawah Utama</div>
@@ -461,7 +461,7 @@ export function ImpactCalculator() {
                   {/* Ejecta */}
                   <div className="p-4 rounded-xl border border-brand-border flex gap-3 items-start bg-white shadow-sm">
                     <div className="w-10 h-10 rounded-xl bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0">
-                      <Mountain className="w-5 h-5" />
+                      <IconMountain className="w-5 h-5" />
                     </div>
                     <div>
                       <div className="text-[10px] font-bold text-brand-slate uppercase mb-1">Tebal Ejecta</div>
@@ -473,7 +473,7 @@ export function ImpactCalculator() {
               </div>
 
               <div className="bg-gradient-to-br from-[#FFFBEB] to-[#FEF3C7] border border-[#FDE68A] rounded-2xl p-5 shadow-sm flex items-center gap-4">
-                <Mountain className="w-10 h-10 text-[#92400E] shrink-0" />
+                <IconMountain className="w-10 h-10 text-[#92400E] shrink-0" />
                 <div>
                   <h3 className="text-xs font-bold text-[#92400E] uppercase mb-1">Estimasi Kawah (Radius Tumbukan)</h3>
                   <div className="text-xs text-[#92400E] leading-relaxed">
@@ -492,7 +492,7 @@ export function ImpactCalculator() {
                      onClick={() => setShowOrbitMap(!showOrbitMap)}
                      className="flex items-center gap-1.5 text-[10px] font-semibold text-brand-slate hover:text-brand-navy transition-colors bg-slate-50 px-2 py-1 rounded-md border border-brand-border"
                    >
-                     {showOrbitMap ? <EyeOff className="w-3 h-3" /> : <Eye className="w-3 h-3" />}
+                     {showOrbitMap ? <IconEyeOff className="w-3 h-3" /> : <IconEye className="w-3 h-3" />}
                      {showOrbitMap ? 'Sembunyikan' : 'Tampilkan'}
                    </button>
                  </div>
@@ -520,7 +520,7 @@ export function ImpactCalculator() {
             <div className="grid grid-cols-1 gap-6">
               <div className="bg-white rounded-2xl border border-brand-border p-5 shadow-sm">
                 <h3 className="text-xs font-bold text-brand-slate uppercase tracking-wide mb-4 flex items-center gap-1.5">
-                  <Target className="w-4 h-4 text-brand-orange" /> Tampak Samping (Skala Ketinggian)
+                  <IconTarget className="w-4 h-4 text-brand-orange" /> Tampak Samping (Skala Ketinggian)
                 </h3>
                 <div className="w-full aspect-video rounded-xl overflow-hidden bg-brand-bg relative border border-slate-200">
                   <canvas ref={sideCanvasRef} width={1000} height={562} className="w-full h-full object-contain" />
@@ -529,7 +529,7 @@ export function ImpactCalculator() {
               
               <div className="bg-white rounded-2xl border border-brand-border p-5 shadow-sm">
                 <h3 className="text-xs font-bold text-brand-slate uppercase tracking-wide mb-4 flex items-center gap-1.5">
-                  <Activity className="w-4 h-4 text-brand-red" /> Tampak Atas (Radius Dampak)
+                  <IconActivity className="w-4 h-4 text-brand-red" /> Tampak Atas (Radius Dampak)
                 </h3>
                 <div className="w-full aspect-video rounded-xl overflow-hidden bg-brand-bg relative border border-slate-200">
                   <canvas ref={topCanvasRef} width={1000} height={562} className="w-full h-full object-contain" />

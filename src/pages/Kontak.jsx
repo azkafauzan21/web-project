@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, MapPin, Phone, Send, GraduationCap, Building2, ShieldCheck } from 'lucide-react';
+import { IconBuildingCommunity, IconMail, IconMapPin, IconPhone, IconSchool, IconSend, IconShieldCheck, IconMicroscope, IconAward, IconUserPlus, IconLogin, IconPlanet } from '@tabler/icons-react';
 
 export function Kontak() {
   return (
@@ -23,15 +23,15 @@ export function Kontak() {
             <h3 className="text-sm font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-4">Didukung Oleh</h3>
             <div className="space-y-4">
               <div className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
-                <GraduationCap className="w-5 h-5 text-blue-500" />
+                <IconSchool className="w-5 h-5 text-blue-500" />
                 <span className="text-sm font-medium">Universitas Pendidikan Indonesia</span>
               </div>
               <div className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
-                <Building2 className="w-5 h-5 text-blue-500" />
+                <IconBuildingCommunity className="w-5 h-5 text-blue-500" />
                 <span className="text-sm font-medium">Badan Riset & Inovasi Nasional (BRIN)</span>
               </div>
               <div className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
-                <ShieldCheck className="w-5 h-5 text-blue-500" />
+                <IconShieldCheck className="w-5 h-5 text-blue-500" />
                 <span className="text-sm font-medium">Riset Kolaborasi Indonesia (RKI)</span>
               </div>
             </div>
@@ -40,7 +40,7 @@ export function Kontak() {
           <div className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
             <div className="space-y-5">
               <div className="flex gap-3">
-                <MapPin className="w-5 h-5 text-slate-400 shrink-0" />
+                <IconMapPin className="w-5 h-5 text-slate-400 shrink-0" />
                 <div className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                   <strong>FPMIPA UPI</strong><br/>
                   Jl. Dr. Setiabudi No.229, Isola, Sukasari,<br/>
@@ -48,7 +48,7 @@ export function Kontak() {
                 </div>
               </div>
               <div className="flex gap-3 items-center">
-                <Mail className="w-5 h-5 text-slate-400 shrink-0" />
+                <IconMail className="w-5 h-5 text-slate-400 shrink-0" />
                 <div className="text-sm text-slate-600 dark:text-slate-400">
                   astromitigasi@upi.edu
                 </div>
@@ -84,7 +84,7 @@ export function Kontak() {
               <textarea rows="5" className="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Tuliskan pesan Anda di sini..."></textarea>
             </div>
             <button className="flex items-center justify-center gap-2 w-full md:w-auto px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold transition-colors">
-              <Send className="w-4 h-4" /> Kirim Pesan
+              <IconSend className="w-4 h-4" /> Kirim Pesan
             </button>
           </form>
         </div>
@@ -97,16 +97,16 @@ export function Kontak() {
           <div className="text-[10px] font-bold text-slate-400 tracking-[1px] uppercase mr-2">Didukung oleh</div>
           <div className="w-[1px] h-6 bg-slate-200 dark:bg-slate-800 hidden sm:block"></div>
           <div className="px-4 py-2 rounded-full border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-[11px] font-semibold bg-white dark:bg-slate-900 shadow-sm flex items-center gap-1.5">
-            <span className="text-slate-400">🏛️</span> UPI Bandung
+            <IconBuildingCommunity className="w-3.5 h-3.5 text-slate-400" /> UPI Bandung
           </div>
           <div className="px-4 py-2 rounded-full border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-[11px] font-semibold bg-white dark:bg-slate-900 shadow-sm flex items-center gap-1.5">
-            <span className="text-slate-400">🏛️</span> Universitas Terbuka
+            <IconBuildingCommunity className="w-3.5 h-3.5 text-slate-400" /> Universitas Terbuka
           </div>
           <div className="px-4 py-2 rounded-full border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-[11px] font-semibold bg-white dark:bg-slate-900 shadow-sm flex items-center gap-1.5">
-            <span className="text-slate-400">🔬</span> BRIN Jakarta
+            <IconMicroscope className="w-3.5 h-3.5 text-slate-400" /> BRIN Jakarta
           </div>
           <div className="px-4 py-2 rounded-full border border-slate-200 dark:border-slate-800 text-blue-700 dark:text-blue-400 text-[11px] font-bold bg-blue-50 dark:bg-blue-900/20 shadow-sm flex items-center gap-1.5">
-            <span className="text-blue-500">🏅</span> RKI 2026 Skema B
+            <IconAward className="w-3.5 h-3.5 text-blue-500" /> RKI 2026 Skema B
           </div>
           
           <div className="w-full flex justify-center mt-4 gap-2">
@@ -119,29 +119,29 @@ export function Kontak() {
       </div>
 
       {/* CTA Section (Matches DLLS-GEMA `.cta-section`) */}
-      <section className="relative w-full py-24 bg-gradient-to-br from-[#1E3A8A] to-[#312E81] overflow-hidden text-center text-white">
-        <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-[100px] pointer-events-none"></div>
-        <div className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-purple-500/20 rounded-full blur-[120px] pointer-events-none"></div>
+      <section className="relative w-full py-20 bg-[linear-gradient(135deg,#0F172A_0%,#1E3A8A_50%,#312E81_100%)] overflow-hidden text-center text-white">
+        <div className="absolute top-[-60px] left-[-60px] w-[320px] h-[320px] bg-white/[0.03] rounded-full pointer-events-none"></div>
+        <div className="absolute bottom-[-40px] right-[-40px] w-[240px] h-[240px] bg-white/[0.04] rounded-full pointer-events-none"></div>
         
-        <div className="max-w-[700px] mx-auto px-6 relative z-10 flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/10 text-white/90 text-[11px] font-semibold tracking-wide uppercase mb-8 backdrop-blur-sm">
-            <ShieldCheck className="w-4 h-4 text-blue-300" /> Gratis untuk mahasiswa UPI & UT terdaftar
+        <div className="max-w-[640px] mx-auto px-6 relative z-10 flex flex-col items-center">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-[20px] border border-white/15 bg-white/10 text-white/90 text-[11px] font-bold tracking-[0.4px] uppercase mb-5">
+            <IconShieldCheck className="w-4 h-4" /> Gratis untuk mahasiswa UPI & UT terdaftar
           </div>
           
-          <h2 className="text-[36px] md:text-[44px] font-extrabold leading-[1.1] mb-6 tracking-tight">
+          <h2 className="text-[32px] font-extrabold leading-[1.25] tracking-[-0.3px] mb-[14px] text-white">
             Jadilah bagian dari gerakan<br/>literasi antariksa masa depan
           </h2>
           
-          <p className="text-[15px] text-blue-100/80 leading-[1.6] mb-10 max-w-[600px]">
+          <p className="text-[14px] text-white/65 leading-[1.75] mb-8">
             Aktivitas matahari yang dinamis dan ribuan asteroid yang melintas mendekat Bumi membutuhkan perhatian kita.<br/>Mari tingkatkan kesadaran bahaya dari luar angkasa hari ini.
           </p>
           
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link to="/login" className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-blue-900 hover:bg-slate-100 font-bold rounded-xl transition-all shadow-lg text-[14px]">
-              <span className="text-lg">👤</span> Daftar Akun Gratis
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link to="/login" className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-white text-slate-900 hover:-translate-y-[2px] hover:shadow-[0_8px_24px_rgba(0,0,0,0.25)] font-bold rounded-xl transition-all shadow-[0_4px_16px_rgba(0,0,0,0.2)] text-[14px]">
+              <IconUserPlus className="w-[18px] h-[18px]" /> Daftar Akun Gratis
             </Link>
-            <Link to="/login" className="inline-flex items-center gap-2 px-8 py-3.5 bg-transparent border-2 border-white/30 text-white hover:bg-white/10 font-bold rounded-xl transition-all text-[14px]">
-              <span className="text-lg">🚪</span> Sudah punya akun? Masuk
+            <Link to="/login" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-transparent border-[1.5px] border-white/30 text-white/90 hover:border-white/70 hover:bg-white/5 font-semibold rounded-xl transition-all text-[14px]">
+              <IconLogin className="w-[18px] h-[18px]" /> Sudah punya akun? Masuk
             </Link>
           </div>
         </div>
@@ -156,7 +156,7 @@ export function Kontak() {
             <div className="col-span-1 md:col-span-4">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-8 rounded-[8px] bg-blue-600 flex items-center justify-center">
-                  <span className="text-white text-sm">🌌</span>
+                  <IconPlanet className="w-4 h-4 text-white" />
                 </div>
                 <div className="text-[14px] font-bold text-white tracking-wide">
                   <span className="text-blue-400">DLLS</span> — GEMA Project

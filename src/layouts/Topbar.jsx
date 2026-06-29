@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Bell, Orbit, LogOut, Menu, X, Award } from 'lucide-react';
+import { IconAward, IconBell, IconLogout, IconMenu2, IconPlanet, IconX } from '@tabler/icons-react';
 import { useLocation, NavLink, useNavigate, Link } from 'react-router-dom';
 import { ThemeToggle } from '../components/ThemeToggle';
 import { useAuth } from '../contexts/AuthContext';
@@ -73,7 +73,7 @@ export function Topbar() {
         {/* Logo */}
         <Link to={user ? "/dashboard" : "/"} className="flex items-center gap-2.5 shrink-0">
           <div className="w-[34px] h-[34px] rounded-[9px] bg-gradient-to-br from-blue-700 to-purple-600 flex items-center justify-center shrink-0">
-            <Orbit className="w-[18px] h-[18px] text-white" />
+            <IconPlanet className="w-[18px] h-[18px] text-white" />
           </div>
           <div className="hidden sm:flex flex-col leading-[1.2]">
             <div className="text-[13px] font-bold text-slate-900 dark:text-white">DLLS <span className="text-blue-700 dark:text-blue-500">· ASTRO</span></div>
@@ -113,7 +113,7 @@ export function Topbar() {
                   onClick={() => setShowNotif(!showNotif)}
                   aria-label="Notifikasi"
                 >
-                  <Bell className="w-4 h-4" />
+                  <IconBell className="w-4 h-4" />
                   {hasUnread && (
                     <div className="absolute top-1.5 right-1.5 w-[6px] h-[6px] bg-red-600 rounded-full"></div>
                   )}
@@ -150,29 +150,29 @@ export function Topbar() {
                 className="w-[34px] h-[34px] flex items-center justify-center text-slate-500 hover:text-red-600 dark:text-slate-400 dark:hover:text-red-400 bg-transparent hover:bg-red-50 dark:hover:bg-red-900/20 rounded-[7px] transition-colors"
                 title="Keluar"
               >
-                <LogOut className="w-4 h-4" />
+                <IconLogout className="w-4 h-4" />
               </button>
             </>
           ) : (
             <div className="hidden sm:flex items-center gap-2">
               <Link to="/login" className="px-[16px] py-[7px] text-[13px] font-semibold text-slate-900 dark:text-slate-300 border-[1.5px] border-slate-300 dark:border-slate-700 hover:border-blue-700 hover:text-blue-700 dark:hover:border-blue-500 dark:hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-[7px] transition-all">Daftar</Link>
               <Link to="/login" className="px-[18px] py-[7px] text-[13px] font-semibold bg-blue-700 hover:bg-blue-800 text-white border-[1.5px] border-blue-700 hover:border-blue-800 rounded-[7px] transition-all flex items-center gap-1.5">
-                <LogOut className="w-[15px] h-[15px]" style={{ transform: 'rotate(180deg)' }} /> Masuk
+                <IconLogout className="w-[15px] h-[15px]" style={{ transform: 'rotate(180deg)' }} /> Masuk
               </Link>
             </div>
           )}
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile IconMenu2 Toggle */}
           <button 
             className="lg:hidden w-[34px] h-[34px] flex items-center justify-center text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 rounded-[7px] transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            {mobileMenuOpen ? <IconX className="w-4 h-4" /> : <IconMenu2 className="w-4 h-4" />}
           </button>
         </div>
       </div>
       
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile IconMenu2 Dropdown */}
       {mobileMenuOpen && (
         <div className="lg:hidden flex flex-col bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 px-4 py-4 space-y-1 shadow-lg">
           {navItems.map((item) => (

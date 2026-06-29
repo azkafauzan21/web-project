@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Slider } from '../components/ui/slider';
-import { Satellite, ShieldAlert, Rocket, AlertOctagon } from 'lucide-react';
+import { IconAlertOctagon, IconRocket, IconSatellite, IconShieldExclamation } from '@tabler/icons-react';
 
 export function SpaceDebris() {
   const canvasRef = useRef(null);
@@ -191,7 +191,7 @@ export function SpaceDebris() {
         <Card className="flex flex-col">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Satellite className="h-5 w-5 text-indigo-500" />
+              <IconSatellite className="h-5 w-5 text-indigo-500" />
               Simulator Sindrom Kessler
             </CardTitle>
             <CardDescription>
@@ -234,7 +234,7 @@ export function SpaceDebris() {
                   variant={isSimulating ? "destructive" : "default"}
                   className="flex-1 gap-2"
                 >
-                  {isSimulating ? <AlertOctagon className="w-4 h-4"/> : <Rocket className="w-4 h-4"/>}
+                  {isSimulating ? <IconAlertOctagon className="w-4 h-4"/> : <IconRocket className="w-4 h-4"/>}
                   {isSimulating ? 'Hentikan Simulasi' : 'Picu Rudal ASAT'}
                 </Button>
                 {isSimulating && (
@@ -248,7 +248,7 @@ export function SpaceDebris() {
         {/* Encyclopedia Card */}
         <div className="space-y-4">
           <h3 className="text-xl font-bold flex items-center gap-2 mb-4">
-            <ShieldAlert className="h-5 w-5 text-orange-500" />
+            <IconShieldExclamation className="h-5 w-5 text-orange-500" />
             Ensiklopedia & Regulasi Internasional
           </h3>
           <div className="grid gap-4">
@@ -277,7 +277,7 @@ export function SpaceDebris() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Rocket className="h-5 w-5 text-red-500" />
+                <IconRocket className="h-5 w-5 text-red-500" />
                 Dasbor Energi Fireball
               </CardTitle>
               <CardDescription>Pemantauan aktivitas meteor terang secara global</CardDescription>
@@ -305,7 +305,7 @@ export function SpaceDebris() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <AlertOctagon className="h-5 w-5 text-orange-500" />
+                <IconAlertOctagon className="h-5 w-5 text-orange-500" />
                 Meteor Flight Simulator
               </CardTitle>
               <CardDescription>Visualisasi ablation dan deselerasi meteor di atmosfer</CardDescription>
