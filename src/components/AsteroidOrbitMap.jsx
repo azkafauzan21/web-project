@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Stars, Text } from '@react-three/drei';
 
@@ -15,9 +15,39 @@ function Planet({ position, size, color, name }) {
     <group position={position}>
       <mesh ref={meshRef}>
         <sphereGeometry args={[size, 32, 32]} />
+        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.2} />
+      </mesh>
+      <Text position={[0, size + 1.5, 0]} fontSize={1} color="white">
+        {name}
+      </Text>
+    </group>
+  );
+}
+
+function OrbitingPlanet({ orbitRadius, speed, size, color, name }) {
+  const meshRef = useRef();
+  const groupRef = useRef();
+  const [angle, setAngle] = useState(0);
+
+  useFrame((state, delta) => {
+    const newAngle = angle + speed * delta;
+    setAngle(newAngle);
+    if (groupRef.current) {
+      groupRef.current.position.x = Math.cos(newAngle) * orbitRadius;
+      groupRef.current.position.z = Math.sin(newAngle) * orbitRadius;
+    }
+    if (meshRef.current) {
+      meshRef.current.rotation.y += 0.05;
+    }
+  });
+
+  return (
+    <group ref={groupRef}>
+      <mesh ref={meshRef}>
+        <sphereGeometry args={[size, 32, 32]} />
         <meshStandardMaterial color={color} />
       </mesh>
-      <Text position={[0, size + 1, 0]} fontSize={1} color="white">
+      <Text position={[0, size + 1.2, 0]} fontSize={0.8} color="white">
         {name}
       </Text>
     </group>
@@ -25,11 +55,14 @@ function Planet({ position, size, color, name }) {
 }
 
 function OrbitLine({ radius, color }) {
-  const points = [];
-  for (let i = 0; i <= 64; i++) {
-    const angle = (i / 64) * 2 * Math.PI;
-    points.push([Math.cos(angle) * radius, 0, Math.sin(angle) * radius]);
-  }
+  const points = useMemo(() => {
+    const pts = [];
+    for (let i = 0; i <= 64; i++) {
+      const angle = (i / 64) * 2 * Math.PI;
+      pts.push([Math.cos(angle) * radius, 0, Math.sin(angle) * radius]);
+    }
+    return pts;
+  }, [radius]);
   
   return (
     <line>
@@ -46,7 +79,7 @@ function OrbitLine({ radius, color }) {
   );
 }
 
-function Asteroid({ orbitRadius, speed, size, color, name, isHazardous }) {
+function Asteroid({ orbitRadius, speed, size, color, isHazardous, inclinationX, inclinationZ }) {
   const meshRef = useRef();
   const [angle, setAngle] = useState(Math.random() * Math.PI * 2);
 
@@ -62,7 +95,7 @@ function Asteroid({ orbitRadius, speed, size, color, name, isHazardous }) {
   });
 
   return (
-    <group>
+    <group rotation={[inclinationX, 0, inclinationZ]}>
       <OrbitLine radius={orbitRadius} color={isHazardous ? "#ef4444" : "#9ca3af"} />
       <mesh ref={meshRef}>
         <dodecahedronGeometry args={[size, 0]} />
@@ -74,38 +107,51 @@ function Asteroid({ orbitRadius, speed, size, color, name, isHazardous }) {
 
 export function AsteroidOrbitMap({ neoData }) {
   return (
-    <div className="w-full h-[500px] bg-slate-950 rounded-md overflow-hidden relative border">
-      <div className="absolute top-4 left-4 z-10 bg-background/80 backdrop-blur-sm p-3 rounded-md border text-sm">
-        <h4 className="font-semibold mb-2">Legenda</h4>
-        <div className="flex items-center gap-2 mb-1"><div className="w-3 h-3 rounded-full bg-yellow-500"></div> Matahari</div>
-        <div className="flex items-center gap-2 mb-1"><div className="w-3 h-3 rounded-full bg-blue-500"></div> Bumi</div>
-        <div className="flex items-center gap-2 mb-1"><div className="w-3 h-3 rounded-full bg-slate-400"></div> Asteroid Aman</div>
-        <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-red-500"></div> Asteroid Berbahaya</div>
-        <p className="text-xs text-muted-foreground mt-2 italic">*Skala dan jarak diubahsuai untuk visualisasi</p>
+    <div className="w-full h-full min-h-[350px] bg-slate-950 rounded-xl overflow-hidden relative border border-brand-border">
+      <div className="absolute top-4 left-4 z-10 bg-black/60 backdrop-blur-sm p-3 rounded-lg border border-slate-800 text-sm shadow-lg text-white">
+        <h4 className="font-bold mb-2">Sistem Tata Surya (Simulasi)</h4>
+        <div className="flex items-center gap-2 mb-1 text-xs"><div className="w-2.5 h-2.5 rounded-full bg-yellow-500"></div> Matahari (Pusat)</div>
+        <div className="flex items-center gap-2 mb-1 text-xs"><div className="w-2.5 h-2.5 rounded-full bg-blue-500"></div> Bumi (Mengorbit)</div>
+        <div className="flex items-center gap-2 mb-1 text-xs"><div className="w-2.5 h-2.5 rounded-full bg-slate-400"></div> Asteroid Aman</div>
+        <div className="flex items-center gap-2 text-xs"><div className="w-2.5 h-2.5 rounded-full bg-red-500"></div> Asteroid Berbahaya</div>
+        <p className="text-[9px] text-slate-400 mt-2 italic">*Radius & inklinasi disimulasikan dari data JSON</p>
       </div>
 
-      <Canvas camera={{ position: [0, 20, 30], fov: 45 }}>
+      <Canvas camera={{ position: [0, 25, 35], fov: 45 }}>
         <color attach="background" args={['#020617']} />
-        <ambientLight intensity={0.5} />
-        <pointLight position={[0, 0, 0]} intensity={2} color="#fef08a" />
-        <directionalLight position={[10, 20, 10]} intensity={1.5} color="#ffffff" />
+        <ambientLight intensity={0.4} />
+        <pointLight position={[0, 0, 0]} intensity={2.5} color="#fef08a" distance={100} />
+        <directionalLight position={[10, 20, 10]} intensity={1.0} color="#ffffff" />
         
         <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
         <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} />
 
-        {/* Sun */}
-        <Planet position={[0, 0, 0]} size={3} color="#eab308" name="Matahari" />
+        {/* Sun at Center */}
+        <Planet position={[0, 0, 0]} size={3.5} color="#eab308" name="Matahari" />
         
-        {/* Earth */}
+        {/* Earth Orbiting */}
         <OrbitLine radius={15} color="#3b82f6" />
-        <Planet position={[15, 0, 0]} size={1} color="#3b82f6" name="Bumi" />
+        <OrbitingPlanet orbitRadius={15} speed={0.1} size={1.2} color="#3b82f6" name="Bumi" />
 
         {/* Asteroids (visualizing max 15 to avoid clutter) */}
         {neoData && neoData.slice(0, 15).map((neo, idx) => {
-          // Calculate arbitrary orbit paths based on ID just for visual simulation
-          const orbitRadius = 10 + (parseInt(neo.id.substring(3, 7)) % 15);
-          const speed = 0.1 + (parseInt(neo.id.substring(0, 2)) % 10) * 0.05;
+          // Map actual miss distance to orbit radius (Earth is at 15)
+          const distanceOffset = Math.min(10, neo.missDistance * 0.2); 
+          const orbitRadius = 15 + (idx % 2 === 0 ? distanceOffset : -distanceOffset);
+          
+          // Speed based on relative velocity (typical 5-30 km/s)
+          const speed = Math.max(0.05, (neo.velocity || 10) * 0.02) * (idx % 3 === 0 ? -1 : 1);
           const isHazard = neo.isPotentiallyHazardous;
+          
+          // Size based on diameter
+          const size = isHazard ? Math.min(1.0, Math.max(0.6, (neo.diameterMax || 100) / 150)) : 0.4;
+          
+          // Mock Inclination between -20 deg (-0.35 rad) and +20 deg (+0.35 rad)
+          // We use pseudo-random based on id character so it's stable
+          const charCode = neo.id.charCodeAt(0) || 65;
+          const mockIncX = ((charCode % 40) - 20) * (Math.PI / 180);
+          const charCode2 = neo.id.charCodeAt(1) || 65;
+          const mockIncZ = ((charCode2 % 40) - 20) * (Math.PI / 180);
           
           return (
             <Asteroid 
@@ -113,9 +159,11 @@ export function AsteroidOrbitMap({ neoData }) {
               name={neo.name}
               orbitRadius={orbitRadius}
               speed={speed}
-              size={isHazard ? 0.6 : 0.4}
+              size={size}
               color={isHazard ? "#ef4444" : "#94a3b8"}
               isHazardous={isHazard}
+              inclinationX={mockIncX}
+              inclinationZ={mockIncZ}
             />
           );
         })}

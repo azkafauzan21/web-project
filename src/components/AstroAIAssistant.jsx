@@ -49,6 +49,13 @@ export function AstroAIAssistant() {
   };
   useEffect(() => scrollToBottom(), [messages]);
 
+  // Listen to custom event to toggle from Topbar
+  useEffect(() => {
+    const handleToggle = () => setIsOpen(prev => !prev);
+    window.addEventListener('toggle-astro-ai', handleToggle);
+    return () => window.removeEventListener('toggle-astro-ai', handleToggle);
+  }, []);
+
   const handleSend = async (e) => {
     e?.preventDefault();
     if (!input.trim()) return;

@@ -99,13 +99,24 @@ export function AsteroidTracker() {
       <div className="grid gap-6 lg:grid-cols-2">
         <div className="space-y-4">
           <h3 className="text-lg font-semibold flex items-center gap-2">
-            Orbit 3D Live
+            Orbit 3D Live & Efek Yarkovsky
           </h3>
           <AsteroidOrbitMap neoData={neoData} />
+          
+          <Card className="bg-slate-50 dark:bg-slate-900 mt-4 border-l-4 border-l-amber-500">
+            <CardContent className="p-4">
+              <h4 className="font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                <span className="text-amber-500">☀️</span> Dinamika Orbit: Efek Yarkovsky
+              </h4>
+              <p className="text-sm text-slate-600 dark:text-slate-400">
+                Tahukah Anda? Orbit asteroid dekat-Bumi (NEO) tidak statis. Radiasi panas dari matahari yang diserap dan dipancarkan kembali secara asimetris oleh permukaan asteroid yang berputar dapat menghasilkan dorongan kecil namun konstan. Gaya ini perlahan-lahan mengubah lintasan asteroid dalam jangka panjang, fenomena yang diteliti secara mendalam dalam dinamika populasi NEO (Utama, 2017).
+              </p>
+            </CardContent>
+          </Card>
         </div>
         <div className="space-y-4">
           <h3 className="text-lg font-semibold flex items-center gap-2">
-            Simulasi Defleksi
+            Simulasi Defleksi (DART)
           </h3>
           <DartSimulator />
         </div>

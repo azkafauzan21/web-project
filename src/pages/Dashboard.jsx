@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
-import { Trophy, BookOpen, Clock, Target, ChevronRight, Flame, Rocket, AlertTriangle, ShieldCheck } from 'lucide-react';
-import { Card } from '../components/ui/card';
+import React, { useState, useEffect } from 'react';
+import { 
+  Trophy, BookOpen, Clock, Target, ChevronRight, 
+  Flame, Rocket, AlertTriangle, ShieldCheck, 
+  Bot, BarChart3, TrendingUp, Lock, Play
+} from 'lucide-react';
 import { OnboardingTour } from '../components/OnboardingTour';
 import { useAuth } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import './Dashboard.css';
 
 export function Dashboard() {
-  const { user, loading } = useAuth();
-  
+  const { user, token, loading } = useAuth();
   const [showTour, setShowTour] = useState(false);
+  
+  const [dashboardData, setDashboardData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (user && !user.astronomy_knowledge_level) {
       setShowTour(true);
     } else {
@@ -18,133 +25,205 @@ export function Dashboard() {
     }
   }, [user]);
 
-  if (loading) {
-    return <div className="flex h-screen items-center justify-center text-slate-500">Memuat data...</div>;
+  useEffect(() => {
+    const fetchDashboardData = async () => {
+      if (!token) return;
+      try {
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+        const res = await axios.get(`${apiUrl}/api/dashboard/me`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        setDashboardData(res.data);
+      } catch (err) {
+        console.error("Gagal mengambil data dashboard:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchDashboardData();
+  }, [token]);
+
+  if (loading || isLoading) {
+    return <div className="flex h-full items-center justify-center text-slate-500">Memuat data dashboard...</div>;
   }
 
+  const progress = dashboardData?.progress || { literacy_score: 0, modules_completed: 0, n_gain: 0, streak_days: 0 };
+  const topicScores = dashboardData?.topic_scores || [];
+  const activities = dashboardData?.activities || [];
+
   return (
-    <div className="space-y-6 max-w-6xl mx-auto">
-      
+    <div className="space-y-6 max-w-[1000px] mx-auto">
       {showTour && <OnboardingTour onComplete={() => setShowTour(false)} />}
       
-      {/* WELCOME BANNER DLLS-GEMA STYLE */}
-      <div className="bg-slate-900 dark:bg-slate-950 rounded-2xl p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-xl relative overflow-hidden border border-slate-800">
-        <div className="absolute top-0 right-0 -mt-10 -mr-10 opacity-10">
-          <Rocket className="w-64 h-64 text-white" />
-        </div>
-        <div className="flex flex-col gap-2 relative z-10">
-          <div className="text-2xl md:text-3xl font-bold text-white tracking-tight">Halo, {user?.first_name || 'Kadet Antariksa'}! 👋</div>
-          <div className="text-sm md:text-base text-slate-400 max-w-2xl leading-relaxed">
-            Selamat datang kembali di Pusat Komando Astromitigasi DLLS. Lanjutkan misi edukasimu untuk memahami cuaca antariksa, pantauan asteroid, dan mitigasi bahaya luar angkasa.
+      {/* Welcome Banner */}
+      <div className="welcome-banner">
+        <div className="welcome-text">
+          <div className="welcome-greeting">Selamat datang, {user?.first_name || 'Kadet'}! 👋</div>
+          <div className="welcome-sub">
+            Onboarding selesai · Pre-test {progress.literacy_score > 0 ? 'tercatat' : 'belum'} · Profil: {user?.institution || 'Jawa Barat'}
           </div>
-          <div className="mt-4">
-            <Link to="/modul-lms" className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/20">
-              Lanjutkan Misi <ChevronRight className="w-4 h-4" />
-            </Link>
+        </div>
+        <Link to="/modul-lms" className="welcome-action">
+          <Rocket size={16} /> Mulai Modul 1
+        </Link>
+      </div>
+
+      {/* AI Inline Box */}
+      <div className="ai-inline">
+        <div className="ai-inline-avatar"><Bot /></div>
+        <div>
+          <div className="ai-inline-name">ASTRO AI</div>
+          <div className="ai-inline-text">
+            {user?.first_name}, berdasarkan profil dan wilayahmu, kita mulai dari <strong>Modul Cuaca Antariksa</strong> terlebih dahulu untuk membangun fondasi pemahaman mitigasi yang kuat.
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-        
-        {/* STREAK CARD */}
-        <div className="md:col-span-5">
-          <Card className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 flex flex-col justify-center h-full shadow-sm">
-            <div className="flex items-center gap-5 mb-5">
-              <div className="w-16 h-16 rounded-2xl bg-orange-50 dark:bg-orange-500/10 flex items-center justify-center shrink-0">
-                <Flame className="w-8 h-8 text-orange-500" />
+      {/* Metric Cards */}
+      <div className="grid-4 mb-4">
+        <div className="metric-card">
+          <div className="metric-icon" style={{ background: 'var(--orange-lt)' }}>📊</div>
+          <div>
+            <div className="metric-val" style={{ color: 'var(--orange)' }}>{progress.literacy_score.toFixed(0)}%</div>
+            <div className="metric-lbl">Skor literasi awal</div>
+            <div className="metric-sub" style={{ color: 'var(--slate2)' }}>Target: 80%</div>
+          </div>
+        </div>
+        <div className="metric-card">
+          <div className="metric-icon" style={{ background: 'var(--blue-lt)' }}>📚</div>
+          <div>
+            <div className="metric-val" style={{ color: 'var(--blue)' }}>{progress.modules_completed}/5</div>
+            <div className="metric-lbl">Modul selesai</div>
+            <div className="metric-sub" style={{ color: 'var(--blue)' }}>M1 siap dimulai</div>
+          </div>
+        </div>
+        <div className="metric-card">
+          <div className="metric-icon" style={{ background: 'var(--purple-lt)' }}>📈</div>
+          <div>
+            <div className="metric-val" style={{ color: 'var(--purple)' }}>{progress.n_gain.toFixed(2)}</div>
+            <div className="metric-lbl">N-Gain saat ini</div>
+            <div className="metric-sub" style={{ color: 'var(--slate2)' }}>Target: ≥0.40</div>
+          </div>
+        </div>
+        <div className="streak-card flex-col items-start px-4 py-3">
+          <div className="flex items-center gap-2 mb-1.5">
+            <div className="text-xl"><Flame className="text-orange-500 fill-orange-500" /></div>
+            <div>
+              <div className="streak-val text-lg">{progress.streak_days} Hari</div>
+              <div className="streak-lbl mt-0">Streak belajar</div>
+            </div>
+          </div>
+          <div className="streak-days mt-1">
+            {['S', 'S', 'R', 'K', 'J', 'S', 'M'].map((day, idx) => (
+              <div key={idx} className={`streak-day ${idx < progress.streak_days ? 'done' : ''} ${idx === progress.streak_days ? 'today' : ''}`}>
+                {day}
               </div>
-              <div>
-                <div className="text-4xl font-black text-slate-900 dark:text-white tracking-tighter">0<span className="text-xl text-slate-500 ml-1 font-bold">Hari</span></div>
-                <div className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mt-1">Runtunan Belajar</div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Layout Bawah */}
+      <div className="grid-2">
+        {/* Kolom Kiri: Modul Bencana */}
+        <div className="flex flex-col gap-3">
+          <div className="card-title"><BookOpen size={14} /> Modul Astromitigasi</div>
+          
+          <div className="mod-card">
+            <div className="mod-icon bg-orange-50 text-orange-500">☀️</div>
+            <div className="mod-info">
+              <div className="mod-num">Modul 1</div>
+              <div className="mod-title">Cuaca Antariksa</div>
+              <div className="mod-sub">Siklus Matahari · Flare & CME · Badai Geomagnetik</div>
+              <div className="pbar"><div className="pbar-fill bg-blue-500" style={{ width: '0%' }}></div></div>
+            </div>
+            <div className="mod-right">
+              <Link to="/modul-lms" className="badge badge-blue"><Play size={10} /> Mulai</Link>
+              <div className="text-[10px] font-bold text-slate-400">0%</div>
+            </div>
+          </div>
+
+          {[
+            { id: 2, icon: '☄️', title: 'Simulasi Kawah Meteor', sub: 'Fisika Tumbukan · Kalkulator Dampak · Overpressure' },
+            { id: 3, icon: '🛰️', title: 'Sampah Antariksa', sub: 'Sindrom Kessler · Orbit LEO' },
+            { id: 4, icon: '🌊', title: 'Tsunami Tumbukan', sub: 'Gelombang Laut · Megatsunami Asteroid' },
+            { id: 5, icon: '🔭', title: 'Observasi NEO', sub: 'Astrometri · Teleskop · Lintas Batas' },
+          ].map((mod) => (
+            <div key={mod.id} className="mod-card locked">
+              <div className="mod-icon bg-slate-100 text-slate-400">{mod.icon}</div>
+              <div className="mod-info">
+                <div className="mod-num text-slate-400">Modul {mod.id}</div>
+                <div className="mod-title text-slate-500">{mod.title}</div>
+                <div className="mod-sub">{mod.sub}</div>
+              </div>
+              <div className="mod-right">
+                <Lock size={14} className="text-slate-300" />
               </div>
             </div>
-            
-            <div className="flex items-center justify-between gap-1 w-full mt-auto">
-              {['S', 'S', 'R', 'K', 'J', 'S', 'M'].map((day, i) => (
-                <div key={i} className="flex flex-col items-center gap-1.5">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-400">
-                    {day}
+          ))}
+        </div>
+
+        {/* Kolom Kanan: Profil & Aktivitas */}
+        <div className="flex flex-col gap-4">
+          <div className="card">
+            <div className="card-title"><BarChart3 size={14} /> Profil Literasi Awal</div>
+            <div className="flex flex-col gap-2 mt-4">
+              {[
+                { name: 'Umum', score: 55, color: 'bg-purple-500' },
+                { name: 'Cuaca Antariksa', score: 48, color: 'bg-orange-500' },
+                { name: 'Kawah Meteor', score: 42, color: 'bg-red-500' },
+                { name: 'Sampah Antariksa', score: 38, color: 'bg-blue-500' },
+                { name: 'Tsunami Asteroid', score: 35, color: 'bg-teal-500' },
+                { name: 'Observasi NEO', score: 30, color: 'bg-green-500' },
+              ].map((topic, i) => {
+                const backendScore = topicScores.find(t => t.topic === topic.name)?.score;
+                const finalScore = backendScore !== undefined ? backendScore : topic.score;
+                return (
+                  <div key={i} className="topic-row">
+                    <div className="topic-name">{topic.name}</div>
+                    <div className="topic-bar">
+                      <div className={`topic-fill ${topic.color}`} style={{ width: `${finalScore}%` }}></div>
+                    </div>
+                    <div className="topic-score" style={{ color: `var(--${topic.color.split('-')[1]})` }}>{finalScore}%</div>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="text-[10px] text-slate-400 mt-4 text-center bg-slate-50 p-2 rounded">
+              Grafik diperbarui otomatis setelah post-test setiap modul.
+            </div>
+          </div>
+
+          <div className="card flex-1">
+            <div className="card-title"><Clock size={14} /> Aktivitas Terbaru</div>
+            <div className="mt-2">
+              {activities.length > 0 ? (
+                activities.map((act) => (
+                  <div key={act.id} className="activity-item">
+                    <div className="activity-icon bg-slate-100 text-slate-600">
+                      {act.icon || '📝'}
+                    </div>
+                    <div className="activity-text">
+                      <div className="activity-main">{act.action}</div>
+                      {act.description && <div className="text-[11px] text-slate-500">{act.description}</div>}
+                      <div className="activity-time">{new Date(act.created_at).toLocaleDateString()}</div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="activity-item">
+                  <div className="activity-icon bg-green-50 text-green-600"><ShieldCheck size={16} /></div>
+                  <div className="activity-text">
+                    <div className="activity-main">Akun terdaftar dan terverifikasi</div>
+                    <div className="activity-time">Hari ini</div>
                   </div>
                 </div>
-              ))}
+              )}
             </div>
-          </Card>
-        </div>
-
-        {/* MAIN STATISTIC CARDS */}
-        <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Card className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm flex flex-col justify-center border-l-4 border-l-blue-500">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 rounded-full bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center">
-                <BookOpen className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-              </div>
-              <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">Modul Selesai</div>
-            </div>
-            <div className="text-3xl font-bold text-slate-900 dark:text-white">0<span className="text-sm font-medium text-slate-500 ml-2">/ 12 Modul</span></div>
-          </Card>
-          
-          <Card className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm flex flex-col justify-center border-l-4 border-l-green-500">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 rounded-full bg-green-50 dark:bg-green-500/10 flex items-center justify-center">
-                <Target className="w-4 h-4 text-green-600 dark:text-green-400" />
-              </div>
-              <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">Skor Rata-rata</div>
-            </div>
-            <div className="text-3xl font-bold text-slate-900 dark:text-white">0%</div>
-          </Card>
-          
-          <Card className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm flex flex-col justify-center border-l-4 border-l-red-500">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 rounded-full bg-red-50 dark:bg-red-500/10 flex items-center justify-center">
-                <AlertTriangle className="w-4 h-4 text-red-600 dark:text-red-400" />
-              </div>
-              <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">Ancaman Aktif</div>
-            </div>
-            <div className="text-3xl font-bold text-slate-900 dark:text-white">3<span className="text-sm font-medium text-slate-500 ml-2">Peringatan</span></div>
-          </Card>
-
-          <Card className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm flex flex-col justify-center border-l-4 border-l-teal-500">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 rounded-full bg-teal-50 dark:bg-teal-500/10 flex items-center justify-center">
-                <ShieldCheck className="w-4 h-4 text-teal-600 dark:text-teal-400" />
-              </div>
-              <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">Status Keamanan</div>
-            </div>
-            <div className="text-lg font-bold text-teal-600 dark:text-teal-400">NORMAL</div>
-          </Card>
+          </div>
         </div>
       </div>
-
-      {/* ACTIVITY FEED & MODULES */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm rounded-2xl p-6">
-          <div className="text-sm font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wide mb-6 flex items-center gap-2">
-            <Clock className="w-4 h-4 text-slate-400" /> Riwayat Aktivitas
-          </div>
-          <div className="flex flex-col items-center justify-center py-10 text-center">
-            <div className="w-16 h-16 bg-slate-50 dark:bg-slate-800/50 rounded-full flex items-center justify-center text-slate-300 mb-4">
-              <Clock className="w-8 h-8" />
-            </div>
-            <div className="text-sm font-bold text-slate-600 dark:text-slate-300">Belum ada aktivitas</div>
-            <div className="text-xs text-slate-500 mt-2">Data aktivitas misi dan belajarmu akan muncul di sini.</div>
-          </div>
-        </Card>
-
-        <Card className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm rounded-2xl p-6">
-          <div className="text-sm font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wide mb-6 flex items-center gap-2">
-            <Trophy className="w-4 h-4 text-slate-400" /> Pencapaian Terbaru
-          </div>
-          <div className="flex flex-col items-center justify-center py-10 text-center">
-            <div className="w-16 h-16 bg-slate-50 dark:bg-slate-800/50 rounded-full flex items-center justify-center text-slate-300 mb-4">
-              <Trophy className="w-8 h-8" />
-            </div>
-            <div className="text-sm font-bold text-slate-600 dark:text-slate-300">Belum ada lencana</div>
-            <div className="text-xs text-slate-500 mt-2">Selesaikan misi dan modul untuk mendapatkan lencana khusus.</div>
-          </div>
-        </Card>
-      </div>
-
     </div>
   );
 }

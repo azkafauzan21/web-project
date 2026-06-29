@@ -1,0 +1,193 @@
+/* ============================================================
+   CARDS & GRID UTILITIES
+   ============================================================ */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-sm);
+}
+.card-title {
+  font-size: 11px; font-weight: 700;
+  color: var(--slate); text-transform: uppercase;
+  letter-spacing: .5px; margin-bottom: 14px;
+  display: flex; align-items: center; gap: 6px;
+}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+
+/* ============================================================
+   METRIC CARDS
+   ============================================================ */
+.metric-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-sm);
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.metric-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.metric-val { font-size: 22px; font-weight: 800; color: var(--navy); line-height: 1; }
+.metric-lbl { font-size: 11px; color: var(--slate2); margin-top: 3px; font-weight: 500; }
+.metric-sub { font-size: 11px; font-weight: 600; margin-top: 4px; }
+
+/* ============================================================
+   MODULE CARDS
+   ============================================================ */
+.mod-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 14px 16px;
+  display: flex; align-items: center; gap: 13px;
+  cursor: pointer;
+  transition: box-shadow .2s, transform .15s, border-color .2s;
+  box-shadow: var(--shadow-sm);
+}
+.mod-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); border-color: var(--blue-bd); }
+.mod-card.locked { opacity: .55; cursor: not-allowed; }
+.mod-card.locked:hover { box-shadow: var(--shadow-sm); transform: none; border-color: var(--border); }
+.mod-icon {
+  width: 44px; height: 44px; border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+}
+.mod-info { flex: 1; min-width: 0; }
+.mod-num  { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .4px; margin-bottom: 2px; }
+.mod-title{ font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+.mod-sub  { font-size: 11px; color: var(--slate2); margin-bottom: 5px; }
+.mod-right{ display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
+
+/* ============================================================
+   TOPIC BARS (literasi chart)
+   ============================================================ */
+.topic-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.topic-name { font-size: 11px; font-weight: 500; color: var(--slate); width: 90px; flex-shrink: 0; }
+.topic-bar  { flex: 1; height: 6px; border-radius: 3px; background: var(--bg); overflow: hidden; }
+.topic-fill { height: 100%; border-radius: 3px; transition: width .8s ease; }
+.topic-score{ font-size: 11px; font-weight: 700; width: 32px; text-align: right; }
+
+/* ============================================================
+   WELCOME BANNER
+   ============================================================ */
+.welcome-banner {
+  background: linear-gradient(135deg, var(--navy) 0%, #1E3A8A 60%, #312E81 100%);
+  border-radius: var(--r-lg);
+  padding: 20px 22px;
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 16px;
+  position: relative; overflow: hidden;
+}
+.welcome-banner::before {
+  content: '';
+  position: absolute; top: -40px; right: -40px;
+  width: 160px; height: 160px; border-radius: 50%;
+  background: rgba(255,255,255,.04);
+  pointer-events: none;
+}
+.welcome-text { flex: 1; position: relative; z-index: 1; }
+.welcome-greeting { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+.welcome-sub { font-size: 12px; color: rgba(255,255,255,.6); line-height: 1.6; }
+.welcome-action {
+  padding: 9px 18px;
+  background: #fff; color: var(--navy);
+  font-size: 13px; font-weight: 700;
+  border: none; border-radius: var(--r);
+  cursor: pointer; display: flex; align-items: center; gap: 7px;
+  flex-shrink: 0; position: relative; z-index: 1;
+  transition: transform .15s, box-shadow .15s;
+  font-family: inherit;
+  text-decoration: none;
+}
+.welcome-action:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,.2); }
+
+/* ============================================================
+   AI INLINE BOX
+   ============================================================ */
+.ai-inline {
+  background: linear-gradient(135deg, var(--blue-lt), var(--purple-lt));
+  border: 1px solid var(--blue-bd);
+  border-radius: var(--r);
+  padding: 11px 14px;
+  display: flex; gap: 10px; align-items: flex-start;
+  margin-bottom: 16px;
+}
+.ai-inline-avatar {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0;
+}
+.ai-inline-avatar svg { color: #fff; width: 16px; height: 16px; }
+.ai-inline-text { font-size: 12px; color: #1e3a8a; line-height: 1.65; }
+.ai-inline-name  { font-size: 10px; font-weight: 700; color: var(--blue); margin-bottom: 2px; text-transform: uppercase; letter-spacing: .3px; }
+
+/* ============================================================
+   ACTIVITY FEED
+   ============================================================ */
+.activity-item {
+  display: flex; gap: 11px; align-items: flex-start;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+}
+.activity-item:last-child { border-bottom: none; padding-bottom: 0; }
+.activity-icon {
+  width: 30px; height: 30px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; flex-shrink: 0;
+}
+.activity-text { flex: 1; min-width: 0; }
+.activity-main { font-size: 12px; font-weight: 500; color: var(--navy); line-height: 1.4; }
+.activity-time { font-size: 10px; color: var(--slate2); margin-top: 2px; }
+
+/* ============================================================
+   STREAK CARD
+   ============================================================ */
+.streak-card {
+  background: linear-gradient(135deg, #FFFBEB, #FEF3C7);
+  border: 1px solid #FDE68A;
+  border-radius: var(--r-lg);
+  padding: 14px 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.dark .streak-card {
+  background: linear-gradient(135deg, #451a03, #78350f);
+  border-color: #92400e;
+}
+.streak-val  { font-size: 22px; font-weight: 800; color: var(--orange); }
+.streak-lbl  { font-size: 11px; color: #92400E; font-weight: 500; margin-top: 2px; }
+.dark .streak-lbl { color: #fde68a; }
+.streak-days { display: flex; gap: 4px; margin-top: 6px; }
+.streak-day  {
+  width: 22px; height: 22px; border-radius: 5px;
+  background: #FDE68A;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; font-weight: 700; color: #92400E;
+}
+.dark .streak-day { background: #92400e; color: #fde68a; }
+.streak-day.done { background: var(--orange); color: #fff; }
+.streak-day.today { background: var(--navy); color: #fff; }
+
+/* PBAR */
+.pbar { height: 5px; border-radius: 3px; background: var(--bg); overflow: hidden; margin-top: 5px; }
+.pbar-fill { height: 100%; border-radius: 3px; transition: width .6s ease; }
+
+/* BADGES */
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 10px; font-weight: 700;
+  padding: 3px 9px; border-radius: 20px;
+  white-space: nowrap;
+}
+.badge-blue   { background: var(--blue-lt);   color: var(--blue); }
+
+@media (max-width: 768px) {
+  .grid-4 { grid-template-columns: 1fr 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+}

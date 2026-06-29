@@ -265,6 +265,70 @@ export function SpaceDebris() {
           </div>
         </div>
       </div>
+      <div className="mt-12 space-y-6 border-t pt-8 dark:border-slate-800">
+        <div className="flex flex-col gap-2">
+          <h2 className="text-2xl font-bold tracking-tight">Meteor Flight Simulator & Dasbor Fireball (USG)</h2>
+          <p className="text-muted-foreground">
+            Berdasarkan Data Fireball USG (Utama 2023) & Model Trajektori Meteor Atmosfer.
+          </p>
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-2">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Rocket className="h-5 w-5 text-red-500" />
+                Dasbor Energi Fireball
+              </CardTitle>
+              <CardDescription>Pemantauan aktivitas meteor terang secara global</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="bg-slate-100 dark:bg-slate-900 rounded-lg p-6 text-center border dark:border-slate-800">
+                  <div className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2">Total Energi Radiasi Tercatat</div>
+                  <div className="text-4xl font-black text-slate-900 dark:text-white">4.2 <span className="text-xl text-slate-500 font-normal">x 10¹³ J</span></div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-slate-50 dark:bg-slate-950 p-4 rounded-lg border dark:border-slate-800">
+                    <div className="text-xs text-slate-500 font-semibold mb-1">Peristiwa Terbesar</div>
+                    <div className="text-lg font-bold text-slate-900 dark:text-white">Chelyabinsk (2013)</div>
+                  </div>
+                  <div className="bg-slate-50 dark:bg-slate-950 p-4 rounded-lg border dark:border-slate-800">
+                    <div className="text-xs text-slate-500 font-semibold mb-1">Total Kejadian</div>
+                    <div className="text-lg font-bold text-slate-900 dark:text-white">986 <span className="text-xs font-normal text-slate-500">fireball</span></div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <AlertOctagon className="h-5 w-5 text-orange-500" />
+                Meteor Flight Simulator
+              </CardTitle>
+              <CardDescription>Visualisasi ablation dan deselerasi meteor di atmosfer</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="bg-slate-950 rounded-lg p-4 h-[220px] flex items-center justify-center border relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-b from-blue-900/40 via-purple-900/20 to-slate-950"></div>
+                <div className="absolute w-2 h-2 bg-white rounded-full shadow-[0_0_20px_5px_rgba(255,255,255,0.8)] animate-pulse" style={{ top: '20%', right: '20%' }}>
+                  <div className="absolute -inset-2 bg-orange-500/50 rounded-full blur-md"></div>
+                  {/* Tail */}
+                  <div className="absolute top-1/2 left-1/2 w-32 h-1 bg-gradient-to-r from-orange-400 to-transparent -translate-y-1/2 rotate-[-45deg] origin-left blur-[1px]"></div>
+                </div>
+                
+                <div className="absolute bottom-4 left-4 text-xs font-mono text-emerald-400 space-y-1">
+                  <div>ALTITUDE : 45.2 km</div>
+                  <div>VELOCITY : 18.5 km/s</div>
+                  <div>MASS     : 2450 kg</div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
     </div>
   );
 }

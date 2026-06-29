@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { MainLayout } from './layouts/MainLayout';
+import { DashboardLayout } from './layouts/DashboardLayout';
 import { Home } from './pages/Home';
 import { SpaceWeather } from './pages/SpaceWeather';
 import { AsteroidTracker } from './pages/AsteroidTracker';
@@ -9,7 +10,12 @@ import { SpaceDebris } from './pages/SpaceDebris';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { Dashboard } from './pages/Dashboard';
+import { ModulHub } from './pages/ModulHub';
 import { OnePageScroll } from './pages/OnePageScroll';
+import { ImpactCalculator } from './pages/ImpactCalculator';
+import { TsunamiSimulator } from './pages/TsunamiSimulator';
+import { Pencapaian } from './pages/Pencapaian';
+import { ProfilSaya } from './pages/ProfilSaya';
 import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
@@ -20,16 +26,27 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          
+          {/* Public Routes - Landing Page */}
           <Route path="/" element={<MainLayout />}>
             <Route index element={<OnePageScroll />} />
             <Route path="tentang" element={<OnePageScroll />} />
             <Route path="modul" element={<OnePageScroll />} />
             <Route path="galeri" element={<OnePageScroll />} />
             <Route path="kontak" element={<OnePageScroll />} />
+          </Route>
+
+          {/* Private Routes - Dashboard/Module Apps */}
+          <Route element={<DashboardLayout />}>
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="space-weather" element={<SpaceWeather />} />
             <Route path="tracker" element={<AsteroidTracker />} />
             <Route path="space-debris" element={<SpaceDebris />} />
+            <Route path="impact-calculator" element={<ImpactCalculator />} />
+            <Route path="tsunami-simulator" element={<TsunamiSimulator />} />
+            <Route path="modul-lms" element={<ModulHub />} /> {/* Pusat Komando Modul */}
+            <Route path="pencapaian" element={<Pencapaian />} />
+            <Route path="profil" element={<ProfilSaya />} />
           </Route>
         </Routes>
       </BrowserRouter>

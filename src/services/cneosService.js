@@ -26,10 +26,10 @@ export const fetchNeoFeed = async () => {
           id: neo.id,
           name: neo.name,
           date: date,
-          velocity: neo.close_approach_data[0]?.relative_velocity.kilometers_per_second || 0,
-          missDistance: neo.close_approach_data[0]?.miss_distance.lunar || 0,
-          diameterMin: neo.estimated_diameter.meters.estimated_diameter_min,
-          diameterMax: neo.estimated_diameter.meters.estimated_diameter_max,
+          velocity: parseFloat(neo.close_approach_data[0]?.relative_velocity.kilometers_per_second || 0),
+          missDistance: parseFloat(neo.close_approach_data[0]?.miss_distance.lunar || 0),
+          diameterMin: parseFloat(neo.estimated_diameter.meters.estimated_diameter_min || 0),
+          diameterMax: parseFloat(neo.estimated_diameter.meters.estimated_diameter_max || 0),
           isPotentiallyHazardous: neo.is_potentially_hazardous_asteroid,
         });
       });

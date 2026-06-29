@@ -29,7 +29,18 @@ const useStore = create((set) => ({
       set({ error: err.message, isLoading: false, hasFetched: true });
       toast.error("Gagal mengambil data dari NASA CNEOS");
     }
-  }
+  },
+
+  // State for impact calculator persistence
+  impactParams: {
+    diameter_m: 50,
+    velocity_kms: 20,
+    distance_km: 10,
+  },
+  setImpactParams: (params) => set({ impactParams: params }),
+  
+  impactResult: null,
+  setImpactResult: (result) => set({ impactResult: result })
 }));
 
 export default useStore;

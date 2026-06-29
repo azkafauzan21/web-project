@@ -107,3 +107,30 @@ def update_user_me(user_update: schemas.UserUpdate, current_user: models.User = 
     db.commit()
     db.refresh(current_user)
     return current_user
+
+@app.get("/api/dashboard/me", response_model=schemas.DashboardResponse)
+def read_dashboard_me(current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
+    # Initialize default progress if it doesn't exist
+    if not current_user.progress:
+        new_progress = models.UserProgress(user_id=current_user.id)
+        db.add(new_progress)
+        db.commit()
+        db.refresh(current_user)
+        
+    return {
+        "user": current_user,
+        "progress": current_user.progress,
+        "activities": current_user.activities,
+        "topic_scores": current_user.topic_scores
+    }
+
+from physics_engine import simulate_impact
+
+@app.post("/api/simulate/impact", response_model=schemas.SimulationResponse)
+def simulate_asteroid_impact(request: schemas.SimulationRequest):
+    result = simulate_impact(
+        diameter_m=request.diameter_m,
+        velocity_kms=request.velocity_kms,
+        distance_km=request.distance_km
+    )
+    return result

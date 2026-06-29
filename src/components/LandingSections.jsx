@@ -46,7 +46,7 @@ export function LandingSections() {
             <div className="flex flex-col justify-center">
               <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl mb-8 border-l-4 border-blue-500 shadow-sm">
                 <div className="text-[15px] font-medium text-slate-700 dark:text-slate-300 italic leading-relaxed mb-3">
-                  "Tingkat literasi bencana mahasiswa MIPA masih tergolong rendah, bahkan pada mereka yang pernah mengalami bencana gempa bumi secara langsung."
+                  "Tingkat literasi mahasiswa terkait bahaya benda jatuh antariksa masih sangat rendah, meskipun ancaman jatuhnya pecahan roket atau meteorit dapat terjadi kapan saja."
                 </div>
                 <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">
                   Fadilah et al., Journal of Engineering Science and Technology, 2020
@@ -72,7 +72,7 @@ export function LandingSections() {
               <div className="flex-1">
                 <div className="text-4xl mb-4">🎓</div>
                 <div className="text-[18px] md:text-[22px] font-bold text-white leading-[1.5] mb-4">
-                  "Guru fisika masa depan bukan hanya mengajar gelombang dan gaya — mereka mengajarkan cara bertahan hidup di negara paling aktif seismiknya di dunia."
+                  "Guru fisika masa depan bukan hanya mengajar mekanika klasik — mereka mengajarkan kesadaran kosmik untuk melindungi peradaban dari ancaman luar angkasa."
                 </div>
                 <div className="text-[11px] font-bold text-blue-400 uppercase tracking-[1px]">
                   Visi GEMA — IPBA UPI 2026 · SDGs Butir 4, 11, 13, 17
@@ -80,16 +80,16 @@ export function LandingSections() {
               </div>
               <div className="flex-1 grid grid-cols-2 gap-4 w-full">
                 <div className="bg-white/5 p-4 rounded-xl border border-white/10">
-                  <div className="text-2xl font-black text-red-400 mb-1">500+</div>
-                  <div className="text-[11px] text-slate-400 font-medium leading-[1.4]">Sesar aktif di Indonesia. Banyak belum terpetakan.</div>
+                  <div className="text-2xl font-black text-red-400 mb-1">33.000+</div>
+                  <div className="text-[11px] text-slate-400 font-medium leading-[1.4]">Asteroid Dekat Bumi (NEO) dipantau NASA.</div>
                 </div>
                 <div className="bg-white/5 p-4 rounded-xl border border-white/10">
-                  <div className="text-2xl font-black text-amber-400 mb-1">3×</div>
-                  <div className="text-[11px] text-slate-400 font-medium leading-[1.4]">Lebih sering bencana dibanding 30 tahun lalu</div>
+                  <div className="text-2xl font-black text-amber-400 mb-1">11 Thn</div>
+                  <div className="text-[11px] text-slate-400 font-medium leading-[1.4]">Siklus Matahari Maksimum berdampak ke satelit.</div>
                 </div>
                 <div className="bg-white/5 p-4 rounded-xl border border-white/10">
-                  <div className="text-2xl font-black text-blue-400 mb-1">17%</div>
-                  <div className="text-[11px] text-slate-400 font-medium leading-[1.4]">Gempa bumi dunia terjadi di wilayah Indonesia</div>
+                  <div className="text-2xl font-black text-blue-400 mb-1">1 Juta+</div>
+                  <div className="text-[11px] text-slate-400 font-medium leading-[1.4]">Puing sampah antariksa &gt; 1 cm di orbit.</div>
                 </div>
                 <div className="bg-white/5 p-4 rounded-xl border border-white/10">
                   <div className="text-2xl font-black text-emerald-400 mb-1">↑0.47</div>
@@ -194,8 +194,8 @@ export function LandingSections() {
                 <span className="absolute bottom-3 left-3 bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300 text-[10px] font-bold px-2 py-1 rounded">Alat Peraga</span>
               </div>
               <div className="p-5 flex flex-col flex-1">
-                <div className="text-[15px] font-bold text-slate-900 dark:text-white mb-2 leading-snug">Seismograf Sederhana DIY</div>
-                <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-auto flex items-center gap-1.5"><span className="text-red-500">🏢</span> M1 Gempa · Angkatan 2024</div>
+                <div className="text-[15px] font-bold text-slate-900 dark:text-white mb-2 leading-snug">Tracker Flare Matahari DIY</div>
+                <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-auto flex items-center gap-1.5"><span className="text-red-500">☀️</span> M1 Cuaca Antariksa · Angkatan 2024</div>
               </div>
             </div>
             <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col">
@@ -204,8 +204,8 @@ export function LandingSections() {
                 <span className="absolute bottom-3 left-3 bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 text-[10px] font-bold px-2 py-1 rounded">Poster Mitigasi</span>
               </div>
               <div className="p-5 flex flex-col flex-1">
-                <div className="text-[15px] font-bold text-slate-900 dark:text-white mb-2 leading-snug">Poster Jalur Evakuasi Tsunami</div>
-                <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-auto flex items-center gap-1.5"><span className="text-blue-500">🌊</span> M2 Tsunami · Kelompok B</div>
+                <div className="text-[15px] font-bold text-slate-900 dark:text-white mb-2 leading-snug">Infografis Perlindungan Meteorit</div>
+                <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-auto flex items-center gap-1.5"><span className="text-blue-500">☄️</span> M2 Kawah Meteor · Kelompok B</div>
               </div>
             </div>
             <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col">
@@ -214,8 +214,8 @@ export function LandingSections() {
                 <span className="absolute bottom-3 left-3 bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300 text-[10px] font-bold px-2 py-1 rounded">Peta Risiko</span>
               </div>
               <div className="p-5 flex flex-col flex-1">
-                <div className="text-[15px] font-bold text-slate-900 dark:text-white mb-2 leading-snug">Peta KRB Gunung Gede Pangrango</div>
-                <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-auto flex items-center gap-1.5"><span className="text-orange-500">🌋</span> M3 Vulkanologi · Tim Riset</div>
+                <div className="text-[15px] font-bold text-slate-900 dark:text-white mb-2 leading-snug">Simulasi Puing Satelit Jatuh LEO</div>
+                <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-auto flex items-center gap-1.5"><span className="text-orange-500">🛰️</span> M3 Sampah Antariksa · Tim Riset</div>
               </div>
             </div>
           </div>
@@ -242,7 +242,7 @@ export function LandingSections() {
             <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
               <div className="text-amber-400 text-sm tracking-widest mb-3">★★★★★</div>
               <div className="text-[13px] text-slate-600 dark:text-slate-300 italic leading-[1.7] mb-5">
-                "Setelah menggunakan DLLS, saya baru sadar bahwa daerah asal saya di Padang masuk zona megathrust. Saya langsung sosialisasikan ke keluarga cara evakuasi yang benar."
+                "Setelah menggunakan platform ini, saya menyadari seberapa nyata ancaman benda jatuh dari luar angkasa terhadap infrastruktur telekomunikasi harian."
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-400 flex items-center justify-center font-bold text-[12px]">NA</div>
@@ -268,7 +268,7 @@ export function LandingSections() {
             <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
               <div className="text-amber-400 text-sm tracking-widest mb-3">★★★★★</div>
               <div className="text-[13px] text-slate-600 dark:text-slate-300 italic leading-[1.7] mb-5">
-                "Peta KRB yang saya buat di fase Apply Modul Vulkanologi bahkan dipakai oleh desa setempat untuk sosialisasi bencana. Rasanya belajar benar-benar bermakna."
+                "Kalkulator dampak tumbukan yang saya uji di fase Apply membuat saya mengerti betapa pentingnya pemantauan NEO untuk keamanan planet kita."
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-full bg-green-100 text-green-700 dark:bg-green-900/50 dark:text-green-400 flex items-center justify-center font-bold text-[12px]">DS</div>

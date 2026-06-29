@@ -27,7 +27,7 @@ export function Home() {
         <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-slate-900 to-transparent z-10 pointer-events-none"></div>
         
         <div className="bg-red-600 text-white font-bold text-[11px] tracking-wide px-3 py-1 ml-4 rounded-sm shrink-0 z-20 flex items-center gap-1.5 h-6">
-          <AlertTriangle className="w-3.5 h-3.5" /> DATA BENCANA
+          <AlertTriangle className="w-3.5 h-3.5" /> DATA ANTARIKSA
         </div>
         
         <div className="flex items-center gap-6 px-4 whitespace-nowrap overflow-hidden text-slate-300 text-[13px] font-medium animate-marquee">
@@ -38,8 +38,6 @@ export function Home() {
           <div className="flex items-center gap-1.5"><span className="text-blue-300">🛰️</span> Sampah Antariksa (Kessler Syndrome)</div>
           <div className="w-1 h-1 bg-slate-700 rounded-full shrink-0"></div>
           <div className="flex items-center gap-1.5"><span className="text-red-400">☄️</span> Potensi Tumbukan Asteroid NEO (Apophis)</div>
-          <div className="w-1 h-1 bg-slate-700 rounded-full shrink-0"></div>
-          <div className="flex items-center gap-1.5"><span className="text-emerald-300">⛰️</span> Longsor · Cianjur Selatan · 1 hari lalu</div>
         </div>
       </div>
 
