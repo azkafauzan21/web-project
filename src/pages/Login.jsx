@@ -95,9 +95,6 @@ export function Login() {
             <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700"><IconGlobe className="w-3 h-3"/> Tracker Asteroid</div>
             <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700"><IconGlobe className="w-3 h-3"/> Sampah Antariksa</div>
           </div>
-          <button className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm w-max cursor-pointer bg-transparent border-none" onClick={() => navigate('/')}>
-            <IconArrowLeft className="w-4 h-4"/> Kembali ke Beranda
-          </button>
         </div>
       </div>
       
@@ -105,8 +102,14 @@ export function Login() {
       <div className="w-full md:w-[480px] lg:w-[540px] bg-white dark:bg-slate-950 flex flex-col justify-center p-8 md:p-12 shrink-0 relative z-20 shadow-2xl">
         <div className="w-full max-w-sm mx-auto">
           <div className="flex flex-col">
+            <button className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors text-sm font-semibold mb-8 w-max cursor-pointer bg-transparent border-none p-0" onClick={() => navigate('/')}>
+              <IconArrowLeft className="w-4 h-4"/> Kembali ke Beranda
+            </button>
             <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-2 tracking-tight">Selamat Datang</h2>
-            <p className="text-slate-500 dark:text-slate-400 text-sm mb-8">Masuk untuk melanjutkan pembelajaran astromitigasi Anda.</p>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mb-2">Masuk untuk melanjutkan pembelajaran astromitigasi Anda.</p>
+            <button className="text-blue-600 dark:text-blue-400 text-sm font-semibold text-left mb-8 hover:underline bg-transparent border-none cursor-pointer p-0" onClick={() => navigate('/register')}>
+              Belum punya akun? Daftar di sini
+            </button>
             
             <div className="flex p-1 bg-slate-100 dark:bg-slate-900 rounded-lg mb-8">
               <button 

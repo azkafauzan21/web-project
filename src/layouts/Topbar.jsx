@@ -155,7 +155,7 @@ export function Topbar() {
             </>
           ) : (
             <div className="hidden sm:flex items-center gap-2">
-              <Link to="/login" className="px-[16px] py-[7px] text-[13px] font-semibold text-slate-900 dark:text-slate-300 border-[1.5px] border-slate-300 dark:border-slate-700 hover:border-blue-700 hover:text-blue-700 dark:hover:border-blue-500 dark:hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-[7px] transition-all">Daftar</Link>
+              <Link to="/register" className="px-[16px] py-[7px] text-[13px] font-semibold text-slate-900 dark:text-slate-300 border-[1.5px] border-slate-300 dark:border-slate-700 hover:border-blue-700 hover:text-blue-700 dark:hover:border-blue-500 dark:hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-[7px] transition-all">Daftar</Link>
               <Link to="/login" className="px-[18px] py-[7px] text-[13px] font-semibold bg-blue-700 hover:bg-blue-800 text-white border-[1.5px] border-blue-700 hover:border-blue-800 rounded-[7px] transition-all flex items-center gap-1.5">
                 <IconLogout className="w-[15px] h-[15px]" style={{ transform: 'rotate(180deg)' }} /> Masuk
               </Link>
@@ -192,7 +192,7 @@ export function Topbar() {
           ))}
           {!user && (
             <div className="pt-3 mt-2 border-t border-slate-100 dark:border-slate-800/50 flex gap-2">
-              <Link to="/login" className="flex-1 py-2 text-center text-[13px] font-semibold text-slate-700 dark:text-slate-300 border-[1.5px] border-slate-300 dark:border-slate-700 rounded-[7px]">Daftar</Link>
+              <Link to="/register" className="flex-1 py-2 text-center text-[13px] font-semibold text-slate-700 dark:text-slate-300 border-[1.5px] border-slate-300 dark:border-slate-700 rounded-[7px]">Daftar</Link>
               <Link to="/login" className="flex-1 py-2 text-center text-[13px] font-semibold bg-blue-700 text-white border-[1.5px] border-blue-700 rounded-[7px]">Masuk</Link>
             </div>
           )}

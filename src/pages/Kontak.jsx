@@ -137,7 +137,7 @@ export function Kontak() {
           </p>
           
           <div className="flex flex-wrap justify-center gap-3">
-            <Link to="/login" className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-white text-slate-900 hover:-translate-y-[2px] hover:shadow-[0_8px_24px_rgba(0,0,0,0.25)] font-bold rounded-xl transition-all shadow-[0_4px_16px_rgba(0,0,0,0.2)] text-[14px]">
+            <Link to="/register" className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-white text-slate-900 hover:-translate-y-[2px] hover:shadow-[0_8px_24px_rgba(0,0,0,0.25)] font-bold rounded-xl transition-all shadow-[0_4px_16px_rgba(0,0,0,0.2)] text-[14px]">
               <IconUserPlus className="w-[18px] h-[18px]" /> Daftar Akun Gratis
             </Link>
             <Link to="/login" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-transparent border-[1.5px] border-white/30 text-white/90 hover:border-white/70 hover:bg-white/5 font-semibold rounded-xl transition-all text-[14px]">

@@ -21,6 +21,7 @@ import { ImpactCalculator } from './pages/ImpactCalculator';
 import { TsunamiSimulator } from './pages/TsunamiSimulator';
 import { Pencapaian } from './pages/Pencapaian';
 import { ProfilSaya } from './pages/ProfilSaya';
+import { Onboarding } from './pages/Onboarding';
 import { ModuleLayout } from './layouts/ModuleLayout';
 import { PhaseEngage, PhaseDiscover, PhaseReason, PhaseApply, PhaseReflect, PhaseAssess } from './components/ModulePhases';
 import { AuthProvider } from './contexts/AuthContext';
@@ -33,6 +34,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/onboarding" element={<Onboarding />} />
           
           {/* Public Routes - Landing Page */}
           <Route path="/" element={<MainLayout />}>

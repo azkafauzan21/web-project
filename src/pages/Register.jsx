@@ -92,9 +92,6 @@ export function Register() {
         </div>
         
         <div className="relative z-10 flex flex-col gap-6 mt-12">
-          <button className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm w-max cursor-pointer bg-transparent border-none" onClick={() => navigate('/')}>
-            <IconArrowLeft className="w-4 h-4"/> Kembali ke Beranda
-          </button>
         </div>
       </div>
       
@@ -102,11 +99,14 @@ export function Register() {
       <div className="w-full md:w-[480px] lg:w-[540px] bg-white dark:bg-slate-950 flex flex-col justify-center p-8 md:p-12 shrink-0 relative z-20 shadow-2xl overflow-y-auto">
         <div className="w-full max-w-sm mx-auto my-auto py-8">
           <div className="flex flex-col">
-            <button className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors text-xs font-semibold mb-6 w-max cursor-pointer bg-transparent border-none" onClick={() => navigate('/login')}>
-              <IconArrowLeft className="w-4 h-4"/> Sudah punya akun? Masuk
+            <button className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors text-sm font-semibold mb-8 w-max cursor-pointer bg-transparent border-none p-0" onClick={() => navigate('/')}>
+              <IconArrowLeft className="w-4 h-4"/> Kembali ke Beranda
             </button>
             <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-2 tracking-tight">Daftar Akun</h2>
-            <p className="text-slate-500 dark:text-slate-400 text-sm mb-6">Gratis untuk seluruh warga yang ingin belajar mitigasi.</p>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mb-2">Gratis untuk seluruh warga yang ingin belajar mitigasi.</p>
+            <button className="text-blue-600 dark:text-blue-400 text-sm font-semibold text-left mb-6 hover:underline bg-transparent border-none cursor-pointer p-0" onClick={() => navigate('/login')}>
+              Sudah punya akun? Masuk di sini
+            </button>
             
             {errorMsg && (
               <div className="mb-4 p-3 rounded-lg bg-red-100 text-red-600 text-sm border border-red-200">
