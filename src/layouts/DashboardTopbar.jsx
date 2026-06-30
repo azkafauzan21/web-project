@@ -41,7 +41,7 @@ export function DashboardTopbar() {
           <IconRobot className="w-4 h-4" />
         </button>
         
-        <Link to="/dashboard" className="w-8 h-8 rounded-md border border-slate-200 bg-white flex items-center justify-center cursor-pointer text-brand-slate transition-colors hover:bg-brand-bg hover:text-brand-navy">
+        <Link to="/" className="w-8 h-8 rounded-md border border-slate-200 bg-white flex items-center justify-center cursor-pointer text-brand-slate transition-colors hover:bg-slate-50 hover:text-slate-900" aria-label="Kembali ke Landing Page">
           <IconHome className="w-4 h-4" />
         </Link>
       </div>

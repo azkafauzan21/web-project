@@ -16,7 +16,7 @@ export function ModulHub() {
           <p className="text-xs md:text-sm text-white/70 leading-relaxed">Selamat datang kembali di Pusat Komando Astromitigasi. Lanjutkan misi edukasimu dan pantau kondisi antariksa terkini.</p>
         </div>
         <button 
-          onClick={() => navigate('/space-weather')}
+          onClick={() => navigate('/modul-lms/belajar')}
           className="relative z-10 shrink-0 bg-white text-brand-navy font-bold text-xs md:text-sm px-4 py-2.5 rounded-xl flex items-center gap-2 hover:-translate-y-px hover:shadow-lg transition-all"
         >
           <IconRocket className="w-4 h-4" /> Mulai Modul 1
@@ -40,7 +40,7 @@ export function ModulHub() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         
         {/* Modul 1 */}
-        <div onClick={() => navigate('/space-weather')} className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm flex items-start gap-3 cursor-pointer hover:shadow-md hover:border-brand-orange transition-all">
+        <div onClick={() => navigate('/modul-lms/belajar')} className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm flex items-start gap-3 cursor-pointer hover:shadow-md hover:border-brand-orange transition-all">
           <div className="w-10 h-10 rounded-xl bg-brand-orangeLt flex items-center justify-center text-brand-orange shrink-0">
             <IconSun className="w-5 h-5" />
           </div>
