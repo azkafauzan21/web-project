@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Home } from './Home';
 import { TentangKami } from './TentangKami';
-import { ModulHub } from './ModulHub';
+import { LandingModul } from './LandingModul';
 import { Galeri } from './Galeri';
 import { Kontak } from './Kontak';
 
@@ -14,7 +14,7 @@ export function OnePageScroll() {
   const sections = [
     { id: 'beranda', path: '/', Component: Home },
     { id: 'tentang', path: '/tentang', Component: TentangKami },
-    { id: 'modul', path: '/modul', Component: ModulHub },
+    { id: 'modul', path: '/modul', Component: LandingModul },
     { id: 'galeri', path: '/galeri', Component: Galeri },
     { id: 'kontak', path: '/kontak', Component: Kontak },
   ];
