@@ -12,6 +12,10 @@ import { Register } from './pages/Register';
 import { Dashboard } from './pages/Dashboard';
 import { ModulHub } from './pages/ModulHub';
 import { SimulasiHub } from './pages/SimulasiHub';
+import { ProgressSaya } from './pages/ProgressSaya';
+import { DataCenter } from './pages/DataCenter';
+import { ProjectGallery } from './pages/ProjectGallery';
+import { ForumDiskusi } from './pages/ForumDiskusi';
 import { OnePageScroll } from './pages/OnePageScroll';
 import { ImpactCalculator } from './pages/ImpactCalculator';
 import { TsunamiSimulator } from './pages/TsunamiSimulator';
@@ -49,6 +53,10 @@ function App() {
             <Route path="tsunami-simulator" element={<TsunamiSimulator />} />
             <Route path="modul-lms" element={<ModulHub />} /> {/* Pusat Komando Modul */}
             <Route path="simulasi" element={<SimulasiHub />} />
+            <Route path="progress" element={<ProgressSaya />} />
+            <Route path="data-center" element={<DataCenter />} />
+            <Route path="gallery" element={<ProjectGallery />} />
+            <Route path="forum" element={<ForumDiskusi />} />
             <Route path="pencapaian" element={<Pencapaian />} />
             <Route path="profil" element={<ProfilSaya />} />
           </Route>

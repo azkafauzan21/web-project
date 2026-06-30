@@ -1,99 +1,105 @@
 import React from 'react';
-import { IconActivity, IconEdit, IconMail, IconMapPin, IconSchool, IconSettings, IconUser } from '@tabler/icons-react';
+import { IconSettings, IconUser, IconEdit } from '@tabler/icons-react';
 import { useAuth } from '../contexts/AuthContext';
+import './Dashboard.css';
 
 export function ProfilSaya() {
   const { user } = useAuth();
-  const userName = user ? `${user.first_name} ${user.last_name || ''}`.trim() : 'Penjelajah';
-  const initials = userName !== 'Penjelajah' ? userName.substring(0, 2).toUpperCase() : 'RZ';
-  const email = user ? user.email : 'explorer@astromitigasi.edu';
+  
+  const userName = user ? `${user.first_name || ''} ${user.last_name || ''}`.trim() || '-' : '-';
+  const email = user ? user.email || '-' : '-';
+  const initials = userName !== '-' ? userName.substring(0, 2).toUpperCase() : 'U';
 
   return (
-    <div className="p-4 md:p-6 max-w-5xl mx-auto space-y-4 fade-in font-sans">
-      <div className="mb-4">
-        <h1 className="text-lg md:text-xl font-extrabold text-brand-navy mb-1">Profil Saya</h1>
-        <p className="text-xs md:text-sm text-brand-slate2">Informasi akun dan preferensi belajar Astromitigasi.</p>
+    <div className="w-full pb-6 font-sans">
+      <div style={{ marginBottom: '16px' }}>
+        <div style={{ fontSize: '18px', fontWeight: 800, color: 'var(--navy)', marginBottom: '4px' }}>
+          Profil Saya
+        </div>
+        <div style={{ fontSize: '13px', color: 'var(--slate)' }}>
+          Informasi akun dan preferensi belajar.
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-[14px]">
         {/* Informasi Akun */}
-        <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
-          <div className="flex items-center gap-2 text-sm font-bold text-brand-navy mb-4">
-            <IconUser className="w-4 h-4 text-brand-blue" /> Informasi Akun
+        <div className="bg-white border border-slate-200 rounded-xl p-[20px] shadow-[var(--shadow-sm)]">
+          <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--navy)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <IconUser size={16} style={{ color: 'var(--blue)' }} /> Informasi Akun
           </div>
           
-          <div className="flex items-center gap-4 mb-5">
-            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-brand-blue to-brand-purple flex items-center justify-center text-xl font-bold text-white shrink-0 shadow-sm">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '16px' }}>
+            <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg,var(--blue),var(--purple))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', fontWeight: 700, color: '#fff', flexShrink: 0 }}>
               {initials}
             </div>
             <div>
-              <div className="text-base font-bold text-brand-navy">{userName}</div>
-              <div className="text-xs text-brand-slate2 mb-1">{email}</div>
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-brand-blue/10 text-brand-blue">
-                Siswa Astronomi
-              </span>
+              <div style={{ fontSize: '16px', fontWeight: 700, color: 'var(--navy)' }}>{userName}</div>
+              <div style={{ fontSize: '12px', color: 'var(--slate2)' }}>{email}</div>
+              <div style={{ marginTop: '4px' }}>
+                {user?.status ? <span className="badge badge-blue">{user.status}</span> : <span className="text-slate-400 text-[10px]">-</span>}
+              </div>
             </div>
           </div>
           
-          <div className="space-y-3">
-            <div className="flex justify-between items-center py-2 border-b border-slate-100 text-xs">
-              <span className="text-brand-slate2 flex items-center gap-1.5"><IconSchool className="w-3.5 h-3.5" /> Institusi</span>
-              <span className="font-semibold text-brand-navy">Sekolah Antariksa Nasional</span>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid var(--border)', fontSize: '12px' }}>
+              <span style={{ color: 'var(--slate)' }}>NIM</span>
+              <span style={{ fontWeight: 600, color: 'var(--navy)' }}>{user?.nim || '-'}</span>
             </div>
-            <div className="flex justify-between items-center py-2 border-b border-slate-100 text-xs">
-              <span className="text-brand-slate2 flex items-center gap-1.5"><IconMapPin className="w-3.5 h-3.5" /> Asal Daerah</span>
-              <span className="font-semibold text-brand-navy">Jawa Barat</span>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid var(--border)', fontSize: '12px' }}>
+              <span style={{ color: 'var(--slate)' }}>Program Studi</span>
+              <span style={{ fontWeight: 600, color: 'var(--navy)' }}>{user?.program_studi || '-'}</span>
             </div>
-            <div className="flex justify-between items-center py-2 border-b border-slate-100 text-xs">
-              <span className="text-brand-slate2 flex items-center gap-1.5"><IconActivity className="w-3.5 h-3.5" /> Status</span>
-              <span className="font-semibold text-brand-green">Aktif</span>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid var(--border)', fontSize: '12px' }}>
+              <span style={{ color: 'var(--slate)' }}>Institusi</span>
+              <span style={{ fontWeight: 600, color: 'var(--navy)' }}>{user?.institusi || '-'}</span>
             </div>
-            <div className="flex justify-between items-center py-2 text-xs">
-              <span className="text-brand-slate2 flex items-center gap-1.5"><IconMail className="w-3.5 h-3.5" /> Bergabung Sejak</span>
-              <span className="font-semibold text-brand-navy">2026</span>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid var(--border)', fontSize: '12px' }}>
+              <span style={{ color: 'var(--slate)' }}>Angkatan</span>
+              <span style={{ fontWeight: 600, color: 'var(--navy)' }}>{user?.angkatan || '-'}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', fontSize: '12px' }}>
+              <span style={{ color: 'var(--slate)' }}>Asal Daerah</span>
+              <span style={{ fontWeight: 600, color: 'var(--navy)' }}>{user?.asal_daerah || '-'}</span>
             </div>
           </div>
         </div>
 
         {/* Preferensi Belajar */}
-        <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
-          <div className="flex items-center gap-2 text-sm font-bold text-brand-navy mb-4">
-            <IconSettings className="w-4 h-4 text-brand-slate" /> Preferensi Belajar & Sistem
+        <div className="bg-white border border-slate-200 rounded-xl p-[20px] shadow-[var(--shadow-sm)]">
+          <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--navy)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <IconSettings size={16} style={{ color: 'var(--slate)' }} /> Preferensi Belajar
           </div>
           
-          <div className="space-y-3">
-            <div className="flex justify-between items-center py-2 border-b border-slate-100 text-xs">
-              <span className="text-brand-slate2">Gaya Belajar (VARK)</span>
-              <span className="inline-flex px-2 py-0.5 rounded text-[10px] font-bold bg-brand-purple/10 text-brand-purple">
-                Visual & Kinesthetic
-              </span>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid var(--border)', fontSize: '12px' }}>
+              <span style={{ color: 'var(--slate)' }}>Gaya Belajar (VARK)</span>
+              {user?.gaya_belajar ? <span className="badge badge-purple">{user.gaya_belajar}</span> : <span style={{ fontWeight: 600, color: 'var(--slate)' }}>-</span>}
             </div>
-            <div className="flex justify-between items-center py-2 border-b border-slate-100 text-xs">
-              <span className="text-brand-slate2">Tingkat Minat Bencana</span>
-              <span className="font-semibold text-brand-navy">Asteroid & Cuaca Antariksa</span>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid var(--border)', fontSize: '12px' }}>
+              <span style={{ color: 'var(--slate)' }}>Bencana pernah dialami</span>
+              <span style={{ fontWeight: 600, color: 'var(--navy)' }}>{user?.bencana_dialami || '-'}</span>
             </div>
-            <div className="flex justify-between items-center py-2 border-b border-slate-100 text-xs">
-              <span className="text-brand-slate2">Notifikasi Orbit NEO</span>
-              <span className="inline-flex px-2 py-0.5 rounded text-[10px] font-bold bg-brand-green/10 text-brand-green">
-                Aktif
-              </span>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid var(--border)', fontSize: '12px' }}>
+              <span style={{ color: 'var(--slate)' }}>Kedekatan zona rawan</span>
+              {user?.kedekatan_zona ? <span style={{ fontWeight: 600, color: 'var(--red)' }}>{user.kedekatan_zona}</span> : <span style={{ fontWeight: 600, color: 'var(--slate)' }}>-</span>}
             </div>
-            <div className="flex justify-between items-center py-2 border-b border-slate-100 text-xs">
-              <span className="text-brand-slate2">Tema Aplikasi</span>
-              <span className="font-semibold text-brand-navy">Terang (Default)</span>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid var(--border)', fontSize: '12px' }}>
+              <span style={{ color: 'var(--slate)' }}>Notifikasi email</span>
+              {user?.notifikasi_email ? <span className="badge badge-green">{user.notifikasi_email}</span> : <span style={{ fontWeight: 600, color: 'var(--slate)' }}>-</span>}
             </div>
-            <div className="flex justify-between items-center py-2 text-xs">
-              <span className="text-brand-slate2">Bahasa</span>
-              <span className="font-semibold text-brand-navy">Bahasa Indonesia</span>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', fontSize: '12px' }}>
+              <span style={{ color: 'var(--slate)' }}>Bahasa antarmuka</span>
+              <span style={{ fontWeight: 600, color: 'var(--navy)' }}>{user?.bahasa || '-'}</span>
             </div>
           </div>
           
           <button 
             type="button" 
-            className="mt-5 w-full py-2 bg-brand-bg hover:bg-slate-100 border border-slate-200 rounded-xl text-xs font-semibold text-brand-navy flex items-center justify-center gap-2 transition-colors"
-            onClick={() => alert('IconEdit profil akan tersedia di versi selanjutnya.')}
+            style={{ marginTop: '14px', width: '100%', padding: '8px', background: 'var(--bg)', border: '1px solid var(--border2)', borderRadius: 'var(--r-sm)', fontSize: '13px', fontWeight: 500, color: 'var(--navy)', cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
+            onClick={() => alert('Edit profil akan tersedia di versi produksi.')}
           >
-            <IconEdit className="w-4 h-4" /> IconEdit Profil
+            <IconEdit size={16} aria-hidden="true" /> Edit Profil
           </button>
         </div>
       </div>

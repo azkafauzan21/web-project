@@ -25,7 +25,7 @@ export function DashboardLayout() {
       <Sidebar />
       <div className="flex-1 min-w-0 flex flex-col overflow-hidden relative">
         <DashboardTopbar />
-        <main className="flex-1 overflow-y-auto" role="main">
+        <main className="flex-1 overflow-y-auto p-5" role="main">
           <Outlet />
         </main>
         <AstroAIAssistant />

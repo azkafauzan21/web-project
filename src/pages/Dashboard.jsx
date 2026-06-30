@@ -49,7 +49,7 @@ export function Dashboard() {
   const activities = dashboardData?.activities || [];
 
   return (
-    <div className="space-y-6 max-w-[1000px] mx-auto">
+    <div className="w-full pb-6">
       {showTour && <OnboardingTour onComplete={() => setShowTour(false)} />}
       
       {/* Welcome Banner */}
@@ -83,7 +83,7 @@ export function Dashboard() {
           <div>
             <div className="metric-val" style={{ color: 'var(--orange)' }}>{progress.literacy_score.toFixed(0)}%</div>
             <div className="metric-lbl">Skor literasi awal</div>
-            <div className="metric-sub" style={{ color: 'var(--slate2)' }}>IconTarget: 80%</div>
+            <div className="metric-sub" style={{ color: 'var(--slate2)' }}>Target: 80%</div>
           </div>
         </div>
         <div className="metric-card">
@@ -99,7 +99,7 @@ export function Dashboard() {
           <div>
             <div className="metric-val" style={{ color: 'var(--purple)' }}>{progress.n_gain.toFixed(2)}</div>
             <div className="metric-lbl">N-Gain saat ini</div>
-            <div className="metric-sub" style={{ color: 'var(--slate2)' }}>IconTarget: ≥0.40</div>
+            <div className="metric-sub" style={{ color: 'var(--slate2)' }}>Target: ≥0.40</div>
           </div>
         </div>
         <div className="streak-card flex-col items-start px-4 py-3">
@@ -126,35 +126,35 @@ export function Dashboard() {
         <div className="flex flex-col gap-3">
           <div className="card-title"><IconBook size={14} /> Modul Astromitigasi</div>
           
-          <div className="mod-card">
-            <div className="mod-icon bg-orange-50 text-orange-500">☀️</div>
+          <Link to="/modul-lms" className="mod-card" style={{textDecoration: 'none'}}>
+            <div className="mod-icon" style={{background: 'var(--red-lt)'}}>☀️</div>
             <div className="mod-info">
-              <div className="mod-num">Modul 1</div>
+              <div className="mod-num" style={{color: 'var(--red)'}}>Modul 1</div>
               <div className="mod-title">Cuaca Antariksa</div>
               <div className="mod-sub">Siklus Matahari · Flare & CME · Badai Geomagnetik</div>
-              <div className="pbar"><div className="pbar-fill bg-blue-500" style={{ width: '0%' }}></div></div>
+              <div className="pbar"><div className="pbar-fill" style={{ width: '0%', background: 'var(--red)' }}></div></div>
             </div>
             <div className="mod-right">
-              <Link to="/modul-lms" className="badge badge-blue"><IconPlayerPlay size={10} /> Mulai</Link>
-              <div className="text-[10px] font-bold text-slate-400">0%</div>
+              <span className="badge badge-blue"><IconPlayerPlay size={12} /> Mulai</span>
+              <span style={{fontSize: '10px', color: 'var(--slate2)'}}>0%</span>
             </div>
-          </div>
+          </Link>
 
           {[
-            { id: 2, icon: '☄️', title: 'Simulasi Kawah Meteor', sub: 'Fisika Tumbukan · Kalkulator Dampak · Overpressure' },
-            { id: 3, icon: '🛰️', title: 'Sampah Antariksa', sub: 'Sindrom Kessler · Orbit LEO' },
-            { id: 4, icon: '🌊', title: 'Tsunami Tumbukan', sub: 'Gelombang Laut · Megatsunami Asteroid' },
-            { id: 5, icon: '🔭', title: 'Observasi NEO', sub: 'Astrometri · Teleskop · Lintas Batas' },
+            { id: 2, icon: '☄️', title: 'Simulasi Kawah Meteor', sub: 'Fisika Tumbukan · Kalkulator Dampak · Overpressure', color: 'blue' },
+            { id: 3, icon: '🛰️', title: 'Sampah Antariksa', sub: 'Sindrom Kessler · Orbit LEO', color: 'orange' },
+            { id: 4, icon: '🌊', title: 'Tsunami Tumbukan', sub: 'Gelombang Laut · Megatsunami Asteroid', color: 'teal' },
+            { id: 5, icon: '🔭', title: 'Observasi NEO', sub: 'Astrometri · Teleskop · Lintas Batas', color: 'green' },
           ].map((mod) => (
             <div key={mod.id} className="mod-card locked">
-              <div className="mod-icon bg-slate-100 text-slate-400">{mod.icon}</div>
+              <div className="mod-icon" style={{background: `var(--${mod.color}-lt)`}}>{mod.icon}</div>
               <div className="mod-info">
-                <div className="mod-num text-slate-400">Modul {mod.id}</div>
-                <div className="mod-title text-slate-500">{mod.title}</div>
+                <div className="mod-num" style={{color: `var(--${mod.color})`}}>Modul {mod.id}</div>
+                <div className="mod-title">{mod.title}</div>
                 <div className="mod-sub">{mod.sub}</div>
               </div>
               <div className="mod-right">
-                <IconLock size={14} className="text-slate-300" />
+                <IconLock size={16} style={{color: 'var(--slate)'}} />
               </div>
             </div>
           ))}
@@ -166,12 +166,12 @@ export function Dashboard() {
             <div className="card-title"><IconChartBar size={14} /> Profil Literasi Awal</div>
             <div className="flex flex-col gap-2 mt-4">
               {[
-                { name: 'Umum', score: 55, color: 'bg-purple-500' },
-                { name: 'Cuaca Antariksa', score: 48, color: 'bg-orange-500' },
-                { name: 'Kawah Meteor', score: 42, color: 'bg-red-500' },
-                { name: 'Sampah Antariksa', score: 38, color: 'bg-blue-500' },
-                { name: 'Tsunami Asteroid', score: 35, color: 'bg-teal-500' },
-                { name: 'Observasi NEO', score: 30, color: 'bg-green-500' },
+                { name: 'Umum', score: 55, color: '#7C3AED' },
+                { name: 'Cuaca Antariksa', score: 48, color: 'var(--red)' },
+                { name: 'Kawah Meteor', score: 42, color: 'var(--blue)' },
+                { name: 'Sampah Antariksa', score: 38, color: 'var(--orange)' },
+                { name: 'Tsunami Asteroid', score: 35, color: 'var(--teal)' },
+                { name: 'Observasi NEO', score: 30, color: 'var(--green)' },
               ].map((topic, i) => {
                 const backendScore = topicScores.find(t => t.topic === topic.name)?.score;
                 const finalScore = backendScore !== undefined ? backendScore : topic.score;
@@ -179,9 +179,9 @@ export function Dashboard() {
                   <div key={i} className="topic-row">
                     <div className="topic-name">{topic.name}</div>
                     <div className="topic-bar">
-                      <div className={`topic-fill ${topic.color}`} style={{ width: `${finalScore}%` }}></div>
+                      <div className="topic-fill" style={{ width: `${finalScore}%`, background: topic.color }}></div>
                     </div>
-                    <div className="topic-score" style={{ color: `var(--${topic.color.split('-')[1]})` }}>{finalScore}%</div>
+                    <div className="topic-score" style={{ color: topic.color }}>{finalScore}%</div>
                   </div>
                 );
               })}
@@ -195,21 +195,25 @@ export function Dashboard() {
             <div className="card-title"><IconClock size={14} /> Aktivitas Terbaru</div>
             <div className="mt-2">
               {activities.length > 0 ? (
-                activities.map((act) => (
+                activities.map((act, idx) => {
+                  const colors = ['var(--green-lt)', 'var(--blue-lt)', 'var(--purple-lt)', 'var(--orange-lt)'];
+                  const icons = ['✅', '📋', '🚀', '👤'];
+                  return (
                   <div key={act.id} className="activity-item">
-                    <div className="activity-icon bg-slate-100 text-slate-600">
-                      {act.icon || '📝'}
+                    <div className="activity-icon" style={{background: colors[idx % colors.length]}}>
+                      {act.icon || icons[idx % icons.length]}
                     </div>
                     <div className="activity-text">
                       <div className="activity-main">{act.action}</div>
-                      {act.description && <div className="text-[11px] text-slate-500">{act.description}</div>}
+                      {act.description && <div className="activity-time">{act.description}</div>}
                       <div className="activity-time">{new Date(act.created_at).toLocaleDateString()}</div>
                     </div>
                   </div>
-                ))
+                  )
+                })
               ) : (
                 <div className="activity-item">
-                  <div className="activity-icon bg-green-50 text-green-600"><IconShieldCheck size={16} /></div>
+                  <div className="activity-icon" style={{background: 'var(--green-lt)'}}>✅</div>
                   <div className="activity-text">
                     <div className="activity-main">Akun terdaftar dan terverifikasi</div>
                     <div className="activity-time">Hari ini</div>

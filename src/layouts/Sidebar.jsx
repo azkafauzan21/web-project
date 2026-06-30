@@ -59,7 +59,7 @@ export function Sidebar() {
           <IconBooks className="w-[18px] h-[18px] shrink-0" stroke={2.5} /> Modul Bencana
         </NavLink>
 
-        <NavLink to="/pencapaian" className={({ isActive }) => isActive ? activeNavItemClass : navItemClass}>
+        <NavLink to="/progress" className={({ isActive }) => isActive ? activeNavItemClass : navItemClass}>
           <IconChartDots className="w-[18px] h-[18px] shrink-0" stroke={2.5} /> Progress Saya
         </NavLink>
 
